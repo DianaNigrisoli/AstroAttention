@@ -48,13 +48,13 @@ public class LoadFruits : MonoBehaviour
         {
             myFruitList.fruit[i] = new Fruit();
             
-            myFruitList.fruit[i].name = data(n_col*(1+i));
-            myFruitList.fruit[i].colour = data(n_col*(1+i)+1);
-            myFruitList.fruit[i].R= float.Parse(data(n_col*(1+i)+1));
-            myFruitList.fruit[i].G= float.Parse(data(n_col*(1+i)+1));
-            myFruitList.fruit[i].B= float.Parse(data(n_col*(1+i)+1));
-            myFruitList.fruit[i].A= float.Parse(data(n_col*(1+i)+1));
-            myFruitList.fruit[i].hex = data(n_col*(1+i)+1);
+            // myFruitList.fruit[i].name = data(n_col*(1+i));
+            // myFruitList.fruit[i].colour = data(n_col*(1+i)+1);
+            // myFruitList.fruit[i].R= float.Parse(data(n_col*(1+i)+1));
+            // myFruitList.fruit[i].G= float.Parse(data(n_col*(1+i)+1));
+            // myFruitList.fruit[i].B= float.Parse(data(n_col*(1+i)+1));
+            // myFruitList.fruit[i].A= float.Parse(data(n_col*(1+i)+1));
+            // myFruitList.fruit[i].hex = data(n_col*(1+i)+1);
             
         }
 

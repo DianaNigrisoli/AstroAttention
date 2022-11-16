@@ -233,16 +233,28 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.572
+      objectReference: {fileID: 0}
+    - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.572
+      objectReference: {fileID: 0}
+    - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.572
+      objectReference: {fileID: 0}
+    - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13060722
+      value: -0.13166
       objectReference: {fileID: 0}
     - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18835548
+      value: -0.13113
       objectReference: {fileID: 0}
     - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.592614
+      value: 10.43
       objectReference: {fileID: 0}
     - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -271,6 +283,10 @@ PrefabInstance:
     - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 452004, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
@@ -915,8 +931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165440e657ddcf7b0bdd87c65f30af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  targetPosition: {x: -1.22, y: 3.42, z: 3.1}
 --- !u!4 &2033430751
 Transform:
   m_ObjectHideFlags: 0

@@ -23,7 +23,9 @@ namespace Assets.Scripts
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Input.GetMouseButtonDown(0)){
-                if(Physics.Raycast(ray,out hit) && hit.collider.gameObject == gameObject){
+                if(Physics.Raycast(ray,out hit) && hit.collider.gameObject == gameObject)
+                {
+                    buttonAction.selectedPlanet = gameObject.name;
                     unityEvent.Invoke();
                 }
             }
