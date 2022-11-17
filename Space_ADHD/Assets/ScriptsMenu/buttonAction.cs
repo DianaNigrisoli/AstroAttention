@@ -12,7 +12,9 @@ public class buttonAction : MonoBehaviour
     private float spaceshipScalingFactor = -0.37f;
     private Vector3 targetPositionCamera;
     private Vector3 targetPositionSpaceship;
+    
     private GameObject spaceship;
+    private Light spaceshipLight;
 
     public void buttonMethod()
     {
@@ -26,6 +28,8 @@ public class buttonAction : MonoBehaviour
 
     public void Awake()
     {
+        spaceshipLight = GameObject.Find("spaceshipLight").GetComponent<Light>();
+        spaceshipLight.intensity = -2.0f;
         spaceship = GameObject.Find("spaceshipMenu");
     }
 
@@ -40,6 +44,7 @@ public class buttonAction : MonoBehaviour
                 Vector3.MoveTowards(spaceship.transform.position, targetPositionSpaceship, step * 1.37f);
             spaceship.transform.localScale += new Vector3(spaceshipScalingFactor * Time.deltaTime,
                 spaceshipScalingFactor* Time.deltaTime, spaceshipScalingFactor * Time.deltaTime);
+            spaceshipLight.intensity += 2.0f * Time.deltaTime;
         }
 
         if (Camera.main.transform.position == targetPositionCamera)
