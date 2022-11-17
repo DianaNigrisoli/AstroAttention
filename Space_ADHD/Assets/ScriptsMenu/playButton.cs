@@ -43,23 +43,7 @@ public class playButton : MonoBehaviour
                 GameObject king1 = GameObject.Find("kingPlanet1");
                 Vector3 targetPosition1 = new Vector3(-1.56f, 1.98f, 1.21f);
                 moveKing(king1, targetPosition1);
-                List<string> listA = new List<string>();
-                List<string> listB = new List<string>();
-                using (var reader = new StreamReader(@"Assets/ScriptsMenu/dialogs.csv"))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-                        Debug.Log(line);
-                        listA.Add(values[0]);
-                        listB.Add(values[1]);
-                        Debug.Log(values[0]);
-                        Debug.Log(values[1]);
-                    }
-                }
-                int index = listA.FindIndex(a => a.Contains("Planet 1"));
-                dialog.SetText(listB[index]);
+				searchInCSV("Planet 1");
 				kingHasSpoken = true;
                 break;
             default:
@@ -68,6 +52,27 @@ public class playButton : MonoBehaviour
 
         }
     }
+
+	private void searchInCSV(string keyword)
+	{
+		List<string> listA = new List<string>();
+        List<string> listB = new List<string>();
+        using (var reader = new StreamReader(@"Assets/ScriptsMenu/dialogs.csv"))
+        {
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                Debug.Log(line);
+                listA.Add(values[0]);
+                listB.Add(values[1]);
+                Debug.Log(values[0]);
+                Debug.Log(values[1]);
+            }
+        }
+        int index = listA.FindIndex(a => a.Contains(keyword));
+        dialog.SetText(listB[index]);
+	}
 
     private void moveKing(GameObject king, Vector3 targetPosition)
     {
