@@ -16,7 +16,10 @@ public class ChangeColour : MonoBehaviour
     void Start()
     {
         aFloat = 1;
-        myRenderer = gameObject.GetComponent<Renderer>(); 
+        myRenderer = gameObject.GetComponent<Renderer>();
+        var fruit = new LoadFruits.Fruit().name;
+        Debug.Log(fruit);
+
     }
     
     void Update()
