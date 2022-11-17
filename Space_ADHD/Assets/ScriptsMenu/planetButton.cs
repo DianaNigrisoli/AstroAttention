@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public UnityEvent unityEvent = new UnityEvent();
         public GameObject button;
         private int rotationY = 13;
+        private int rotationZ = 9;
     
         // Start is called before the first frame update
         void Start()
@@ -29,7 +30,7 @@ namespace Assets.Scripts
                     unityEvent.Invoke();
                 }
             }
-            transform.Rotate(0, rotationY*Time.deltaTime, 0); //rotates rotationY degrees per second around y axis
+            transform.Rotate(0, rotationY*Time.deltaTime, rotationZ*Time.deltaTime); //rotates rotationY degrees per second around y axis
         }
     }
 }

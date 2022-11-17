@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class buttonAction : MonoBehaviour
 {
     public static String selectedPlanet;
+    public GameObject button;
+    
     private Boolean selected = false;
     private float speed = 1.0f;
     private float spaceshipScalingFactor = -0.37f;
@@ -51,7 +53,8 @@ public class buttonAction : MonoBehaviour
         {
             selected = false;
             Destroy(spaceship);
-            changeScene();
+            button.SetActive(true);
+            //changeScene();
         }
     }
 
