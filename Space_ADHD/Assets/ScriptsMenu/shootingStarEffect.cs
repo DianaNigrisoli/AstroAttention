@@ -33,8 +33,6 @@ public class shootingStarEffect : MonoBehaviour
             targetPosition = new Vector3(targetX, targetY, targetZ);
             shootingStar.GetComponent<Rigidbody>().velocity = Vector3.zero;
             shootingStar.transform.position = spawnPosition;
-            Debug.Log(spawnPosition);
-            Debug.Log(targetPosition);
         }
         shootingStar.transform.position = Vector3.MoveTowards(shootingStar.transform.position, targetPosition, step);
         //shootingStar.transform.position = targetPosition;

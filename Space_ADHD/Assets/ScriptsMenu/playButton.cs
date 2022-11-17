@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using TMPro;
+using System.Collections.Generic;
 
 public class playButton : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class playButton : MonoBehaviour
     private GameObject king;
     private Vector3 targetPosition;
     private bool moveKingBool;
+    public TextMeshProUGUI dialog;
 
     void Start()
     {
@@ -37,6 +41,23 @@ public class playButton : MonoBehaviour
                 GameObject king1 = GameObject.Find("kingPlanet1");
                 Vector3 targetPosition1 = new Vector3(-1.56f, 1.98f, 1.21f);
                 moveKing(king1, targetPosition1);
+                List<string> listA = new List<string>();
+                List<string> listB = new List<string>();
+                using (var reader = new StreamReader(@"Assets/ScriptsMenu/dialogs.csv"))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+                        Debug.Log(line);
+                        listA.Add(values[0]);
+                        listB.Add(values[1]);
+                        Debug.Log(values[0]);
+                        Debug.Log(values[1]);
+                    }
+                }
+                int index = listA.FindIndex(a => a.Contains("Planet 1"));
+                dialog.SetText(listB[index]);
                 break;
             default:
                 Debug.Log("GG");
@@ -60,7 +81,6 @@ public class playButton : MonoBehaviour
         {
             var step = 5.0f * Time.deltaTime;
             king.transform.position = Vector3.MoveTowards(king.transform.position, targetPosition, step);
-            
         }
 
         if (moveKingBool && king.transform.position == targetPosition)
