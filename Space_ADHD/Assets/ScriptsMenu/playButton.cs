@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class playButton : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class playButton : MonoBehaviour
     private GameObject king;
     private Vector3 targetPosition;
     private bool moveKingBool;
+	private bool kingHasSpoken = false;
     public TextMeshProUGUI dialog;
 
     void Start()
@@ -58,6 +60,7 @@ public class playButton : MonoBehaviour
                 }
                 int index = listA.FindIndex(a => a.Contains("Planet 1"));
                 dialog.SetText(listB[index]);
+				kingHasSpoken = true;
                 break;
             default:
                 Debug.Log("GG");
@@ -87,5 +90,9 @@ public class playButton : MonoBehaviour
         {
             moveKingBool = false;
         }
+		if (kingHasSpoken && Input.GetMouseButtonDown(0))
+		{
+			SceneManager.LoadScene("FruitGame");
+		}
     }
 }
