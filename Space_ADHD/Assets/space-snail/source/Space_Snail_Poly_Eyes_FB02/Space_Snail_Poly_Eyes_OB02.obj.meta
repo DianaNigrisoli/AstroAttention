@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 52914df7ecd41d247a9198f5e928094d
 ModelImporter:
   serializedVersion: 21300
@@ -9,6 +10,13 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Space_Snail_Geo_Left_FlareMat
     second: {fileID: 2100000, guid: e669776746d1ebb4b92556e54ad0dc30, type: 2}
+=======
+guid: a6a76dbc9bf1fcfeea162e15630b2579
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+>>>>>>> a7c126b4a8cee5512d6107bc12f287a58683f1a9
   materials:
     materialImportMode: 2
     materialName: 0
