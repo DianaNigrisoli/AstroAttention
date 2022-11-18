@@ -17,13 +17,11 @@ public class ChangeColour : MonoBehaviour
     {
         aFloat = 1;
         myRenderer = gameObject.GetComponent<Renderer>();
-        var fruit = new LoadFruits.Fruit().name;
-        Debug.Log(fruit);
-
     }
     
     void Update()
     {
+
         if (Input.GetKey(KeyCode.A))
         {
             // if (aFloat < 1)
