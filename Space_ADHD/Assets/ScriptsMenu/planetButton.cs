@@ -10,12 +10,14 @@ namespace Assets.Scripts
         public GameObject button;
         private int rotationY = 13;
         private int rotationZ = 9;
+        private bool selected;
+        
     
         // Start is called before the first frame update
         void Start()
         {
             button = this.gameObject;
-
+            this.selected = false;
         }
 
         // Update is called once per frame
@@ -23,10 +25,11 @@ namespace Assets.Scripts
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Input.GetMouseButtonDown(0)){
+            if(Input.GetMouseButtonDown(0) && !selected){
                 if(Physics.Raycast(ray,out hit) && hit.collider.gameObject == gameObject)
                 {
                     buttonAction.selectedPlanet = gameObject.name;
+                    selected = true;
                     unityEvent.Invoke();
                 }
             }
