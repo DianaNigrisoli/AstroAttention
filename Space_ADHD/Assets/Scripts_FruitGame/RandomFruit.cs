@@ -1,17 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class RandomFruit : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
 
    //[SerializeField] SpriteRenderer spriteRenderer;
-
     [SerializeField] private Image fruitImage;
-
+    public static LoadFruits.Fruit currentFruit;
     int randomImage;
+
+    void selectRandomImage()
+    {
+        randomImage = Random.Range(0, 6);
+        //spriteRenderer.sprite = fruitImages[randomImage];
+        fruitImage.sprite = fruitImages[randomImage];
+        print(randomImage);
+        currentFruit = LoadFruits.myFruitList.fruit[randomImage];
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +30,7 @@ public class RandomFruit : MonoBehaviour
         selectRandomImage();
     }
 
-    void selectRandomImage()
+    private void Update()
     {
-        randomImage = Random.Range(1, 7);
-        //spriteRenderer.sprite = fruitImages[randomImage];
-        fruitImage.sprite = fruitImages[randomImage];
-        print(randomImage);
-        //var fruit = LoadFruits.myFruitList.fruit[randomImage].name;
-        //Debug.Log(fruit);
-
     }
 }
