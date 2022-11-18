@@ -66,5 +66,9 @@ public class buttonAction : MonoBehaviour
         {
             SceneManager.LoadScene("Scenes/FruitGame");
         }
+        if (selectedPlanet == "planet2Button")
+        {
+            SceneManager.LoadScene("Scenes/DirectionGame");
+        }
     }
 }
