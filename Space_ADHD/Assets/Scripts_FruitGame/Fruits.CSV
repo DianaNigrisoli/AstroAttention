@@ -1,12 +1,12 @@
-Fruit ,Color ,R,G,B,A,hexadecimal
-banana,giallo,248,255,0,255,F8FF00
-fragola,rosso,255,38,0,255,FF2600 
-limone,giallo,248,255,0,255,F8FF00
-arancia,arancione,239,110,0,255,EF6E00
-pera,verde,105,217,38,255,69D926
-ciliegia,rosso,255,38,0,255,FF2600
-uva,viola,112,32,154,255,70209A
-melanzana,viola,112,32,154,255,70209A
-carota,arancione,239,110,0,255,EF6E00
-broccolo,verde,105,217,38,255,69D926
-mirtilli,blu,0,29,142,255,001D8E
+﻿Fruit ;Color ;R;G;B;A;hexadecimal
+banana;giallo;248;255;0;255;F8FF00
+fragola;rosso;255;38;0;255;FF2600
+limone;giallo;248;255;0;255;F8FF00
+pera;verde;105;217;38;255;69D926
+ciliegia;rosso;255;38;0;255;FF2600
+uva;viola;112;32;154;255;70209A
+broccolo;verde;105;217;38;255;69D926
+melanzana;viola;112;32;154;255;70209A
+carota;arancione;239;110;0;255;EF6E00
+arancia;arancione;239;110;0;255;EF6E00
+;blu;0;29;142;255;001D8E

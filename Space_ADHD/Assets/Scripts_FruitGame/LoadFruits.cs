@@ -19,8 +19,7 @@ public class LoadFruits : MonoBehaviour
         public float G;
         public float B;
         public float A;
-        public string hex; 
-        public Sprite icon; 
+        public string hex;
     }
     [System.Serializable]
     public class FruitList
@@ -28,7 +27,7 @@ public class LoadFruits : MonoBehaviour
         public Fruit[] fruit;
     }
 
-    public FruitList myFruitList = new FruitList(); 
+    public static FruitList myFruitList = new FruitList(); 
     
     void Start()
     {
@@ -55,7 +54,6 @@ public class LoadFruits : MonoBehaviour
             myFruitList.fruit[i].B = float.Parse(data[n_col*(i+1)+4]);
             myFruitList.fruit[i].A = float.Parse(data[n_col*(i+1)+5]);
             myFruitList.fruit[i].hex = data[n_col*(i+1)+6];
-            // myFruitList.fruit[1].icon = Resources.Load("Fruits/Banana.png") as Sprite;
         }
         
     }
