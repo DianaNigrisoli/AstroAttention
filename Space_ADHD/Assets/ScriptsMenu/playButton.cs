@@ -33,6 +33,7 @@ public class playButton : MonoBehaviour
     {
         selectedPlanet = buttonAction.selectedPlanet;
         Debug.Log("Starting Intro");
+		Debug.Log(selectedPlanet);
         this.transform.position = new Vector3(Screen.width*2, Screen.height*2, 50);
         miniGameIntro();
     }
@@ -47,6 +48,14 @@ public class playButton : MonoBehaviour
                 Vector3 targetPosition1 = new Vector3(-1.56f, 1.98f, 1.21f);
                 moveKing(king1, targetPosition1);
 				searchInCSV("Planet 1");
+				kingHasSpoken = true;
+                break;
+            case "planet2Button":
+                Debug.Log("Scene planet 2");
+                GameObject king2 = GameObject.Find("kingPlanet2");
+                Vector3 targetPosition2 = new Vector3(2.05f, 0.16f, 5.57f);
+                moveKing(king2, targetPosition2);
+				searchInCSV("Planet 2");
 				kingHasSpoken = true;
                 break;
             default:
@@ -99,8 +108,19 @@ public class playButton : MonoBehaviour
             moveKingBool = false;
         }
 		if (kingHasSpoken && Input.GetMouseButtonDown(0))
-		{
-			SceneManager.LoadScene("FruitGame");
+		{		
+			switch (selectedPlanet)
+        	{
+	            case "planet1Button":
+					SceneManager.LoadScene("FruitGame");
+                	break;
+            	case "planet2Button":
+                	SceneManager.LoadScene("DirectionGame");
+                	break;
+            	default:
+                	Debug.Log("GG");
+                	break;
+        	}		
 		}
     }
 }
