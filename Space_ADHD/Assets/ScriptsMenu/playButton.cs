@@ -7,6 +7,7 @@ using System.IO;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playButton : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class playButton : MonoBehaviour
     private bool moveKingBool;
 	private bool kingHasSpoken = false;
     public TextMeshProUGUI dialog;
+	public RawImage txtBox;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class playButton : MonoBehaviour
         this.GetComponent<Button>().onClick.AddListener(TaskOnClick);
         this.moveKingBool = false;
         gameObject.SetActive(false);
+		txtBox.enabled = false;
     }
 
     private void TaskOnClick()
@@ -49,7 +52,6 @@ public class playButton : MonoBehaviour
             default:
                 Debug.Log("GG");
                 break;
-
         }
     }
 
@@ -57,7 +59,7 @@ public class playButton : MonoBehaviour
 	{
 		List<string> listA = new List<string>();
         List<string> listB = new List<string>();
-        using (var reader = new StreamReader(@"Assets/ScriptsMenu/dialogs.csv"))
+        using (var reader = new StreamReader(@"Assets/Resources/dialogs.csv"))
         {
             while (!reader.EndOfStream)
             {
@@ -72,6 +74,7 @@ public class playButton : MonoBehaviour
         }
         int index = listA.FindIndex(a => a.Contains(keyword));
         dialog.SetText(listB[index]);
+		txtBox.enabled = true;
 	}
 
     private void moveKing(GameObject king, Vector3 targetPosition)
