@@ -45,7 +45,7 @@ public class playButton : MonoBehaviour
             case "planet1Button":
                 Debug.Log("Scene planet 1");
                 GameObject king1 = GameObject.Find("kingPlanet1");
-                Vector3 targetPosition1 = new Vector3(-1.56f, 1.98f, 1.21f);
+                Vector3 targetPosition1 = new Vector3(-2f, 1.98f, 1.77f);
                 moveKing(king1, targetPosition1);
 				searchInCSV("Planet 1");
 				kingHasSpoken = true;
@@ -53,7 +53,7 @@ public class playButton : MonoBehaviour
             case "planet2Button":
                 Debug.Log("Scene planet 2");
                 GameObject king2 = GameObject.Find("kingPlanet2");
-                Vector3 targetPosition2 = new Vector3(2.05f, 0.16f, 5.57f);
+                Vector3 targetPosition2 = new Vector3(2.15f, 1.23f, 1.73f);
                 moveKing(king2, targetPosition2);
 				searchInCSV("Planet 2");
 				kingHasSpoken = true;
