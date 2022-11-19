@@ -7,7 +7,6 @@ public class ChangeColour : MonoBehaviour
     void Start()
     {
         StartCoroutine(waiter());
-
     }
 
     IEnumerator waiter()

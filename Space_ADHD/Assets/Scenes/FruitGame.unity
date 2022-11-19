@@ -768,7 +768,6 @@ GameObject:
   - component: {fileID: 2003607748}
   - component: {fileID: 2003607750}
   - component: {fileID: 2003607749}
-  - component: {fileID: 2003607751}
   m_Layer: 5
   m_Name: FruitImage
   m_TagString: Untagged
@@ -834,15 +833,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003607747}
   m_CullTransparentMesh: 1
---- !u!114 &2003607751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003607747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6daf33be4aca845bf76c39375d7430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

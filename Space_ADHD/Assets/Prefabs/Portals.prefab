@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1536039536417163990
+--- !u!1 &1544831991911688777
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +105,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6658112843407212068}
-  - component: {fileID: 4923201160260785272}
-  - component: {fileID: 1538139564310609113}
-  - component: {fileID: 1764554502009139931}
+  - component: {fileID: 4302975808587337695}
+  - component: {fileID: 3769934423160506307}
+  - component: {fileID: 4910946740109890342}
+  - component: {fileID: 5478937121143136213}
   m_Layer: 0
   m_Name: Portal3
   m_TagString: Untagged
@@ -116,13 +116,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6658112843407212068
+--- !u!4 &4302975808587337695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536039536417163990}
+  m_GameObject: {fileID: 1544831991911688777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.47, y: 0, z: 4.328391}
   m_LocalScale: {x: 2, y: 3, z: 0.29999998}
@@ -131,21 +131,21 @@ Transform:
   m_Father: {fileID: 405340576385611295}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4923201160260785272
+--- !u!33 &3769934423160506307
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536039536417163990}
+  m_GameObject: {fileID: 1544831991911688777}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1538139564310609113
+--- !u!23 &4910946740109890342
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536039536417163990}
+  m_GameObject: {fileID: 1544831991911688777}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a6da946c2b0ffb4da9bd5958b6edef5, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -181,13 +181,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1764554502009139931
+--- !u!65 &5478937121143136213
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536039536417163990}
+  m_GameObject: {fileID: 1544831991911688777}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -324,7 +324,7 @@ Transform:
   m_Children:
   - {fileID: 7587193278312925166}
   - {fileID: 5186337783974804866}
-  - {fileID: 6658112843407212068}
+  - {fileID: 4302975808587337695}
   - {fileID: 7367450561460844564}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -366,6 +366,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6aa846371a6fa409879f36eeff4b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitImages:
+  - {fileID: 21300000, guid: 3dcb2086b0d259644864adc1f1785470, type: 3}
+  - {fileID: 21300000, guid: f6bdb3c6100925542b0cd94b174d9eb7, type: 3}
+  - {fileID: 21300000, guid: cb9db8e1dd3f0f943b98df743047421d, type: 3}
+  - {fileID: 21300000, guid: c76b782b6cb50f542a868e094dfa4121, type: 3}
+  - {fileID: 21300000, guid: 3b3e2c40b6e9f53429dbc2d6c223c7ea, type: 3}
+  - {fileID: 21300000, guid: b602e09bb6c0bda4c87a36f7846354e7, type: 3}
+  - {fileID: 21300000, guid: 0821d708331f74748bafb7717aff511f, type: 3}
+  fruitImage: {fileID: 0}
+  currentFruit:
+    name: 
+    colour: 
+    R: 0
+    G: 0
+    B: 0
+    A: 0
+    hex: 
+    ID: 0
 --- !u!1 &8714675057845736078
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +393,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7367450561460844564}
-  - component: {fileID: 1988118801826598010}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -398,24 +415,3 @@ Transform:
   m_Father: {fileID: 405340576385611295}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1988118801826598010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8714675057845736078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0da75e470e81b24ca7222721ccaeb20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fruitImages:
-  - {fileID: 21300000, guid: 3dcb2086b0d259644864adc1f1785470, type: 3}
-  - {fileID: 21300000, guid: f6bdb3c6100925542b0cd94b174d9eb7, type: 3}
-  - {fileID: 21300000, guid: cb9db8e1dd3f0f943b98df743047421d, type: 3}
-  - {fileID: 21300000, guid: c76b782b6cb50f542a868e094dfa4121, type: 3}
-  - {fileID: 21300000, guid: 3b3e2c40b6e9f53429dbc2d6c223c7ea, type: 3}
-  - {fileID: 21300000, guid: b602e09bb6c0bda4c87a36f7846354e7, type: 3}
-  - {fileID: 21300000, guid: 0821d708331f74748bafb7717aff511f, type: 3}
-  fruitImage: {fileID: 0}
