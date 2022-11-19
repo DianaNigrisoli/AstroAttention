@@ -9,9 +9,8 @@ using UnityEngine.UI;
 public class LoadFruits : MonoBehaviour
 {
     public TextAsset testAssetData;
-  
-    [System.Serializable]
-    public class Fruit
+    
+    [System.Serializable] public class Fruit
     {
         public string name;
         public string colour;
@@ -20,16 +19,17 @@ public class LoadFruits : MonoBehaviour
         public float B;
         public float A;
         public string hex;
+        public int ID;
     }
-    [System.Serializable]
-    public class FruitList
+    
+    [System.Serializable] public class FruitList
     {
         public Fruit[] fruit;
     }
 
     public static FruitList myFruitList = new FruitList(); 
     
-    void Start()
+    void Awake()
     {
         readCSV();
         //Debug.Log(myFruitList.fruit[0].name);
@@ -38,7 +38,7 @@ public class LoadFruits : MonoBehaviour
     // Start is called before the first frame update
     void readCSV()
     {
-        int n_col = 7; 
+        int n_col = 8; 
         string[] data = testAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
         int tableSize = data.Length / n_col - 1;
         myFruitList.fruit = new Fruit[tableSize];
@@ -54,6 +54,7 @@ public class LoadFruits : MonoBehaviour
             myFruitList.fruit[i].B = float.Parse(data[n_col*(i+1)+4]);
             myFruitList.fruit[i].A = float.Parse(data[n_col*(i+1)+5]);
             myFruitList.fruit[i].hex = data[n_col*(i+1)+6];
+            // myFruitList.fruit[i].ID = int.Parse(data[n_col * (i + 1) + 7]);
         }
         
     }
