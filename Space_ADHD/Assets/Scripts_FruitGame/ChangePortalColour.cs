@@ -51,13 +51,41 @@ public class ChangePortalColour : MonoBehaviour
     {
         Color currentColor = ListColour[currentFruit.ID];
         print(currentColor);
-        GameObject.Find("Portal3").GetComponent<Renderer>().material.color = Color.red;
+        //GameObject.Find("Portal3").GetComponent<Renderer>().material.color = Color.red;
         // var objects =Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Portal3");
-        // foreach (GameObject j in objects)
+        // foreach (GameObject j in Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Portal3"))
         // {
-        //    j.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 255);
-        //}
-           
+        //     j.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 255);
+        // }
+
+        foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
+        {
+            if (gameObj.name == "Portal3")
+            {
+                gameObj.GetComponent<Renderer>().material.color = new Color(
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f));
+
+            }
+
+            if (gameObj.name == "Portal2")
+            {
+                gameObj.GetComponent<Renderer>().material.color = new Color(
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f));
+            }
+
+            if (gameObj.name == "Portal1")
+            {
+                gameObj.GetComponent<Renderer>().material.color = new Color(
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f),
+                    Random.Range(0f, 1f));
+            }
+        }
+
         selectRandomPortals();
         
 
