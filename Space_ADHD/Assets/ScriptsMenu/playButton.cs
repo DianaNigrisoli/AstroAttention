@@ -56,6 +56,7 @@ public class playButton : MonoBehaviour
                 Vector3 targetPosition2 = new Vector3(2.15f, 1.23f, 1.73f);
                 moveKing(king2, targetPosition2);
 				searchInCSV("Planet 2");
+                king2.GetComponent<AudioSource>().Play();
 				kingHasSpoken = true;
                 break;
             default:

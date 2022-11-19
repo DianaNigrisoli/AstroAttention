@@ -10,6 +10,7 @@ public class buttonAction : MonoBehaviour
     public GameObject button;
     
     private Boolean selected = false;
+    private Boolean afterburnerSpaceshipPlaying;
     private float speed = 1.0f;
     private float spaceshipScalingFactor = -0.37f;
     private Vector3 targetPositionCamera;
@@ -45,6 +46,7 @@ public class buttonAction : MonoBehaviour
         spaceshipLight = GameObject.Find("spaceshipLight").GetComponent<Light>();
         spaceshipLight.intensity = -2.0f;
         spaceship = GameObject.Find("spaceshipMenu");
+        afterburnerSpaceshipPlaying = false;
     }
 
     public void Update()
@@ -59,6 +61,14 @@ public class buttonAction : MonoBehaviour
             spaceship.transform.localScale += new Vector3(spaceshipScalingFactor * Time.deltaTime,
                 spaceshipScalingFactor* Time.deltaTime, spaceshipScalingFactor * Time.deltaTime);
             spaceshipLight.intensity += lightIntensityMultiplier * Time.deltaTime;
+            if (!afterburnerSpaceshipPlaying)
+            {
+                spaceship.GetComponent<AudioSource>().Play();
+                afterburnerSpaceshipPlaying = true;
+            }else
+            {
+                spaceship.GetComponent<AudioSource>().volume -= 0.3f * Time.deltaTime;
+            }
         }
 
         if (Camera.main.transform.position == targetPositionCamera)
