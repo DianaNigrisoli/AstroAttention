@@ -14,6 +14,7 @@ public class buttonAction : MonoBehaviour
     private float spaceshipScalingFactor = -0.37f;
     private Vector3 targetPositionCamera;
     private Vector3 targetPositionSpaceship;
+    private float lightIntensityMultiplier;
     
     private GameObject spaceship;
     private Light spaceshipLight;
@@ -25,7 +26,18 @@ public class buttonAction : MonoBehaviour
         targetPositionCamera = planet.transform.position + new Vector3(0.0f, 0.0f, 3.08f);
         targetPositionSpaceship = planet.transform.position + new Vector3(-0.04f, 0.3f, 0.0f);;
         selected = true;
+        lightIntensityMultiplier = SetLightIntensityMultiplier();
+    }
 
+    private float SetLightIntensityMultiplier()
+    {
+        switch (selectedPlanet)
+        {
+            case "planet2Button":
+                return 4.0f;
+            default:
+                return 2.0f;
+        }
     }
 
     public void Awake()
@@ -46,7 +58,7 @@ public class buttonAction : MonoBehaviour
                 Vector3.MoveTowards(spaceship.transform.position, targetPositionSpaceship, step * 1.37f);
             spaceship.transform.localScale += new Vector3(spaceshipScalingFactor * Time.deltaTime,
                 spaceshipScalingFactor* Time.deltaTime, spaceshipScalingFactor * Time.deltaTime);
-            spaceshipLight.intensity += 2.0f * Time.deltaTime;
+            spaceshipLight.intensity += lightIntensityMultiplier * Time.deltaTime;
         }
 
         if (Camera.main.transform.position == targetPositionCamera)
@@ -54,21 +66,6 @@ public class buttonAction : MonoBehaviour
             selected = false;
             Destroy(spaceship);
             button.SetActive(true);
-            //changeScene();
-        }
-    }
-
-    private void changeScene()
-    {
-        Debug.Log("ChangingScene");
-        return; //TODO: uncomment to change scene
-        if (selectedPlanet == "planet1Button")
-        {
-            SceneManager.LoadScene("Scenes/FruitGame");
-        }
-        if (selectedPlanet == "planet2Button")
-        {
-            SceneManager.LoadScene("Scenes/DirectionGame");
         }
     }
 }
