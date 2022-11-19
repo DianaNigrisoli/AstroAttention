@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class RandomFruit : MonoBehaviour
 {
+    // DA CANCELLARE SE NON LO USIAMO PIU
     [SerializeField] Sprite[] fruitImages;
 
    //[SerializeField] SpriteRenderer spriteRenderer;

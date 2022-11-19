@@ -12,14 +12,15 @@ public class Portals : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other)
-    {
+    {   
+        Destroy(gameObject,1); //this will destroy the obj
         portalSpawner.SpawnPortal();
-        Destroy(gameObject,1); //this will destroy the obj 2 seconds after trigger event
-        
+        //StartCoroutine(waiter());
     }
-    // Update is called once per frame
-    void Update()
+    
+    IEnumerator waiter()
     {
-        
+        yield return new WaitForSecondsRealtime(1);
+        portalSpawner.SpawnPortal();
     }
 }

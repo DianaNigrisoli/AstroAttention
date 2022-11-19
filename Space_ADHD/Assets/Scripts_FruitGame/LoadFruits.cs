@@ -54,7 +54,7 @@ public class LoadFruits : MonoBehaviour
             myFruitList.fruit[i].B = float.Parse(data[n_col*(i+1)+4]);
             myFruitList.fruit[i].A = float.Parse(data[n_col*(i+1)+5]);
             myFruitList.fruit[i].hex = data[n_col*(i+1)+6];
-            // myFruitList.fruit[i].ID = int.Parse(data[n_col * (i + 1) + 7]);
+            myFruitList.fruit[i].ID = int.Parse(data[n_col * (i + 1) + 7]);
         }
         
     }
