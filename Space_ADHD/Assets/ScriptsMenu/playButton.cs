@@ -53,7 +53,7 @@ public class playButton : MonoBehaviour
             case "planet2Button":
                 Debug.Log("Scene planet 2");
                 GameObject king2 = GameObject.Find("kingPlanet2");
-                Vector3 targetPosition2 = new Vector3(2.15f, 1.23f, 1.73f);
+                Vector3 targetPosition2 = new Vector3(2.37f, 0.49f, 2.3f);
                 moveKing(king2, targetPosition2);
 				searchInCSV("Planet 2");
                 king2.GetComponent<AudioSource>().Play();
