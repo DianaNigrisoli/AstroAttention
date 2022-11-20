@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Timers;
 using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
@@ -29,6 +30,7 @@ public class ChangePortalColour : MonoBehaviour
         selectRandomImage();
         CustomPalette();
         selectRandomColour();
+        //Timer_try();
 
     }
 
@@ -55,19 +57,6 @@ public class ChangePortalColour : MonoBehaviour
     
     void selectRandomColour()
     {   
-        // step1: creazione lista dei 3 colori DIVERSI per i 3 portali
-            //[current, random1, random2] con random1 diverso da random2 
-            //Lista di appoggio uguale a quella con tutti i nostri colori (CustomPalette), da questa togliamo il colore 
-            //uguale al current color (usando il currentFruit.ID). 
-            //estrazione senza reimmissione di un colore tra quelli rimasti 
-            //i due colori rimanenti sono quelli per le due porte
-            
-        // step2:  Shuffle della lista dei 3 colori 
-            //il primo si assegna al portale 1, il secondo al portale 2 ecc
-        
-        //NB: dividi per 255!!!! 
-        
-        //STEP 1:
         Color currentColor = ListColour[currentFruit.ID];
         List<Color> tempColourList = ListColour;
         tempColourList.RemoveAt(currentFruit.ID);
@@ -75,20 +64,20 @@ public class ChangePortalColour : MonoBehaviour
         int tempindex = Random2.Range(0, 2); 
         tempColourList.RemoveAt(tempindex);
         
-        print("Size of tempColour: "+ tempColourList.Count);
-        print("POS 0: " + tempColourList[0]);
-        print("POS 1: " + tempColourList[1]);
+        //print("Size of tempColour: "+ tempColourList.Count);
+        //print("POS 0: " + tempColourList[0]);
+        //print("POS 1: " + tempColourList[1]);
 
         List<Color> PortalColour = tempColourList;
         PortalColour.Add(currentColor);
         
-        print("Size of Final Portal Colour: "+ PortalColour.Count);
-        print("PortalColour[0]: " +PortalColour[0]);
+        //print("Size of Final Portal Colour: "+ PortalColour.Count);
+        //print("PortalColour[0]: " +PortalColour[0]);
         //STEP 2:
         var rnd = new Random1();
         List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
 
-        print("PortalColour[0] after Shuffle: " + ShufflePortalColour[0]);
+        //print("PortalColour[0] after Shuffle: " + ShufflePortalColour[0]);
         
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
@@ -108,5 +97,33 @@ public class ChangePortalColour : MonoBehaviour
             }
         }
     }
+    
+    // Funzione per calcolo tempo
+    // 1. creare Timer(durata minore di uno spostamento)
+    // 2. capire posizione in quell'istante e fare check con posizione del timer precendente(si utilizzano 2 variabili)
+    // creare funzione evento: quando finisce il timer 
+    // nello start salvare poszione attuale 
+    //public void Timer_try()
+    //{
+      //  System.Timers.Timer aTimer = new System.Timers.Timer();
+      //   aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+        //aTimer.Interval = 1000;
+        //aTimer.Enabled = true;
+        //aTimer.Stop();
+        
+        
+        
+        //Console.WriteLine("Press \'q\' to quit the sample.");
+        // while(Console.Read() != 'q');
+   // }
+
+    // Specify what you want to happen when the Elapsed event is raised.
+    //private void OnTimedEvent(object source, ElapsedEventArgs e)
+    //{
+        //Console.WriteLine("Hello World!");
+       // print("hello NOe");
+       
+        
+    //}
 }
 
