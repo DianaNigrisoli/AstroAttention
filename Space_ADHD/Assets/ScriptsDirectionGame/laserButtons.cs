@@ -13,7 +13,6 @@ namespace Assets.ScriptsDirectionGame
         {
             button = this.gameObject;
             this.selected = false;
-            Debug.Log(this.name);
         }
 
         // Update is called once per frame

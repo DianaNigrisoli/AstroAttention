@@ -23,31 +23,30 @@ public class CannonBehavior : MonoBehaviour {
 	{
 		if (upRightShot)
 		{
-			GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-			go.GetComponent<Rigidbody>().velocity = Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.right * 0.7f;
-			GameObject.Destroy(go, 3f);
+			Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.right * 0.7f);
 			upRightShot = false;
 		}
 		if (upLeftShot)
 		{
-			GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-			go.GetComponent<Rigidbody>().velocity = Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.left * 0.7f;
-			GameObject.Destroy(go, 3f);
+			Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.left * 0.7f);
 			upLeftShot = false;
 		}
 		if (downLeftShot)
 		{
-			GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-			go.GetComponent<Rigidbody>().velocity = Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.left * 0.7f;
-			GameObject.Destroy(go, 3f);
+			Shoot(Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.left * 0.7f);
 			downLeftShot = false;
 		}
 		if (downRightShot)
 		{
-			GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-			go.GetComponent<Rigidbody>().velocity = Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.right * 0.7f;
-			GameObject.Destroy(go, 3f);
+			Shoot(Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.right * 0.7f);
 			downRightShot = false;
 		}
+	}
+
+	private void Shoot(Vector3 direction)
+	{
+		GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+		go.GetComponent<Rigidbody>().velocity = direction;
+		GameObject.Destroy(go, 3f);
 	}
 }
