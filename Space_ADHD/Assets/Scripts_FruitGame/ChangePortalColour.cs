@@ -20,8 +20,8 @@ public class ChangePortalColour : MonoBehaviour
     public LoadFruits.Fruit currentFruit;
     int randomImage;
 
-    private List<Color> ListColour = new List<Color>();
-    
+    private List<Color> ListColour = new List<Color>(); 
+    private FunctionTimer functionTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +31,10 @@ public class ChangePortalColour : MonoBehaviour
         CustomPalette();
         selectRandomColour();
         //Timer_try();
+        //functionTimer= new FunctionTimer(TestingAction, 3f);
 
     }
+    
 
     void selectRandomImage()
     {
@@ -96,6 +98,11 @@ public class ChangePortalColour : MonoBehaviour
                 gameObj.GetComponent<Renderer>().material.color = ShufflePortalColour[2];
             }
         }
+    }
+
+    private void TestingAction()
+    {
+        Debug.Log("Testing");
     }
     
     // Funzione per calcolo tempo
