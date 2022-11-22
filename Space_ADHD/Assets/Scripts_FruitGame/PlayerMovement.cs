@@ -6,70 +6,77 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
-    //private CharacterController controller; 
-    private Rigidbody controller;
-    public int score;
-
-    private int desiredLane = 0; // -1:left 0:middle, 1:right
-    public float laneDistance; //the distance between lane - to fix in Unity env
-
-    private Vector3 direction;
-    public float forwardSpeed=5f; 
+        private Rigidbody controller;
+    public float increment;
+    public float speedForward;
+    public float speedLateral;
+    public Vector3 targetPos;
+    //public int score;
     
-    // Start is called before the first frame update
-    // void Awake()
-    // {
-    //     rb = GetComponent<Rigidbody>();
-    // }
+    void Awake()
+    {
+        targetPos = transform.position;
+    }
 
     private void Start()
     {
-        controller = GetComponent<Rigidbody>(); 
-        
+        controller = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction.z = forwardSpeed;
-        
-        // Check lane position 
-       if (Input.GetKeyDown(KeyCode.RightArrow))
-       {
-           desiredLane++;
-           if (desiredLane == 2)
-               desiredLane = 1;
-       }
-       if (Input.GetKeyDown(KeyCode.LeftArrow))
-       {
-           desiredLane--;
-           if (desiredLane == -2)
-               desiredLane = -1;
-       }
-       
-       // Calculate new position
-       Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
 
-       if (desiredLane == -1)
-       {
-           targetPosition += Vector3.left * laneDistance; 
-           
-       } else if (desiredLane == 1)
-       {
-           targetPosition += Vector3.right * laneDistance; 
-       }
+        controller.velocity = transform.forward * speedForward;
+        targetPos.z = controller.position.z;
+        var step = speedLateral * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveRight();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
 
-       transform.position = targetPosition; 
-    }
-
-    private void FixedUpdate()
-    {
-        controller.MovePosition(transform.position + direction*Time.fixedDeltaTime);
-        
     }
     
-
-
+    public void MoveRight()
+    {   FunctionTimer.leftLine = false;
+        if (targetPos.x < 2.5f)
+        {
+            targetPos += new Vector3(increment, 0, 0);
+            
+        }
+        else
+        {
+            FunctionTimer.rightLine = true;
+        }
+        if (targetPos.x == 0)
+        {
+            FunctionTimer.leftLine = false;
+            FunctionTimer.rightLine = false;
+        }
+    }
+    public void MoveLeft()
+    {
+        FunctionTimer.rightLine = false;
+        if (targetPos.x > -2.5f)
+        {
+            targetPos -= new Vector3(increment, 0, 0);
+        }
+        else
+        {
+            FunctionTimer.leftLine = true;
+        }
+        if (targetPos.x == 0)
+        {
+            FunctionTimer.leftLine = false;
+            FunctionTimer.rightLine = false;
+        }
+    }
+    
     // private void OnCollisionEnter(Collision other)
     // {
     //     if (other.collider.CompareTag("Pumpkin"))

@@ -13,9 +13,10 @@ public class Portals : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {   
-        Destroy(gameObject,1); //this will destroy the obj
+        Destroy(gameObject,0); //this will destroy the obj
         portalSpawner.SpawnPortal();
-        //StartCoroutine(waiter());
+        print("Counter: " + FunctionTimer.counter);
+        print("React Time: "+ FunctionTimer.reactionTime);
     }
     
     IEnumerator waiter()

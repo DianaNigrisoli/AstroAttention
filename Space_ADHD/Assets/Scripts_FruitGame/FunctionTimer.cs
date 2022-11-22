@@ -5,55 +5,36 @@ using UnityEngine;
 
 public class FunctionTimer : MonoBehaviour
 {
-    //NON STAMPA!!!!!!
-    
-    // public float timeRemaining;
-    // public bool timerIsRunning = false;
+    public float time;
+    public static int counter;
+    public static Boolean leftLine;
+    public static Boolean rightLine;
 
-    // public void Start()
-    // {
-    //     if (timerIsRunning)
-    //     {
-    //         if (timeRemaining > 0)
-    //         {
-    //             timeRemaining -= Time.deltaTime;
-    //             Debug.Log("Time remaining: " + timeRemaining);
-    //         }
-    //         else
-    //         {
-    //             Debug.Log("Time's up!");
-    //         }
-    //     }
-    // }
-    public float time=0;
-    public int Counter = 0;
+    public static float reactionTime;
 
-    public float reactionTime;
-    private int positionPortal;
-    private int positionPlayer_start;
     public void Start()
     {
-        positionPlayer_start= (int)GameObject.Find("Player").transform.position.z;
-        positionPortal = positionPlayer_start+ 50;
+        time = 0;
+        reactionTime = 0;
+        counter = 0;
     }
 
     private void Update()
     {
-        float positionPlayer = GameObject.Find("Player").transform.position.z;
-
         time += Time.deltaTime;
         if ((Input.GetKeyDown(KeyCode.RightArrow)) || (Input.GetKeyDown(KeyCode.LeftArrow)))
         {
-            Counter += 1;
-            reactionTime = time;
-        }
-        
-        if (positionPlayer == positionPortal)
-        {
-            print("Counter: " + Counter);
-            print("React Time: "+ reactionTime);
+            if ((Input.GetKeyDown(KeyCode.LeftArrow)) &&  (leftLine == false))
+            {
+                counter += 1;
+                reactionTime = time;
+            }
+            if ((Input.GetKeyDown(KeyCode.RightArrow)) &&  (rightLine == false))
+            {
+                counter += 1;
+                reactionTime = time;
+            }
+
         }
     }
-    
-    
 }

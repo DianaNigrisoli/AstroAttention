@@ -30,9 +30,6 @@ public class ChangePortalColour : MonoBehaviour
         selectRandomImage();
         CustomPalette();
         selectRandomColour();
-        //Timer_try();
-        //functionTimer= new FunctionTimer(TestingAction, 3f);
-
     }
     
 
@@ -40,7 +37,6 @@ public class ChangePortalColour : MonoBehaviour
     {
         randomImage = Random2.Range(0, 6);
         fruitImage.sprite = fruitImages[randomImage];
-        //print(randomImage);
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
     }
@@ -48,13 +44,13 @@ public class ChangePortalColour : MonoBehaviour
     void CustomPalette()
     {
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255, (LoadFruits.myFruitList.fruit[1].G) / 255,
-            (LoadFruits.myFruitList.fruit[1].B) / 255, (LoadFruits.myFruitList.fruit[1].A) / 255));
+            (LoadFruits.myFruitList.fruit[1].B) / 255, 0.5f));
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[0].R)/255, (LoadFruits.myFruitList.fruit[0].G)/255,
-            (LoadFruits.myFruitList.fruit[0].B)/255, (LoadFruits.myFruitList.fruit[0].A)/255));
+            (LoadFruits.myFruitList.fruit[0].B)/255, 0.5f));
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[3].R)/255, (LoadFruits.myFruitList.fruit[3].G)/255,    
-            (LoadFruits.myFruitList.fruit[3].B)/255, (LoadFruits.myFruitList.fruit[3].A)/255));
+            (LoadFruits.myFruitList.fruit[3].B)/255, 0.5f));
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[5].R)/255, (LoadFruits.myFruitList.fruit[5].G)/255,
-            (LoadFruits.myFruitList.fruit[5].B)/255, (LoadFruits.myFruitList.fruit[5].A)/255));
+            (LoadFruits.myFruitList.fruit[5].B)/255, 0.5f));
     }
     
     void selectRandomColour()
@@ -98,39 +94,9 @@ public class ChangePortalColour : MonoBehaviour
                 gameObj.GetComponent<Renderer>().material.color = ShufflePortalColour[2];
             }
         }
-    }
-
-    private void TestingAction()
-    {
-        Debug.Log("Testing");
+        
     }
     
-    // Funzione per calcolo tempo
-    // 1. creare Timer(durata minore di uno spostamento)
-    // 2. capire posizione in quell'istante e fare check con posizione del timer precendente(si utilizzano 2 variabili)
-    // creare funzione evento: quando finisce il timer 
-    // nello start salvare poszione attuale 
-    //public void Timer_try()
-    //{
-      //  System.Timers.Timer aTimer = new System.Timers.Timer();
-      //   aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-        //aTimer.Interval = 1000;
-        //aTimer.Enabled = true;
-        //aTimer.Stop();
-        
-        
-        
-        //Console.WriteLine("Press \'q\' to quit the sample.");
-        // while(Console.Read() != 'q');
-   // }
-
-    // Specify what you want to happen when the Elapsed event is raised.
-    //private void OnTimedEvent(object source, ElapsedEventArgs e)
-    //{
-        //Console.WriteLine("Hello World!");
-       // print("hello NOe");
-       
-        
-    //}
+    
 }
 
