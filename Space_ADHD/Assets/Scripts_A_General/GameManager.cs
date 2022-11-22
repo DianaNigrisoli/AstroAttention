@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance = null;
-    private String playerName;
-    
+    public static GameManager instance = null;
+
     void Awake()
     {
         gameObject.tag = "GameManager";
@@ -16,29 +15,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        Instance = this;
-        playerName = "Mario";
+        instance = this;
         DontDestroyOnLoad(this);    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.frameCount % 100 == 0)
-        {
-            Debug.Log(playerName);
-        }
+
     }
-}
-
-public enum MenuState
-{
-    ProfileSelection,
-    Map
-}
-
-public enum MiniGame
-{
-    FruitGame,
-    DirectionGame
 }
