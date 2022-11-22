@@ -22,7 +22,6 @@ public class shootingStarEffect : MonoBehaviour
         if (Time.frameCount % 500 == 0)
         {
             //shootingStar.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Debug.Log(Time.timeAsDouble);
             float spawnY = Random.Range(-7.5f, 9.5f) * (Random.Range(0, 2) * 2 - 1);
             float targetY = - spawnY + Random.Range(-7.0f, 7.0f);
             float spawnX = Random.Range(-5.0f, 7.0f) * (Random.Range(0, 2) * 2 - 1);

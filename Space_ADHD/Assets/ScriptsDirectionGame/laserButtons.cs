@@ -26,16 +26,26 @@ namespace Assets.ScriptsDirectionGame
                     switch(this.name)
                     {
                         case "UpperRightButtonQuad":
-                            CannonBehavior.upRightShot = true;
+                            if (phase0Manager.cases == 2){
+                                CannonBehavior.upRightShot = true;
+                                phase0Manager.touch = true;}
                             break;
                         case "UpperLeftButtonQuad":
+                            if (phase0Manager.cases==0){
                             CannonBehavior.upLeftShot = true;
+                            phase0Manager.touch = true;}
                             break;
                         case "LowerRightButtonQuad":
-                            CannonBehavior.downRightShot = true;
+                            if (phase0Manager.cases == 3){
+                                CannonBehavior.downRightShot = true;
+                                phase0Manager.touch = true;}
                             break;
                         case "LowerLeftButtonQuad":
-                            CannonBehavior.downLeftShot = true;
+                            if (phase0Manager.cases == 1){
+                                CannonBehavior.downLeftShot = true;
+                                phase0Manager.touch = true;}
+                            break;
+                        default:
                             break;
                     }
                 }
