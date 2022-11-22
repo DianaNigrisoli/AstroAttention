@@ -8,6 +8,7 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager instance = null;
     public MiniGameState state;
+    public GameObject phase0Manager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -27,13 +28,13 @@ public class MiniGameManager : MonoBehaviour
         switch (newState)
         {
             case MiniGameState.Intro:
-                HandleIntro();
                 break;
             case MiniGameState.WaitForNext:
                 break;
             case MiniGameState.End:
                 break;
             case MiniGameState.Zero:
+                Instantiate(phase0Manager);
                 break;
             case MiniGameState.One:
                 break;
@@ -49,11 +50,6 @@ public class MiniGameManager : MonoBehaviour
         {
             
         }
-    }
-
-    private void HandleIntro()
-    {
-
     }
 
     // Update is called once per frame

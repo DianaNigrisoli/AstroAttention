@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts_A_General;
 using UnityEngine;
 
 public class phase0Manager : MonoBehaviour
@@ -74,6 +75,11 @@ public class phase0Manager : MonoBehaviour
                     endgame = true;
                 }
             }
+        }
+        else
+        {
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Intro); //TODO: go to WaitForNext
+            Destroy(this);
         }
     }
 }
