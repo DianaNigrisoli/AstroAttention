@@ -21,15 +21,6 @@ public class CannonBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (phase1Manager.phaseOne && (upRightShot || upLeftShot || downLeftShot || downRightShot))
-		{
-			Shoot(Vector3.forward * 5f + Vector3.up * 0.0f + Vector3.right * 0.0f);
-			upRightShot = false;
-			downRightShot = false;
-			upLeftShot = false;
-			downLeftShot = false;
-			//0.07 2.76
-		}
 		if (upRightShot)
 		{
 			Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.right * 0.7f);
