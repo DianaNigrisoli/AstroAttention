@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void MoveRight()
     {   FunctionTimer.leftLine = false;
-        if (targetPos.x < 2.5f)
+        if (targetPos.x < increment)
         {
             targetPos += new Vector3(increment, 0, 0);
             
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     public void MoveLeft()
     {
         FunctionTimer.rightLine = false;
-        if (targetPos.x > -2.5f)
+        if (targetPos.x > -increment)
         {
             targetPos -= new Vector3(increment, 0, 0);
         }
