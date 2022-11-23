@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class MiniGameManager : MonoBehaviour
     public void UpdateMiniGameState(MiniGameState newState)
     {
         this.state = newState;
-
+        
+        Debug.Log("Mini game state updated to: " + state.ToString("G"));
+        
         switch (newState)
         {
             case MiniGameState.Intro:
@@ -35,6 +38,7 @@ public class MiniGameManager : MonoBehaviour
             case MiniGameState.WaitForNext:
                 break;
             case MiniGameState.End:
+                SceneManager.LoadScene("Menu");
                 break;
             case MiniGameState.Zero:
                 Instantiate(phase0Manager);

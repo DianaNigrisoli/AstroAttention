@@ -1,71 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
-    [SerializeField] private GameObject introCanvas;
-    [SerializeField] private Image countdownCircleTimer;
-    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private GameObject tutorialCanvas;
+    [SerializeField] private TextMeshProUGUI tutorialText;
 
-    private float startTime = 5.0f;
-    private float currentTime;
-    private bool updateTime;
+    private float tmpTutorialTime = 5.0f;
+    private Boolean showingTutorial;
     void Awake()
     {
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged; // subscription to state change of MiniGameManager
+        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
     }
-
+    
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged; // unsubscription to state change of MiniGameManager
+        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
     }
 
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
     {
         if (state == MiniGameState.Intro)
         {
-            introCanvas.SetActive(true);
-            countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
-            countdownText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
-            currentTime = startTime;
-            countdownCircleTimer.fillAmount = 1.0f;
-            countdownText.text = (int)currentTime + "s";
-            updateTime = true;
-            Debug.Log("HERE");
+            Debug.Log("Starting Tutorial");
+            tutorialCanvas.SetActive(true);
+            tutorialText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, 0);
+            tutorialText.text = "Tutorial...";
+            showingTutorial = true;
         }
-        else
-        {
-            introCanvas.SetActive(false);
-        }
-    }
-
-    void Start()
-    {
-        introCanvas.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (updateTime)
+        if (showingTutorial)
         {
-            currentTime -= Time.deltaTime;
-            if (currentTime <= 0.0f)
+            tmpTutorialTime -= Time.deltaTime;
+            if (tmpTutorialTime <= 0.0f)
             {
-                // Stop the countdown timer              
-                updateTime = false;
-                currentTime = 0.0f;
-                introCanvas.SetActive(false);
-                MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Zero);
+                tutorialCanvas.SetActive(false);
+                MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                Destroy(this);
             }
-            countdownText.text = (int)currentTime + "s";
-            float normalizedValue = Mathf.Clamp(
-                currentTime /startTime, 0.0f, 1.0f);
-            countdownCircleTimer.fillAmount = normalizedValue;
         }
     }
 }

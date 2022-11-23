@@ -106,7 +106,7 @@ public class phase2Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Three); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext); //TODO: go to WaitForNext
             ROTcases = 1000;
             SPTcases = 1000;
             Destroy(this);

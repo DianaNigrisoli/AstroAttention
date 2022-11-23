@@ -106,7 +106,7 @@ public class phase3Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Intro); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End); //TODO: go to WaitForNext
             Destroy(shootingStar);
             ROTcases = 1000;
             SPTcases = 1000;

@@ -83,7 +83,7 @@ public class phase1Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Two); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext); //TODO: go to WaitForNext
 			Destroy(shootingStar);
             cases = 1000;
             Destroy(this);

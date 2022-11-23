@@ -32,8 +32,7 @@ public class playButton : MonoBehaviour
     private void TaskOnClick()
     {
         selectedPlanet = buttonAction.selectedPlanet;
-        Debug.Log("Starting Intro");
-		Debug.Log(selectedPlanet);
+        Debug.Log("Starting Intro" + " " + selectedPlanet);
         this.transform.position = new Vector3(Screen.width*2, Screen.height*2, 50);
         miniGameIntro();
     }
@@ -48,6 +47,7 @@ public class playButton : MonoBehaviour
                 Vector3 targetPosition1 = new Vector3(-2f, 1.98f, 1.77f);
                 moveKing(king1, targetPosition1);
 				searchInCSV("Planet 1");
+                //TODO: AudioSource voice king
 				kingHasSpoken = true;
                 break;
             case "planet2Button":
@@ -75,11 +75,11 @@ public class playButton : MonoBehaviour
             {
                 var line = reader.ReadLine();
                 var values = line.Split(',');
-                Debug.Log(line);
+                //Debug.Log(line);
                 listA.Add(values[0]);
                 listB.Add(values[1]);
-                Debug.Log(values[0]);
-                Debug.Log(values[1]);
+                //Debug.Log(values[0]);
+                //Debug.Log(values[1]);
             }
         }
         int index = listA.FindIndex(a => a.Contains(keyword));
