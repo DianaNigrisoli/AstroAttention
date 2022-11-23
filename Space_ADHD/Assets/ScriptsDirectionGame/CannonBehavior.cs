@@ -9,6 +9,7 @@ public class CannonBehavior : MonoBehaviour {
 	public static Boolean upLeftShot;
 	public static Boolean downRightShot;
 	public static Boolean downLeftShot;
+	public GameObject target;
 
 	void Start()
 	{

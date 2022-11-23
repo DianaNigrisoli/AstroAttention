@@ -1,30 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts_A_General;
 using UnityEngine;
+using Assets.Scripts_A_General;
 
-public class phase0Manager : MonoBehaviour
+public class phase2Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static bool touch = true;
     public GameObject shootingStar;
-    public static int cases = 1000;
-    public static bool phaseZero = true;
+    public static int ROTcases = 1000;
+    public static int SPTcases = 1000;
+    public static bool phaseTwo = true;
     private bool endgame = false;
     private int count = 0;
+    // Start is called before the first frame update
     void Start()
     {
-        shootingStar = GameObject.Find("notShootingStar");
+        shootingStar = GameObject.Find("smallShootingStar");
     }
-
-    // Update is called once per frame
     void shootingStarSpawn()
     {
-        cases  = Random.Range(0, 4);
-        Debug.Log(cases);
-        Debug.Log("Yeah");
+        ROTcases = Random.Range(0, 4);
+        SPTcases = Random.Range(0, 4);
         Vector3 spawnPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        switch (cases)
+        int rotZ = 0;
+        switch (ROTcases)
+        {
+            case 0:
+            {
+                rotZ = 45;
+                break;
+            }
+            case 1:
+            {
+                rotZ = 135;
+                break;
+            }
+            case 2:
+            {
+                rotZ = -45;
+                break;
+            }
+            case 3:
+            {
+                rotZ = -135;
+                break;
+            }
+            default:
+            {
+                rotZ = 0;
+                break;
+            }
+        }
+        switch (SPTcases)
         {
             case 0:
             {
@@ -52,15 +79,16 @@ public class phase0Manager : MonoBehaviour
                 break;
             }
         }
-
         shootingStar.transform.position = spawnPosition;
+        shootingStar.transform.rotation=Quaternion.Euler(new Vector3(0, 0, rotZ));
     }
-
+    
     void gameInstance()
     {
         shootingStarSpawn();
     }
     
+    // Update is called once per frame
     void Update()
     {
         if (!endgame)
@@ -78,11 +106,10 @@ public class phase0Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.One); //TODO: go to WaitForNext
-            Destroy(shootingStar);
-            cases = 1000;
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Three); //TODO: go to WaitForNext
+            ROTcases = 1000;
+            SPTcases = 1000;
             Destroy(this);
-            
         }
     }
 }

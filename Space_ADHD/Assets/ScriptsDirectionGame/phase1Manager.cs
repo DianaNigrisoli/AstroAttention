@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts_A_General;
 
 public class phase1Manager : MonoBehaviour
 {
     public static bool touch = true;
     public GameObject shootingStar;
-    public static int cases;
+    public static int cases = 1000;
     public static bool phaseOne = true;
     private bool endgame = false;
     private int count = 0;
@@ -52,8 +53,8 @@ public class phase1Manager : MonoBehaviour
             {
 				spawnPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 rotZ = 0;
+				break;
             }
-                break;
         }
 		shootingStar.transform.position = spawnPosition;
         shootingStar.transform.rotation=Quaternion.Euler(new Vector3(0, 0, rotZ));
@@ -79,6 +80,13 @@ public class phase1Manager : MonoBehaviour
                     endgame = true;
                 }
             }
+        }
+        else
+        {
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Two); //TODO: go to WaitForNext
+			Destroy(shootingStar);
+            cases = 1000;
+            Destroy(this);
         }
     }
 }

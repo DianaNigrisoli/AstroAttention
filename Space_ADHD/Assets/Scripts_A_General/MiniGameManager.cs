@@ -10,6 +10,8 @@ public class MiniGameManager : MonoBehaviour
     public MiniGameState state;
     public GameObject phase0Manager;
     public GameObject phase1Manager;
+    public GameObject phase2Manager;
+    public GameObject phase3Manager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -41,8 +43,10 @@ public class MiniGameManager : MonoBehaviour
                 Instantiate(phase1Manager);
                 break;
             case MiniGameState.Two:
+                Instantiate(phase2Manager);
                 break;
             case MiniGameState.Three:
+                Instantiate(phase3Manager);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
