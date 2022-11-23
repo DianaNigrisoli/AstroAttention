@@ -16,7 +16,7 @@ namespace Assets.Scripts
         private int rotationY = 13;
         private int rotationZ = 9;
         private bool selected;
-        private float suggestionDelay = 7.5f;
+        private float suggestionDelay = 8.5f;
         
     
         // Start is called before the first frame update

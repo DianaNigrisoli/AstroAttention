@@ -8,10 +8,11 @@ public class MenuManager : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI suggestion;
-    private float suggestionDelay = 7.5f;
+    private Vector3 suggestionPosition;
+    private float suggestionDelay = 6.5f;
     private Boolean startWriting;
     public static Boolean planetSelected;
-    private String suggestionText = "Let's explore some planets";
+    private String suggestionText = "Let's explore some planets!";
     private String displayedSuggestionText = "";
     private float writerTimer = 0.0f;
     
@@ -20,6 +21,7 @@ public class MenuManager : MonoBehaviour
     {
         planetSelected = false;
         startWriting = false;
+        suggestionPosition = suggestion.transform.position;
     }
 
     // Update is called once per frame
@@ -32,12 +34,11 @@ public class MenuManager : MonoBehaviour
         }else if (startWriting)
         {
             writerTimer += Time.deltaTime;
-            if (writerTimer / 0.9f > 0)
+            if (writerTimer > 0.05*displayedSuggestionText.Length)
             {
                 if(displayedSuggestionText.Length < suggestionText.Length)
                     displayedSuggestionText += suggestionText[displayedSuggestionText.Length];
                 suggestion.SetText(displayedSuggestionText);
-                writerTimer = 0.0f;
             }
             
             
@@ -46,5 +47,8 @@ public class MenuManager : MonoBehaviour
         {
             startWriting = true;
         }
+
+        suggestion.transform.position = suggestionPosition +
+            new Vector3(Mathf.Sin(Time.time * 2.3f), -Mathf.Sin(Time.time * 2.3f), 0);
     }
 }
