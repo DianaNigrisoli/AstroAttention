@@ -9,6 +9,7 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager instance = null;
     public MiniGameState state;
     public GameObject phase0Manager;
+    public GameObject phase1Manager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -37,6 +38,7 @@ public class MiniGameManager : MonoBehaviour
                 Instantiate(phase0Manager);
                 break;
             case MiniGameState.One:
+                Instantiate(phase1Manager);
                 break;
             case MiniGameState.Two:
                 break;
