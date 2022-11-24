@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Awake()
     {
+        increment = 3;
+        speedForward = 10;
+        speedLateral = 5;
         targetPos = transform.position;
     }
 
