@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -725,9 +725,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e358dc2268eb3f141b2dd31c252fd2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  increment: 0
+  speedForward: 0
+  speedLateral: 0
+  targetPos: {x: 0, y: 0, z: 0}
+  playerPos: 0
   score: 0
-  laneDistance: 2.5
-  forwardSpeed: 10
+  iscolliding: 0
 --- !u!54 &1962802217
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -755,7 +759,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2003607747
 GameObject:
