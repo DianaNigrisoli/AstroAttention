@@ -17,8 +17,8 @@ public class Portals : MonoBehaviour
     {   
         Destroy(gameObject,0); //this will destroy the obj
         portalSpawner.SpawnPortal();
-        print("Counter: " + FunctionTimer.counter);
-        print("React Time: "+ FunctionTimer.reactionTime);
+        //print("Counter: " + FunctionTimer.counter);
+        //print("React Time: "+ FunctionTimer.reactionTime);
     }
     
     IEnumerator waiter()

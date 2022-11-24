@@ -6,14 +6,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
-        private Rigidbody controller;
+    private Rigidbody controller;
     public float increment;
     public float speedForward;
     public float speedLateral;
     public Vector3 targetPos;
     public int playerPos;
     public int score = 0;
-    public Boolean iscolliding = false;
+    public Boolean iscolliding ;
     
     void Awake()
     {
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Rigidbody>();
+        iscolliding = false;
     }
 
     // Update is called once per frame
@@ -43,16 +44,19 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveLeft();
         }
+
         transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
-        
-        print("score:");
-        print(score);
     }
     
     private void OnTriggerEnter(Collider other)
-    {
+    {   
+        // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
         if (iscolliding)
+        {
+            print("score");
+            print(score);
             return;
+        }
         // Check player position 
         if (targetPos.x == 0)
         {
