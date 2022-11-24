@@ -11,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float speedForward;
     public float speedLateral;
     public Vector3 targetPos;
-    //public int score;
+    public int playerPos;
+    public int score = 0;
+    public Boolean iscolliding = false;
     
     void Awake()
     {
@@ -42,9 +44,49 @@ public class PlayerMovement : MonoBehaviour
             MoveLeft();
         }
         transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
-
+        
+        print("score:");
+        print(score);
     }
     
+    private void OnTriggerEnter(Collider other)
+    {
+        if (iscolliding)
+            return;
+        // Check player position 
+        if (targetPos.x == 0)
+        {
+            //check if the color is right
+            if (ChangePortalColour.rightPortal2 == 1)
+            {
+                score += 1;
+            }
+        }
+        if (targetPos.x > 0)
+        {
+            //check if the color is right
+            if (ChangePortalColour.rightPortal3 == 1)
+            {
+                score += 1;
+            }
+        }
+        if (targetPos.x < 0)
+        {
+            if (ChangePortalColour.rightPortal1 == 1)
+            {
+                score += 1;
+            }
+        }
+        iscolliding = true;
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        iscolliding = false;
+    }
+
+   
     public void MoveRight()
     {   FunctionTimer.leftLine = false;
         if (targetPos.x < increment)
