@@ -23,6 +23,10 @@ public class ChangePortalColour : MonoBehaviour
     private List<Color> ListColour = new List<Color>(); 
     private FunctionTimer functionTimer;
 
+    static public int rightPortal1;
+    static public int rightPortal2;
+    static public int rightPortal3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,17 +84,29 @@ public class ChangePortalColour : MonoBehaviour
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
             if (gameObj.name == "Portal1")
-            {
+            {   
+                // Check if the color is the right one
+                if (ShufflePortalColour[0] == currentColor)
+                    rightPortal1 = 1;
+                else rightPortal1 = 0;
+                
                 gameObj.GetComponent<Renderer>().material.color = ShufflePortalColour[0];
+                
             }
 
             if (gameObj.name == "Portal2")
             {
+                if (ShufflePortalColour[1] == currentColor)
+                    rightPortal2 = 1;
+                else rightPortal2 = 0;
                 gameObj.GetComponent<Renderer>().material.color = ShufflePortalColour[1];
             }
 
             if (gameObj.name == "Portal3")
             {
+                if (ShufflePortalColour[2] == currentColor)
+                    rightPortal3 = 1;
+                else rightPortal3 = 0;
                 gameObj.GetComponent<Renderer>().material.color = ShufflePortalColour[2];
             }
         }

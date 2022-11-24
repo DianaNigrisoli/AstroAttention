@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Siccity.GLTFUtility;
 using UnityEngine;
 
 public class Portals : MonoBehaviour
@@ -11,7 +13,7 @@ public class Portals : MonoBehaviour
         portalSpawner = GameObject.FindObjectOfType<PortalSpawner>(); 
     }
 
-    private void OnTriggerExit(Collider other)
+   private void OnTriggerExit(Collider other)
     {   
         Destroy(gameObject,0); //this will destroy the obj
         portalSpawner.SpawnPortal();
