@@ -26,14 +26,19 @@ public class ChangePortalColour : MonoBehaviour
     static public int rightPortal1;
     static public int rightPortal2;
     static public int rightPortal3;
+    
+    // ora ho provato a fare così per le fasi
+    public int phase = 0;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        
         fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
         selectRandomImage();
         CustomPalette();
         selectRandomColour();
+        selectFruitColor();
     }
     
 
@@ -43,6 +48,20 @@ public class ChangePortalColour : MonoBehaviour
         fruitImage.sprite = fruitImages[randomImage];
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
+    }
+    void selectFruitColor()
+    {
+        if (phase == 0)
+        {
+            fruitImage.material.color = Color.white;
+        }
+
+        if (phase == 1)
+        {
+            int index = Random2.Range(0, 3);
+            fruitImage.material.color = ListColour[index];
+        }
+      
     }
 
     void CustomPalette()
@@ -112,6 +131,8 @@ public class ChangePortalColour : MonoBehaviour
         }
         
     }
+
+  
     
     
 }
