@@ -10,7 +10,7 @@ public class PortalSpawner : MonoBehaviour
     // Start is called before the first frame update
     public void SpawnPortal()
     {
-        GameObject temp = Instantiate(Portals, NextSpawnOffset, Quaternion.identity);
+        GameObject temp = Instantiate(Portals, NextSpawnOffset, Quaternion.identity, GameObject.Find("All").transform);
         NextSpawnOffset.z += 50;
     }
     // Start is called before the first frame update
