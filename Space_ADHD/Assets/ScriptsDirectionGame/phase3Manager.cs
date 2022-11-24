@@ -110,6 +110,7 @@ public class phase3Manager : MonoBehaviour
             Destroy(shootingStar);
             ROTcases = 1000;
             SPTcases = 1000;
+            phaseThree = false;
             Destroy(this);
         }
     }
