@@ -1,33 +1,44 @@
 TR: tutorial robot
 SC: screen
 
+--Phase ZERO--
 TR appears
 TR: "Hi, we need to learn how to shoot to the comets!"
 Wait for user input
+--Phase ONE--
 TR: "Here we have four sectors where the comets can appear"
 Some targeting objects blink in the sectors for N seconds
+--Phase TWO--
 TR: "Down here you have the button to shoot"
 Some targeting objects blink on the buttons for N seconds
+--Phase THREE--
 TR: "To hit the comets you'll have to look at their position or their direction"
 Wait for user input
+--Phase FOUR--
 TR: "To know what to do look at the instructions on the screen"
 Wait for user input
+--Phase FIVE--
 Some targeting object blink on the screen
 (Simultaneously with previous) SC: "Shoot to the sector with the comet"
 (Simul.) A comet appear in the upper left sector
 Wait for N seconds
-TR: "Here we need to look at the position of the comet. Press the upper left button"
+--Phase SIX--
+TR: "Here we need to look at the position of the comet. Press the upper left button to hit it"
 Targeting object on the upper left button
 Wait for user to push the correct button
+--Phase SEVEN--
 TR: "Great work! Let's try another one"
 Wait for user input
+--Phase EIGHT--
 Some targeting object blink on the screen
 (Simultaneously with previous) SC: "Shoot in the direction of the comet"
 (Simul.) A comet appear in the lower left sector pointing in the upper right direction
 Wait for N seconds
+--Phase NINE--
 TR: "Here we need to look at the direction of the comet. Press the upper right button"
 Targeting object on the upper right button
 Wait for user to push the correct button
+--Phase TEN--
 TR: "Great work! You're ready to go!"
 Wait for user input
 Go to WaitForNext
