@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 1555225769867566068}
   - component: {fileID: 6867848938893791037}
   - component: {fileID: 3215495788713636947}
+  - component: {fileID: 7130851090601207471}
   - component: {fileID: 3186114982099361088}
   m_Layer: 0
   m_Name: Portals
@@ -367,6 +368,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6aa846371a6fa409879f36eeff4b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitImages:
+  - {fileID: 21300000, guid: 3dcb2086b0d259644864adc1f1785470, type: 3}
+  - {fileID: 21300000, guid: f6bdb3c6100925542b0cd94b174d9eb7, type: 3}
+  - {fileID: 21300000, guid: cb9db8e1dd3f0f943b98df743047421d, type: 3}
+  - {fileID: 21300000, guid: c76b782b6cb50f542a868e094dfa4121, type: 3}
+  - {fileID: 21300000, guid: 3b3e2c40b6e9f53429dbc2d6c223c7ea, type: 3}
+  - {fileID: 21300000, guid: b602e09bb6c0bda4c87a36f7846354e7, type: 3}
+  - {fileID: 21300000, guid: 0821d708331f74748bafb7717aff511f, type: 3}
+  fruitImage: {fileID: 0}
+  currentFruit:
+    name: 
+    colour: 
+    R: 0
+    G: 0
+    B: 0
+    A: 0
+    hex: 
+    ID: 0
+--- !u!114 &7130851090601207471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839726114345586930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cfd5f3828041a7882f625e187ed6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fruitImages:

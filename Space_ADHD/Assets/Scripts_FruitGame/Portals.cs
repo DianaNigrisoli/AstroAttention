@@ -7,6 +7,7 @@ using UnityEngine;
 public class Portals : MonoBehaviour
 {
     PortalSpawner portalSpawner;
+    public static event Action<int> OnPortalSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,11 @@ public class Portals : MonoBehaviour
     {   
         Destroy(gameObject,5f); //this will destroy the obj
         portalSpawner.SpawnPortal();
+        
+        OnPortalSpawn?.Invoke(0); // if there is at least one subscriber invoke the function
+        {
+            
+        }
         //print("Counter: " + FunctionTimer.counter);
         //print("React Time: "+ FunctionTimer.reactionTime);
     }

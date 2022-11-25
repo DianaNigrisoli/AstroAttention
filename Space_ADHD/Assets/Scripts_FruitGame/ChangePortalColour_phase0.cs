@@ -8,11 +8,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Timers;
+using Assets.Scripts_A_General;
 using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
 
-public class ChangePortalColour : MonoBehaviour
+public class ChangePortalColour_phase0 : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
 
@@ -28,17 +29,40 @@ public class ChangePortalColour : MonoBehaviour
     static public int rightPortal3;
     
     // ora ho provato a fare così per le fasi
-    public int phase = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {   
-        
+    //public int phase = 0;
+    void Awake()
+    {
+        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        Portals.OnPortalSpawn += PortalSpawnerOnPortalSpawn;
+    }
+    void OnDestroy()
+    {
+        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        Portals.OnPortalSpawn -= PortalSpawnerOnPortalSpawn;
+    }
+    
+    private void PortalSpawnerOnPortalSpawn(int obj)
+    {
         fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
         selectRandomImage();
         CustomPalette();
         selectRandomColour();
         selectFruitColor();
+    }
+
+    
+    // Start is called before the first frame update
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    {
+        if (state == MiniGameState.Zero)
+        {
+            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+            selectRandomImage();
+            CustomPalette();
+            selectRandomColour();
+            selectFruitColor();
+            //Destroy(this);
+        }
     }
     
 
@@ -51,17 +75,7 @@ public class ChangePortalColour : MonoBehaviour
     }
     void selectFruitColor()
     {
-        if (phase == 0)
-        {
-            fruitImage.material.color = Color.white;
-        }
-
-        if (phase == 1)
-        {
-            int index = Random2.Range(0, 3);
-            fruitImage.material.color = ListColour[index];
-        }
-      
+        fruitImage.material.color = Color.white;
     }
 
     void CustomPalette()
