@@ -12,10 +12,19 @@ public class phase2Manager : MonoBehaviour
     public static bool phaseTwo = true;
     private bool endgame = false;
     private int count = 0;
+
+    private GameObject hlines;
+    private GameObject vlines;
     // Start is called before the first frame update
     void Start()
     {
         shootingStar = GameObject.Find("smallShootingStar");
+        hlines = GameObject.Find("HorizontalLines");
+        vlines = GameObject.Find("VerticalLines");
+        hlines.transform.position =
+            new Vector3(hlines.transform.position.x, hlines.transform.position.y, 0.0f);
+        vlines.transform.position =
+            new Vector3(vlines.transform.position.x, vlines.transform.position.y, 0.0f);
     }
     void shootingStarSpawn()
     {
@@ -88,6 +97,12 @@ public class phase2Manager : MonoBehaviour
         shootingStarSpawn();
     }
     
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameInstance();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -95,7 +110,7 @@ public class phase2Manager : MonoBehaviour
         {
             if (touch)
             {
-                gameInstance();
+                StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
                 if (count == 10)

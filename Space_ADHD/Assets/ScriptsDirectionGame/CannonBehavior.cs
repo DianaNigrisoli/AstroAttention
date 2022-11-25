@@ -88,7 +88,7 @@ public class CannonBehavior : MonoBehaviour {
 	private void Shoot(Vector3 direction)
 	{
 		GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-		go.GetComponent<Rigidbody>().velocity = direction * 10.0f;
+		go.GetComponent<Rigidbody>().velocity = direction * 50.0f;
 		GameObject.Destroy(go, 1.5f);
 	}
 }

@@ -61,13 +61,19 @@ public class phase0Manager : MonoBehaviour
         shootingStarSpawn();
     }
     
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameInstance();
+    }
+    
     void Update()
     {
         if (!endgame)
         {
             if (touch)
             {
-                gameInstance();
+                StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
                 if (count == 10)
