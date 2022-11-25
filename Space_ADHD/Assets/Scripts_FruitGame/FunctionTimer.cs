@@ -9,7 +9,6 @@ public class FunctionTimer : MonoBehaviour
     public static int counter;
     public static Boolean leftLine;
     public static Boolean rightLine;
-
     public static float reactionTime;
 
     public void Start()
