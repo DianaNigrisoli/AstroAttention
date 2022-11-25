@@ -88,6 +88,12 @@ public class phase3Manager : MonoBehaviour
         shootingStarSpawn();
     }
     
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameInstance();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -95,7 +101,7 @@ public class phase3Manager : MonoBehaviour
         {
             if (touch)
             {
-                gameInstance();
+                StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
                 if (count == 10)
