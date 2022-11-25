@@ -21,7 +21,6 @@ public class IntroManager : MonoBehaviour
     private List<Vector3> tutorialRingSectorsScales;
 
     private SortedList<int, TutorialPhaseData> tutorialPhaseData;
-    private float tmpTutorialTime = 10.0f;
     private Boolean showingTutorial;
     private float rotationY = 30.0f;
     private Vector3 tutorialRingStartPosition;
@@ -84,13 +83,13 @@ public class IntroManager : MonoBehaviour
                     HandlePhaseOne();
                     break;
                 case TutorialPhase.Two:
-                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                     for(int i=0; i<tutorialRingSectors.Count; i++)
                         Destroy(tutorialRingSectors[i]);
-                    Destroy(tutorialRobot);
-                    Destroy(this);
+                    HandlePhaseTwo();
                     break;
                 case TutorialPhase.Three:
+                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                    Destroy(this);
                     break;
                 case TutorialPhase.Four:
                     break;
@@ -109,6 +108,57 @@ public class IntroManager : MonoBehaviour
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+    }
+
+    private void HandlePhaseTwo()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }else if (writing)
+        {
+            ShowTutorialRobotText();
+        }
+        else if (!showTargetingObjects)
+        {
+            waitTimer -= Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) || waitTimer < 0.0f)
+            {
+                txtBox.enabled = false;
+                tutorialText.SetText("");
+                showTargetingObjects = true;
+                // GameObject ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(-1.04f, 3.133f, 6.709461f),
+                //     Quaternion.identity, GameObject.Find("All").transform);
+                // tutorialRingSectors.Add(ring);
+                // tutorialRingSectorsScales.Add(ring.transform.localScale);
+                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(+1.04f, 3.133f, 6.709461f),
+                //     Quaternion.identity, GameObject.Find("All").transform);
+                // tutorialRingSectors.Add(ring);
+                // tutorialRingSectorsScales.Add(ring.transform.localScale);
+                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(-1.04f, 1.367f, 6.709461f),
+                //     Quaternion.identity, GameObject.Find("All").transform);
+                // tutorialRingSectors.Add(ring);
+                // tutorialRingSectorsScales.Add(ring.transform.localScale);
+                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(+1.04f, 1.367f, 6.709461f),
+                //     Quaternion.identity, GameObject.Find("All").transform);
+                // tutorialRingSectors.Add(ring);
+                // tutorialRingSectorsScales.Add(ring.transform.localScale);
+            }
+        }
+        else
+        {
+            float scaleFactor = 20f;
+            for (int i = 0; i < tutorialRingSectors.Count; i++)
+            {
+                // tutorialRingSectors[i].transform.Rotate(0, 0, rotationY*Time.deltaTime);
+                // tutorialRingSectors[i].transform.localScale = tutorialRingSectorsScales[0] + 
+                //                                               new Vector3(Mathf.Sin(Time.time*3f)/scaleFactor, 
+                //                                                   Mathf.Sin(Time.time*3f)/scaleFactor, 
+                //                                                   Mathf.Sin(Time.time*3f)/scaleFactor);
+            }
+            WaitForInputOrTimer(TutorialPhase.Three);
+            
         }
     }
 

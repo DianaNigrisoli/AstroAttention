@@ -1,3 +1,4 @@
 tutorialPhase;tutorialRobotText;tutorialScreenText;waitForUserInput;waitSeconds;tutorialTargetingObject;positionX;positionY;positionZ;rotationX;rotationY;rotationZ
 0;Hi, we need to learn how to shoot to the comets!;;TRUE;10;;;;;;;
-1;Here we have four sectors where the comets can appear;;TRUE;10;sectors;;;;;;
+1;Here we have four sectors where the comets can appear!;;TRUE;10;sectors;;;;;;
+2;Down here you have the buttons to shoot!;;TRUE;10;buttons;;;;;;
