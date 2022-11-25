@@ -12,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public float speedLateral;
     public Vector3 targetPos;
     public int playerPos;
-    public int score = 0;
+    public static int score;
     public Boolean iscolliding ;
-    
+    public static int PortalCounter=0;
+    public static List<float> ListReactionTime = new List<float>(10);
+
     void Awake()
     {
+        score = 0;
         increment = 3;
         speedForward = 10;
         speedLateral = 5;
@@ -53,8 +56,10 @@ public class PlayerMovement : MonoBehaviour
         // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
         if (iscolliding)
         {
-            print("score");
-            print(score);
+            PortalCounter += 1; 
+            ListReactionTime.Add(FunctionTimer.reactionTime);
+            print("score: " + score);
+            print("Portal-spawn number: " + PortalCounter); 
             return;
         }
         // Check player position 

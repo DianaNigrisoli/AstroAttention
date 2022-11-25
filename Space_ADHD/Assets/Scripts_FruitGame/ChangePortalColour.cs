@@ -77,7 +77,7 @@ public class ChangePortalColour : MonoBehaviour
     }
     
     void selectRandomColour()
-    {   
+    {
         Color currentColor = ListColour[currentFruit.ID];
         List<Color> tempColourList = ListColour;
         tempColourList.RemoveAt(currentFruit.ID);
@@ -131,9 +131,6 @@ public class ChangePortalColour : MonoBehaviour
         }
         
     }
-
-  
-    
     
 }
 
