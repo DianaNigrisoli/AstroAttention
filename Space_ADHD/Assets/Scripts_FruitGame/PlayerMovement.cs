@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (targetPos.x == 0)
         {
             //check if the color is right
-            if (ChangePortalColour.rightPortal2 == 1)
+            if (ChangePortalColour_phase0.rightPortal2 == 1)
             {
                 score += 1;
             }
@@ -74,14 +74,14 @@ public class PlayerMovement : MonoBehaviour
         if (targetPos.x > 0)
         {
             //check if the color is right
-            if (ChangePortalColour.rightPortal3 == 1)
+            if (ChangePortalColour_phase0.rightPortal3 == 1)
             {
                 score += 1;
             }
         }
         if (targetPos.x < 0)
         {
-            if (ChangePortalColour.rightPortal1 == 1)
+            if (ChangePortalColour_phase0.rightPortal1 == 1)
             {
                 score += 1;
             }
