@@ -16,14 +16,11 @@ TR: "To hit the comets you'll have to look at their position or their direction"
 Wait for user input
 --Phase FOUR--
 TR: "To know what to do look at the instructions on the screen"
+Some targeting object blink on the screen
 Wait for user input
 --Phase FIVE--
-Some targeting object blink on the screen
-(Simultaneously with previous) SC: "Shoot to the sector with the comet"
+(Simultaneously) SC: "Shoot to the sector with the comet"
 (Simul.) A comet appear in the upper left sector
-Wait for N seconds
---Phase SIX--
-TR: "Here we need to look at the position of the comet. Press the upper left button to hit it"
 Targeting object on the upper left button
 Wait for user to push the correct button
 --Phase SEVEN--

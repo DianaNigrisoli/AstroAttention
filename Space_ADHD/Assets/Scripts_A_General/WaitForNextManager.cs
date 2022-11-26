@@ -31,8 +31,11 @@ namespace Assets.Scripts_A_General
             if (state == MiniGameState.WaitForNext)
             {
                 introCanvas.SetActive(true);
-                countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
-                countdownText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, 0);
+                
+                // TODO: it seems that the built in canvas scaler works fine, eventually change this code
+                // countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
+                // countdownText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, 0);
+                
                 currentTime = startTime;
                 countdownCircleTimer.fillAmount = 1.0f;
                 countdownText.text = (int)currentTime + "s";

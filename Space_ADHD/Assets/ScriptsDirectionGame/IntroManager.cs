@@ -14,6 +14,12 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private RawImage txtBox;
+
+    [SerializeField] private TextMeshProUGUI screenText;
+    [SerializeField] private RawImage txtBoxScreen;
+    [SerializeField] private RawImage screenTargeting;
+    private Graphic screenTargetingGraphics;
+    
     [SerializeField] private GameObject tutorialRobotPrefab;
     private GameObject tutorialRobot;
     
@@ -47,6 +53,8 @@ public class IntroManager : MonoBehaviour
     private float writerTimer;
     private String currentPhaseTutorialRobotText;
     private String displayedTutorialRobotText;
+    private String currentPhaseScreenText;
+    private String displayedScreenText;
     private Boolean showTargetingObjects;
     /**/
 
@@ -67,8 +75,14 @@ public class IntroManager : MonoBehaviour
         {
             Debug.Log("Starting Tutorial");
             PrepareTutorialData();
-            tutorialText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.17f, 0);
-            txtBox.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, -1);
+            
+            // TODO: it seems that the built in canvas scaler works fine, eventually change this code
+            // tutorialText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.17f, 0);
+            // txtBox.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, -1);
+            // txtBoxScreen.transform.position = new Vector3(Screen.width / 2f, Screen.height / 15f, 0);
+            // screenText.transform.position = new Vector3(Screen.width / 2f, Screen.height / 15f, 0);
+
+            screenTargetingGraphics = screenTargeting.GetComponent<Graphic>();
             tutorialPhase = TutorialPhase.Zero;
             showingTutorial = true;
         }
@@ -100,12 +114,14 @@ public class IntroManager : MonoBehaviour
                     HandlePhaseThree();
                     break;
                 case TutorialPhase.Four:
-                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
-                    Destroy(this);
+                    HandlePhaseFour();
                     break;
                 case TutorialPhase.Five:
+                    HandlePhaseFive();
                     break;
                 case TutorialPhase.Six:
+                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                    Destroy(this);
                     break;
                 case TutorialPhase.Seven:
                     break;
@@ -121,6 +137,36 @@ public class IntroManager : MonoBehaviour
         }
     }
 
+    private void HandlePhaseFive()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            ShowTutorialRobotAndScreenText();
+        }
+    }
+
+    private void HandlePhaseFour()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            ShowTutorialRobotAndScreenText();
+        }
+        else
+        {
+            screenTargeting.enabled = true;
+            screenTargetingGraphics.color = Color.Lerp(Color.red, Color.blue, Mathf.PingPong(Time.time, 1));
+            WaitForInputOrTimer(nextPhase: TutorialPhase.Five);
+        }
+    }
+
     private void HandlePhaseThree()
     {
         if (!phaseStarted)
@@ -129,7 +175,7 @@ public class IntroManager : MonoBehaviour
         }
         else if(writing)
         {
-            ShowTutorialRobotText();
+            ShowTutorialRobotAndScreenText();
         }
         else
         {
@@ -144,7 +190,7 @@ public class IntroManager : MonoBehaviour
             PrepareRobotAndTextAndVariables();
         }else if (writing)
         {
-            ShowTutorialRobotText();
+            ShowTutorialRobotAndScreenText();
         }
         else if (!showTargetingObjects)
         {
@@ -165,7 +211,7 @@ public class IntroManager : MonoBehaviour
                 tutorialRingButtonsPositions.Add(ring.transform.position);
 
                 int i = 0;
-                for (i = i; i < tutorialRingButtons.Count; i++)
+                for (; i < tutorialRingButtons.Count; i++)
                 {
                     tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
                     tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
@@ -180,7 +226,7 @@ public class IntroManager : MonoBehaviour
                 tutorialRingButtons.Add(ring);
                 tutorialRingButtonsPositions.Add(ring.transform.position);
 
-                for (i = i; i < tutorialRingButtons.Count; i++)
+                for (; i < tutorialRingButtons.Count; i++)
                 {
                     tutorialRingButtons[i].transform.Rotate(-7.356f, 0, 0);
                     tutorialRingButtons[i].transform.localScale = new Vector3(0.146223f, 0.146223f, 0.146223f);
@@ -211,7 +257,7 @@ public class IntroManager : MonoBehaviour
             PrepareRobotAndTextAndVariables();
         }else if (writing)
         {
-            ShowTutorialRobotText();
+            ShowTutorialRobotAndScreenText();
         }
         else if (!showTargetingObjects)
         {
@@ -263,7 +309,7 @@ public class IntroManager : MonoBehaviour
         }
         else if(writing)
         {
-            ShowTutorialRobotText();
+            ShowTutorialRobotAndScreenText();
         }
         else
         {
@@ -290,32 +336,41 @@ public class IntroManager : MonoBehaviour
         int index = IDs.FindIndex(a => a.Equals((int) tutorialPhase));
             
         currentPhaseTutorialRobotText = tutorialRobotTexts[index];
+        currentPhaseScreenText = tutorialScreenTexts[index];
         waitTimer = waitSeconds[index];
             
         tutorialText.SetText("");
-        tutorialRobot = Instantiate(tutorialRobotPrefab, GameObject.Find("All").transform);
-        tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
-        tutorialRobot.transform.position = new Vector3(0.115f, 1.362f, 0.937f);
+        screenText.SetText("");
+        screenTargeting.enabled = false;
 
-        AudioSource[] tutorialRobotVoices;
-        tutorialRobotVoices = tutorialRobot.GetComponents<AudioSource>();
-        Random r = new Random();
-        int rInt = r.Next(0, tutorialRobotVoices.Length);
-        tutorialRobotVoices[rInt].Play();
+        if (tutorialPhase != TutorialPhase.Five)
+        {
+            tutorialRobot = Instantiate(tutorialRobotPrefab, GameObject.Find("All").transform);
+            tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
+            tutorialRobot.transform.position = new Vector3(0.115f, 1.362f, 0.937f);
 
-        txtBox.enabled = true;
+            AudioSource[] tutorialRobotVoices;
+            tutorialRobotVoices = tutorialRobot.GetComponents<AudioSource>();
+            Random r = new Random();
+            int rInt = r.Next(0, tutorialRobotVoices.Length);
+            tutorialRobotVoices[rInt].Play();
+            txtBox.enabled = true;
+        }
+        
         showTargetingObjects = false;
         tutorialRingSectors = new List<GameObject>();
         tutorialRingSectorsScales = new List<Vector3>();
-    
+        
         tutorialRingButtons = new List<GameObject>();
         tutorialRingButtonsPositions = new List<Vector3>();
         
         displayedTutorialRobotText = "";
+        displayedScreenText = "";
         writerTimer = 0.0f;
         writing = true;
         phaseStarted = true;
 
+        //TODO: adjust font sizes
         switch (tutorialPhase)
         {
             case TutorialPhase.Zero:
@@ -326,19 +381,23 @@ public class IntroManager : MonoBehaviour
                 break;
         }
     }
-    private void ShowTutorialRobotText()
+    private void ShowTutorialRobotAndScreenText()
     {
         writerTimer += Time.deltaTime;
         if (writerTimer > 0.05 * displayedTutorialRobotText.Length)
         {
             if (displayedTutorialRobotText.Length < currentPhaseTutorialRobotText.Length){
                 displayedTutorialRobotText += currentPhaseTutorialRobotText[displayedTutorialRobotText.Length];
+            }else if (displayedScreenText.Length < currentPhaseScreenText.Length)
+            {
+                displayedScreenText += currentPhaseScreenText[displayedScreenText.Length];
             }
             else
             {
                 writing = false;
             }
             tutorialText.SetText(displayedTutorialRobotText);
+            screenText.SetText(displayedScreenText);
         }
     }
     
