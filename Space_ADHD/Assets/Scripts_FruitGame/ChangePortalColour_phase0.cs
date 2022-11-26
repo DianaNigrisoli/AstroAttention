@@ -28,8 +28,9 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     static public int rightPortal2;
     static public int rightPortal3;
     
-    // ora ho provato a fare così per le fasi
-    //public int phase = 0;
+    public static bool phase0 = false; 
+    
+    
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -43,11 +44,17 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     
     private void PortalSpawnerOnPortalSpawn(int obj)
     {
-        fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-        selectRandomImage();
-        CustomPalette();
-        selectRandomColour();
-        selectFruitColor();
+        if (phase0)
+        {
+            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+            selectRandomImage();
+            CustomPalette();
+            selectRandomColour();
+            selectFruitColor();
+            //print("phase bool: "+ phase0);
+        }
+        
+        //bisogna fare else destroy??
     }
 
     
@@ -61,7 +68,11 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
-            //Destroy(this);
+            phase0 = true;
+        }
+        if (state != MiniGameState.Zero)
+        {
+            phase0 = false;
         }
     }
     
@@ -77,7 +88,8 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     {
         fruitImage.material.color = Color.white;
     }
-
+    
+    
     void CustomPalette()
     {
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255, (LoadFruits.myFruitList.fruit[1].G) / 255,
