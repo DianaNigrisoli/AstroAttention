@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Assets.Scripts_A_General;
 
 namespace Assets.ScriptsDirectionGame
 {
@@ -9,8 +10,24 @@ namespace Assets.ScriptsDirectionGame
         private bool selected;
         private AudioSource audioData;
         public GameObject buzzButton;
+        private MiniGameState miniGameState;
         
-    
+        
+        void Awake()
+        {
+            MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        }
+
+        void OnDestroy()
+        {
+            MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        }
+        
+        private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState newState)
+        {
+            miniGameState = newState;
+        }
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -46,9 +63,10 @@ namespace Assets.ScriptsDirectionGame
                             }
                             break;
                         case "UpperLeftButtonQuad":
-                            if (phase0Manager.cases==0 || phase1Manager.cases == 3 || (phase2Manager.ROTcases == 3) || (phase3Manager.SPTcases == 0))
+                            if (phase0Manager.cases==0 || phase1Manager.cases == 3 || (phase2Manager.ROTcases == 3) || (phase3Manager.SPTcases == 0) || miniGameState == MiniGameState.Intro)
                             {
                                 CannonBehavior.upLeftShot = true;
+                                IntroManager.touch = true;
                                 phase0Manager.touch = true;
                                 phase1Manager.touch = true;
                                 phase2Manager.touch = true;

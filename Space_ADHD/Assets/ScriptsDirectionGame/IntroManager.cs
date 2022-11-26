@@ -38,6 +38,7 @@ public class IntroManager : MonoBehaviour
     
     private GameObject shootingStarNoTail;
     private bool spawnedStar;
+    public static bool touch;
     
     /*Variables to manage tutorial phases*/
     List<int> IDs = new List<int>();
@@ -173,7 +174,7 @@ public class IntroManager : MonoBehaviour
                 tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
                 tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
             }
-        }else
+        }else if(!touch)
         {
             for (int i = 0; i < tutorialRingButtons.Count; i++)
             {
@@ -181,6 +182,12 @@ public class IntroManager : MonoBehaviour
                 tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
                                                             new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
             }
+            
+            // 
+        }
+        else
+        {
+            shootingStarNoTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);;
             WaitForInputOrTimer(TutorialPhase.Six);
         }
     }
@@ -417,6 +424,7 @@ public class IntroManager : MonoBehaviour
         writing = true;
         phaseStarted = true;
         spawnedStar = false;
+        touch = false;
 
         //TODO: adjust font sizes
         switch (tutorialPhase)
