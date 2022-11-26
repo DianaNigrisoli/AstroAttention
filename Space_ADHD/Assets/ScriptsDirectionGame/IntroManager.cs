@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Random = System.Random;
 
 public class IntroManager : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private RawImage txtBox;
     [SerializeField] private GameObject tutorialRobotPrefab;
     private GameObject tutorialRobot;
-    [SerializeField] private GameObject tutorialRing;
+    
+    [SerializeField] private GameObject tutorialRingButtonsPrefab;
+    private List<GameObject> tutorialRingButtons;
+    private List<Vector3> tutorialRingButtonsPositions;
+
     [SerializeField] private GameObject tutorialRingSectorsPrefab;
     private List<GameObject> tutorialRingSectors;
     private List<Vector3> tutorialRingSectorsScales;
@@ -85,13 +90,18 @@ public class IntroManager : MonoBehaviour
                 case TutorialPhase.Two:
                     for(int i=0; i<tutorialRingSectors.Count; i++)
                         Destroy(tutorialRingSectors[i]);
+                    
                     HandlePhaseTwo();
                     break;
                 case TutorialPhase.Three:
-                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
-                    Destroy(this);
+                    for (int i = 0; i < tutorialRingButtons.Count; i++)
+                        Destroy(tutorialRingButtons[i]);
+
+                    HandlePhaseThree();
                     break;
                 case TutorialPhase.Four:
+                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                    Destroy(this);
                     break;
                 case TutorialPhase.Five:
                     break;
@@ -108,6 +118,22 @@ public class IntroManager : MonoBehaviour
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+    }
+
+    private void HandlePhaseThree()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            ShowTutorialRobotText();
+        }
+        else
+        {
+            WaitForInputOrTimer(nextPhase: TutorialPhase.Four);
         }
     }
 
@@ -128,34 +154,50 @@ public class IntroManager : MonoBehaviour
                 txtBox.enabled = false;
                 tutorialText.SetText("");
                 showTargetingObjects = true;
-                // GameObject ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(-1.04f, 3.133f, 6.709461f),
-                //     Quaternion.identity, GameObject.Find("All").transform);
-                // tutorialRingSectors.Add(ring);
-                // tutorialRingSectorsScales.Add(ring.transform.localScale);
-                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(+1.04f, 3.133f, 6.709461f),
-                //     Quaternion.identity, GameObject.Find("All").transform);
-                // tutorialRingSectors.Add(ring);
-                // tutorialRingSectorsScales.Add(ring.transform.localScale);
-                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(-1.04f, 1.367f, 6.709461f),
-                //     Quaternion.identity, GameObject.Find("All").transform);
-                // tutorialRingSectors.Add(ring);
-                // tutorialRingSectorsScales.Add(ring.transform.localScale);
-                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(+1.04f, 1.367f, 6.709461f),
-                //     Quaternion.identity, GameObject.Find("All").transform);
-                // tutorialRingSectors.Add(ring);
-                // tutorialRingSectorsScales.Add(ring.transform.localScale);
+
+                GameObject ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(-0.094f, 1.379f, 1.127f),
+                     Quaternion.identity, GameObject.Find("All").transform);
+                tutorialRingButtons.Add(ring);
+                tutorialRingButtonsPositions.Add(ring.transform.position);
+                ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(+0.094f, 1.379f, 1.127f),
+                    Quaternion.identity, GameObject.Find("All").transform);
+                tutorialRingButtons.Add(ring);
+                tutorialRingButtonsPositions.Add(ring.transform.position);
+
+                int i = 0;
+                for (i = i; i < tutorialRingButtons.Count; i++)
+                {
+                    tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
+                    tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
+                }
+                
+                ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(-0.089f, 1.384f, 0.912f),
+                    Quaternion.identity, GameObject.Find("All").transform);
+                tutorialRingButtons.Add(ring);
+                tutorialRingButtonsPositions.Add(ring.transform.position);
+                ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(+0.089f, 1.384f, 0.912f),
+                    Quaternion.identity, GameObject.Find("All").transform);
+                tutorialRingButtons.Add(ring);
+                tutorialRingButtonsPositions.Add(ring.transform.position);
+
+                for (i = i; i < tutorialRingButtons.Count; i++)
+                {
+                    tutorialRingButtons[i].transform.Rotate(-7.356f, 0, 0);
+                    tutorialRingButtons[i].transform.localScale = new Vector3(0.146223f, 0.146223f, 0.146223f);
+                }
+                
             }
         }
         else
         {
             float scaleFactor = 20f;
-            for (int i = 0; i < tutorialRingSectors.Count; i++)
+            tutorialRobot.transform.position = Vector3.MoveTowards(tutorialRobot.transform.position, new Vector3(0.19f, 1.358f, 0.868f),
+                Time.deltaTime * 0.2f);
+            for (int i = 0; i < tutorialRingButtons.Count; i++)
             {
-                // tutorialRingSectors[i].transform.Rotate(0, 0, rotationY*Time.deltaTime);
-                // tutorialRingSectors[i].transform.localScale = tutorialRingSectorsScales[0] + 
-                //                                               new Vector3(Mathf.Sin(Time.time*3f)/scaleFactor, 
-                //                                                   Mathf.Sin(Time.time*3f)/scaleFactor, 
-                //                                                   Mathf.Sin(Time.time*3f)/scaleFactor);
+                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
+                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
             }
             WaitForInputOrTimer(TutorialPhase.Three);
             
@@ -203,7 +245,7 @@ public class IntroManager : MonoBehaviour
             for (int i = 0; i < tutorialRingSectors.Count; i++)
             {
                 tutorialRingSectors[i].transform.Rotate(0, 0, rotationY*Time.deltaTime);
-                tutorialRingSectors[i].transform.localScale = tutorialRingSectorsScales[0] + 
+                tutorialRingSectors[i].transform.localScale = tutorialRingSectorsScales[i] +
                                                               new Vector3(Mathf.Sin(Time.time*3f)/scaleFactor, 
                                                                   Mathf.Sin(Time.time*3f)/scaleFactor, 
                                                                   Mathf.Sin(Time.time*3f)/scaleFactor);
@@ -255,10 +297,20 @@ public class IntroManager : MonoBehaviour
         tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
         tutorialRobot.transform.position = new Vector3(0.115f, 1.362f, 0.937f);
 
+        AudioSource[] tutorialRobotVoices;
+        tutorialRobotVoices = tutorialRobot.GetComponents<AudioSource>();
+        Random r = new Random();
+        int rInt = r.Next(0, tutorialRobotVoices.Length);
+        tutorialRobotVoices[rInt].Play();
+
         txtBox.enabled = true;
         showTargetingObjects = false;
         tutorialRingSectors = new List<GameObject>();
         tutorialRingSectorsScales = new List<Vector3>();
+    
+        tutorialRingButtons = new List<GameObject>();
+        tutorialRingButtonsPositions = new List<Vector3>();
+        
         displayedTutorialRobotText = "";
         writerTimer = 0.0f;
         writing = true;
