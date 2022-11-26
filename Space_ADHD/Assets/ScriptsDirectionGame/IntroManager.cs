@@ -36,6 +36,9 @@ public class IntroManager : MonoBehaviour
     private float rotationY = 30.0f;
     private Vector3 tutorialRingStartPosition;
     
+    private GameObject shootingStarNoTail;
+    private bool spawnedStar;
+    
     /*Variables to manage tutorial phases*/
     List<int> IDs = new List<int>();
     List<string> tutorialRobotTexts = new List<string>();
@@ -59,6 +62,7 @@ public class IntroManager : MonoBehaviour
     /**/
 
     private TutorialPhase tutorialPhase;
+    
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -83,6 +87,7 @@ public class IntroManager : MonoBehaviour
             // screenText.transform.position = new Vector3(Screen.width / 2f, Screen.height / 15f, 0);
 
             screenTargetingGraphics = screenTargeting.GetComponent<Graphic>();
+            shootingStarNoTail = GameObject.Find("notShootingStar");
             tutorialPhase = TutorialPhase.Zero;
             showingTutorial = true;
         }
@@ -120,6 +125,8 @@ public class IntroManager : MonoBehaviour
                     HandlePhaseFive();
                     break;
                 case TutorialPhase.Six:
+                    for (int i = 0; i < tutorialRingButtons.Count; i++)
+                        Destroy(tutorialRingButtons[i]);
                     MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                     Destroy(this);
                     break;
@@ -147,6 +154,46 @@ public class IntroManager : MonoBehaviour
         {
             ShowTutorialRobotAndScreenText();
         }
+        else if(!spawnedStar)
+        {
+            spawnShootingStar();
+        }else if (!showTargetingObjects)
+        {
+            txtBox.enabled = false;
+            tutorialText.SetText("");
+            showTargetingObjects = true;
+
+            GameObject ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(-0.094f, 1.379f, 1.127f),
+                Quaternion.identity, GameObject.Find("All").transform);
+            tutorialRingButtons.Add(ring);
+            tutorialRingButtonsPositions.Add(ring.transform.position);
+            int i = 0;
+            for (; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
+                tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
+            }
+        }else
+        {
+            for (int i = 0; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
+                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+            }
+            WaitForInputOrTimer(TutorialPhase.Six);
+        }
+    }
+
+    private void spawnShootingStar()
+    {
+        if (tutorialPhase == TutorialPhase.Five)
+        {
+            Vector3 spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
+            shootingStarNoTail.transform.position = spawnPosition;
+            spawnedStar = true;
+        }
+        
     }
 
     private void HandlePhaseFour()
@@ -369,6 +416,7 @@ public class IntroManager : MonoBehaviour
         writerTimer = 0.0f;
         writing = true;
         phaseStarted = true;
+        spawnedStar = false;
 
         //TODO: adjust font sizes
         switch (tutorialPhase)

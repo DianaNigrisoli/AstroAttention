@@ -32,63 +32,63 @@ namespace Assets.ScriptsDirectionGame
                         case "UpperRightButtonQuad":
                             if (phase0Manager.cases == 2 || phase1Manager.cases == 1 || (phase2Manager.ROTcases == 1) ||
                                 (phase3Manager.SPTcases == 2))
-                                {
-                                    CannonBehavior.upRightShot = true;
-                                    phase0Manager.touch = true;
-                                    phase1Manager.touch = true;
-                                    phase2Manager.touch = true;
-                                    phase3Manager.touch = true;
-                                }
+                            {
+                                CannonBehavior.upRightShot = true;
+                                phase0Manager.touch = true;
+                                phase1Manager.touch = true;
+                                phase2Manager.touch = true;
+                                phase3Manager.touch = true;
+                            }
                             else
-                                {
-                                    GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                                    GameObject.Destroy(buzz, 1f);
-                                }
+                            {
+                                GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+                                GameObject.Destroy(buzz, 1f);
+                            }
                             break;
                         case "UpperLeftButtonQuad":
                             if (phase0Manager.cases==0 || phase1Manager.cases == 3 || (phase2Manager.ROTcases == 3) || (phase3Manager.SPTcases == 0))
-                                {
-                                    CannonBehavior.upLeftShot = true;
-                                    phase0Manager.touch = true;
-                                    phase1Manager.touch = true;
-                                    phase2Manager.touch = true;
-                                    phase3Manager.touch = true;
-                                }
+                            {
+                                CannonBehavior.upLeftShot = true;
+                                phase0Manager.touch = true;
+                                phase1Manager.touch = true;
+                                phase2Manager.touch = true;
+                                phase3Manager.touch = true;
+                            }
                             else
-                                {
-                                    GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                                    GameObject.Destroy(buzz, 1f);
-                                }
+                            {
+                                GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+                                GameObject.Destroy(buzz, 1f);
+                            }
                             break;
                         case "LowerRightButtonQuad":
                             if (phase0Manager.cases == 3 || phase1Manager.cases == 0 || (phase2Manager.ROTcases == 0) || (phase3Manager.SPTcases == 3))
-                                {
-                                    CannonBehavior.downRightShot = true;
-                                    phase0Manager.touch = true;
-                                    phase1Manager.touch = true;
-                                    phase2Manager.touch = true;
-                                    phase3Manager.touch = true;
-                                }
+                            {
+                                CannonBehavior.downRightShot = true;
+                                phase0Manager.touch = true;
+                                phase1Manager.touch = true;
+                                phase2Manager.touch = true;
+                                phase3Manager.touch = true;
+                            }
                             else
-                                {
-                                    GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                                    GameObject.Destroy(buzz, 1f);
-                                }
+                            {
+                                GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+                                GameObject.Destroy(buzz, 1f);
+                            }
                             break;
                         case "LowerLeftButtonQuad":
                             if (phase0Manager.cases == 1 || phase1Manager.cases == 2 || (phase2Manager.ROTcases == 2) || (phase3Manager.SPTcases == 1))
-                                {
-                                    CannonBehavior.downLeftShot = true;
-                                    phase0Manager.touch = true;
-                                    phase1Manager.touch = true;
-                                    phase2Manager.touch = true;
-                                    phase3Manager.touch = true;
-                                }
-                                else
-                                {
-                                    GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                                    GameObject.Destroy(buzz, 1f);
-                                }
+                            {
+                                CannonBehavior.downLeftShot = true;
+                                phase0Manager.touch = true;
+                                phase1Manager.touch = true;
+                                phase2Manager.touch = true;
+                                phase3Manager.touch = true;
+                            }
+                            else
+                            {
+                                GameObject buzz = GameObject.Instantiate(buzzButton, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+                                GameObject.Destroy(buzz, 1f);
+                            }
                             break;
                         default:
                             break;
