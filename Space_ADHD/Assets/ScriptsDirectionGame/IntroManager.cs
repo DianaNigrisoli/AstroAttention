@@ -37,9 +37,13 @@ public class IntroManager : MonoBehaviour
     private Vector3 tutorialRingStartPosition;
     
     private GameObject shootingStarNoTail;
+    private Vector3 spawnPositionNoTail;
     private bool spawnedStar;
     private float shootingStarDestructionDelay;
     public static bool touch;
+    private bool exploded;
+    [SerializeField] private GameObject shootingStarExplosionPrefab;
+    private GameObject explosion;
     
     /*Variables to manage tutorial phases*/
     List<int> IDs = new List<int>();
@@ -123,6 +127,7 @@ public class IntroManager : MonoBehaviour
                 case TutorialPhase.Six:
                     for (int i = 0; i < tutorialRingButtons.Count; i++)
                         Destroy(tutorialRingButtons[i]);
+                    Destroy(explosion);
                     MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                     Destroy(this);
                     break;
@@ -187,6 +192,10 @@ public class IntroManager : MonoBehaviour
                                                             new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
             }
             shootingStarDestructionDelay -= Time.deltaTime;
+        }else if (!exploded)
+        {
+            explosion = Instantiate(shootingStarExplosionPrefab, spawnPositionNoTail, Quaternion.identity, GameObject.Find("All").transform);
+            exploded = true;
         }
         else
         {
@@ -426,6 +435,7 @@ public class IntroManager : MonoBehaviour
         spawnedStar = false;
         touch = false;
         shootingStarDestructionDelay = 0.5f;
+        exploded = false;
 
         //TODO: adjust font sizes
         switch (tutorialPhase)
@@ -462,8 +472,8 @@ public class IntroManager : MonoBehaviour
     {
         if (tutorialPhase == TutorialPhase.Five)
         {
-            Vector3 spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
-            shootingStarNoTail.transform.position = spawnPosition;
+            spawnPositionNoTail = new Vector3(-2.75f, 5.3f, 16.4f);
+            shootingStarNoTail.transform.position = spawnPositionNoTail;
             spawnedStar = true;
         }
         
