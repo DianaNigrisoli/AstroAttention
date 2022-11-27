@@ -23,17 +23,13 @@ Wait for user input
 (Simul.) A comet appear in the upper left sector
 Targeting object on the upper left button
 Wait for user to push the correct button
---Phase SEVEN--
+--Phase SIX--
 TR: "Great work! Let's try another one"
 Wait for user input
 --Phase EIGHT--
-Some targeting object blink on the screen
-(Simultaneously with previous) SC: "Shoot in the direction of the comet"
+(Simultaneously) SC: "Shoot in the direction of the comet"
 (Simul.) A comet appear in the lower left sector pointing in the upper right direction
-Wait for N seconds
---Phase NINE--
-TR: "Here we need to look at the direction of the comet. Press the upper right button"
-Targeting object on the upper right button
+Targeting object on the upper left button
 Wait for user to push the correct button
 --Phase TEN--
 TR: "Great work! You're ready to go!"

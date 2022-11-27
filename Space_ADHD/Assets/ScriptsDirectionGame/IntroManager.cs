@@ -31,19 +31,24 @@ public class IntroManager : MonoBehaviour
     private List<GameObject> tutorialRingSectors;
     private List<Vector3> tutorialRingSectorsScales;
 
+    [SerializeField] private NebulaBehaviour nebulaBehaviour;
+
     private SortedList<int, TutorialPhaseData> tutorialPhaseData;
     private Boolean showingTutorial;
     private float rotationY = 30.0f;
     private Vector3 tutorialRingStartPosition;
     
     private GameObject shootingStarNoTail;
-    private Vector3 spawnPositionNoTail;
+    private GameObject shootingStarWithTail;
+    private Vector3 spawnPosition;
     private bool spawnedStar;
     private float shootingStarDestructionDelay;
     public static bool touch;
     private bool exploded;
     [SerializeField] private GameObject shootingStarExplosionPrefab;
     private GameObject explosion;
+    private GameObject hlines;
+    private GameObject vlines;
     
     /*Variables to manage tutorial phases*/
     List<int> IDs = new List<int>();
@@ -68,6 +73,7 @@ public class IntroManager : MonoBehaviour
     /**/
 
     private TutorialPhase tutorialPhase;
+    public static event Action<TutorialPhase> OnTutorialPhaseChanged;
     
     void Awake()
     {
@@ -88,6 +94,9 @@ public class IntroManager : MonoBehaviour
 
             screenTargetingGraphics = screenTargeting.GetComponent<Graphic>();
             shootingStarNoTail = GameObject.Find("notShootingStar");
+            shootingStarWithTail = GameObject.Find("shootingStar");
+            hlines = GameObject.Find("HorizontalLines");
+            vlines = GameObject.Find("VerticalLines");
             tutorialPhase = TutorialPhase.Zero;
             showingTutorial = true;
         }
@@ -128,12 +137,17 @@ public class IntroManager : MonoBehaviour
                     for (int i = 0; i < tutorialRingButtons.Count; i++)
                         Destroy(tutorialRingButtons[i]);
                     Destroy(explosion);
-                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
-                    Destroy(this);
+                    HandlePhaseSix();
                     break;
                 case TutorialPhase.Seven:
+                    HandlePhaseSeven();
                     break;
                 case TutorialPhase.Eight:
+                    for (int i = 0; i < tutorialRingButtons.Count; i++)
+                        Destroy(tutorialRingButtons[i]);
+                    Destroy(explosion);
+                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                    Destroy(this);
                     break;
                 case TutorialPhase.Nine:
                     break;
@@ -142,6 +156,90 @@ public class IntroManager : MonoBehaviour
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+    }
+
+    private void HandlePhaseSeven()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            hlines.transform.position =
+                new Vector3(hlines.transform.position.x, hlines.transform.position.y, -1000.0f);
+            vlines.transform.position =
+                new Vector3(vlines.transform.position.x, vlines.transform.position.y, -1000.0f);
+            ShowTutorialRobotAndScreenText();
+        }else if (!spawnedStar)
+        {
+            SpawnShootingStar();
+        }else if (!showTargetingObjects)
+        {
+            txtBox.enabled = false;
+            tutorialText.SetText("");
+            showTargetingObjects = true;
+
+            GameObject ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(+0.094f, 1.379f, 1.127f),
+                Quaternion.identity, GameObject.Find("All").transform);
+            tutorialRingButtons.Add(ring);
+            tutorialRingButtonsPositions.Add(ring.transform.position);
+            int i = 0;
+            for (; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
+                tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
+            }
+        }else if(!touch)
+        {
+            for (int i = 0; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
+                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+            }
+        }
+        else if (shootingStarDestructionDelay > 0.0f)
+        {
+            for (int i = 0; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
+                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+            }
+            shootingStarDestructionDelay -= Time.deltaTime;
+        }else if (!exploded)
+        {
+            explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
+            StartCoroutine(nebulaBehaviour.Shake(1.0f, 0.1f));
+            exploded = true;
+        }
+        else
+        {
+            for (int i = 0; i < tutorialRingButtons.Count; i++)
+            {
+                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
+                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+            }
+            shootingStarWithTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);;
+            WaitForInputOrTimer(TutorialPhase.Eight);
+        }
+    }
+
+    private void HandlePhaseSix()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            ShowTutorialRobotAndScreenText();
+        }else
+        {
+            WaitForInputOrTimer(nextPhase: TutorialPhase.Seven);
         }
     }
 
@@ -157,7 +255,7 @@ public class IntroManager : MonoBehaviour
         }
         else if(!spawnedStar)
         {
-            spawnShootingStar();
+            SpawnShootingStar();
         }else if (!showTargetingObjects)
         {
             txtBox.enabled = false;
@@ -194,7 +292,8 @@ public class IntroManager : MonoBehaviour
             shootingStarDestructionDelay -= Time.deltaTime;
         }else if (!exploded)
         {
-            explosion = Instantiate(shootingStarExplosionPrefab, spawnPositionNoTail, Quaternion.identity, GameObject.Find("All").transform);
+            explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
+            StartCoroutine(nebulaBehaviour.Shake(1.0f, 0.1f));
             exploded = true;
         }
         else
@@ -387,6 +486,7 @@ public class IntroManager : MonoBehaviour
         else condition = Input.GetMouseButtonDown(0) || waitTimer < 0.0f;
         if (!condition) return;
         tutorialPhase = nextPhase;
+        OnTutorialPhaseChanged?.Invoke(tutorialPhase);
         Destroy(tutorialRobot);
         phaseStarted = false;
         txtBox.enabled = false;
@@ -406,7 +506,7 @@ public class IntroManager : MonoBehaviour
         screenText.SetText("");
         screenTargeting.enabled = false;
 
-        if (tutorialPhase != TutorialPhase.Five)
+        if (tutorialPhase != TutorialPhase.Five && tutorialPhase != TutorialPhase.Seven)
         {
             tutorialRobot = Instantiate(tutorialRobotPrefab, GameObject.Find("All").transform);
             tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
@@ -446,6 +546,9 @@ public class IntroManager : MonoBehaviour
             case TutorialPhase.One:
                 tutorialText.fontSize = 24;
                 break;
+            case TutorialPhase.Six:
+                tutorialText.fontSize = 23;
+                break;
         }
     }
     private void ShowTutorialRobotAndScreenText()
@@ -468,15 +571,20 @@ public class IntroManager : MonoBehaviour
         }
     }
     
-    private void spawnShootingStar()
+    private void SpawnShootingStar()
     {
         if (tutorialPhase == TutorialPhase.Five)
         {
-            spawnPositionNoTail = new Vector3(-2.75f, 5.3f, 16.4f);
-            shootingStarNoTail.transform.position = spawnPositionNoTail;
-            spawnedStar = true;
+            spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
+            shootingStarNoTail.transform.position = spawnPosition;
+        }else if (tutorialPhase == TutorialPhase.Seven)
+        {
+            spawnPosition = new Vector3(2.25f, 4.7f, 16.4f);
+            int rotZ = 135;
+            shootingStarWithTail.transform.position = spawnPosition;
+            shootingStarWithTail.transform.rotation=Quaternion.Euler(new Vector3(0, 0, rotZ));
         }
-        
+        spawnedStar = true;
     }
     
     private void PrepareTutorialData()
