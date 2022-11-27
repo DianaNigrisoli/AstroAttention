@@ -26,12 +26,12 @@ Wait for user to push the correct button
 --Phase SIX--
 TR: "Great work! Let's try another one"
 Wait for user input
---Phase EIGHT--
+--Phase SEVEN--
 (Simultaneously) SC: "Shoot in the direction of the comet"
 (Simul.) A comet appear in the lower left sector pointing in the upper right direction
 Targeting object on the upper left button
 Wait for user to push the correct button
---Phase TEN--
+--Phase EIGHT--
 TR: "Great work! You're ready to go!"
 Wait for user input
 Go to WaitForNext

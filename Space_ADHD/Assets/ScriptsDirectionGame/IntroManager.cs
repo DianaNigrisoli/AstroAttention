@@ -143,19 +143,39 @@ public class IntroManager : MonoBehaviour
                     HandlePhaseSeven();
                     break;
                 case TutorialPhase.Eight:
+                    hlines.transform.position =
+                        new Vector3(hlines.transform.position.x, hlines.transform.position.y, 0.0f);
+                    vlines.transform.position =
+                        new Vector3(vlines.transform.position.x, vlines.transform.position.y, 0.0f);
                     for (int i = 0; i < tutorialRingButtons.Count; i++)
                         Destroy(tutorialRingButtons[i]);
                     Destroy(explosion);
-                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
-                    Destroy(this);
+                    HandlePhaseEight();
                     break;
                 case TutorialPhase.Nine:
+                    MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+                    Destroy(this);
                     break;
                 case TutorialPhase.Ten:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+    }
+
+    private void HandlePhaseEight()
+    {
+        if (!phaseStarted)
+        {
+            PrepareRobotAndTextAndVariables();
+        }
+        else if(writing)
+        {
+            ShowTutorialRobotAndScreenText();
+        }else
+        {
+            WaitForInputOrTimer(nextPhase: TutorialPhase.Nine);
         }
     }
 
@@ -168,62 +188,32 @@ public class IntroManager : MonoBehaviour
         else if(writing)
         {
             hlines.transform.position =
-                new Vector3(hlines.transform.position.x, hlines.transform.position.y, -1000.0f);
+                new Vector3(hlines.transform.position.x, hlines.transform.position.y, -100.0f);
             vlines.transform.position =
-                new Vector3(vlines.transform.position.x, vlines.transform.position.y, -1000.0f);
+                new Vector3(vlines.transform.position.x, vlines.transform.position.y, -100.0f);
             ShowTutorialRobotAndScreenText();
         }else if (!spawnedStar)
         {
             SpawnShootingStar();
         }else if (!showTargetingObjects)
         {
-            txtBox.enabled = false;
-            tutorialText.SetText("");
-            showTargetingObjects = true;
-
-            GameObject ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(+0.094f, 1.379f, 1.127f),
-                Quaternion.identity, GameObject.Find("All").transform);
-            tutorialRingButtons.Add(ring);
-            tutorialRingButtonsPositions.Add(ring.transform.position);
-            int i = 0;
-            for (; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
-                tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
-            }
+            ShowButtonRing(position: new Vector3(+0.094f, 1.379f, 1.127f));
         }else if(!touch)
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
         }
         else if (shootingStarDestructionDelay > 0.0f)
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
             shootingStarDestructionDelay -= Time.deltaTime;
         }else if (!exploded)
         {
-            explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
-            StartCoroutine(nebulaBehaviour.Shake(1.0f, 0.1f));
-            exploded = true;
+            MakeExplosion();
         }
         else
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
-            shootingStarWithTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);;
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
+            shootingStarWithTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);
             WaitForInputOrTimer(TutorialPhase.Eight);
         }
     }
@@ -258,57 +248,27 @@ public class IntroManager : MonoBehaviour
             SpawnShootingStar();
         }else if (!showTargetingObjects)
         {
-            txtBox.enabled = false;
-            tutorialText.SetText("");
-            showTargetingObjects = true;
-
-            GameObject ring = Instantiate(tutorialRingButtonsPrefab, new Vector3(-0.094f, 1.379f, 1.127f),
-                Quaternion.identity, GameObject.Find("All").transform);
-            tutorialRingButtons.Add(ring);
-            tutorialRingButtonsPositions.Add(ring.transform.position);
-            int i = 0;
-            for (; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
-                tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
-            }
+            ShowButtonRing(position: new Vector3(-0.094f, 1.379f, 1.127f));
         }else if(!touch)
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
         }
         else if (shootingStarDestructionDelay > 0.0f)
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
             shootingStarDestructionDelay -= Time.deltaTime;
         }else if (!exploded)
         {
-            explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
-            StartCoroutine(nebulaBehaviour.Shake(1.0f, 0.1f));
-            exploded = true;
+            MakeExplosion();
         }
         else
         {
-            for (int i = 0; i < tutorialRingButtons.Count; i++)
-            {
-                tutorialRingButtons[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
-                tutorialRingButtons[i].transform.position = tutorialRingButtonsPositions[i] + 
-                                                            new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
-            }
-            shootingStarNoTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);;
+            MoveTutorialRings(tutorialRingButtons, tutorialRingButtonsPositions);
+            shootingStarNoTail.transform.position = new Vector3(-12.75f, 5.3f, 16.4f);
             WaitForInputOrTimer(TutorialPhase.Six);
         }
     }
-
+    
     private void HandlePhaseFour()
     {
         if (!phaseStarted)
@@ -477,7 +437,41 @@ public class IntroManager : MonoBehaviour
         }
         
     }
-    
+   
+    private void MakeExplosion()
+    {
+        explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
+        StartCoroutine(nebulaBehaviour.Shake(1.0f, 0.3f));
+        exploded = true;
+    }
+    private void MoveTutorialRings(List<GameObject> tutorialRings, List<Vector3> tutorialRingsPositions)
+    {
+        for (int i = 0; i < tutorialRings.Count; i++)
+        {
+            tutorialRings[i].transform.Rotate(0, rotationY*Time.deltaTime, 0);
+            tutorialRings[i].transform.position = tutorialRingsPositions[i] + 
+                                                  new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+        }
+    }
+
+    private void ShowButtonRing(Vector3 position)
+    {
+        txtBox.enabled = false;
+        tutorialText.SetText("");
+        showTargetingObjects = true;
+
+        GameObject ring = Instantiate(tutorialRingButtonsPrefab, position,
+            Quaternion.identity, GameObject.Find("All").transform);
+        tutorialRingButtons.Add(ring);
+        tutorialRingButtonsPositions.Add(ring.transform.position);
+        int i = 0;
+        for (; i < tutorialRingButtons.Count; i++)
+        {
+            tutorialRingButtons[i].transform.Rotate(-7.772f, 0, 0);
+            tutorialRingButtons[i].transform.localScale = new Vector3(0.17558f, 0.17558f, 0.17558f);
+        }
+    }
+
     private void WaitForInputOrTimer(TutorialPhase nextPhase)
     {
         waitTimer -= Time.deltaTime;
@@ -547,7 +541,10 @@ public class IntroManager : MonoBehaviour
                 tutorialText.fontSize = 24;
                 break;
             case TutorialPhase.Six:
-                tutorialText.fontSize = 23;
+                tutorialText.fontSize = 22.5f;
+                break;
+            case TutorialPhase.Eight:
+                tutorialText.fontSize = 21;
                 break;
         }
     }
