@@ -42,7 +42,7 @@ namespace Assets.Scripts_FruitGame
         void Update()
         {
 
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.Zero);
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
             Destroy(this);
 
         }

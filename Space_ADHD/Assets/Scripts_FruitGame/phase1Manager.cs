@@ -28,7 +28,7 @@ namespace Assets.Scripts_FruitGame
                 
                 print("Final Score: "+ FinalScore);
                 
-                MiniGameManager.instance.UpdateMiniGameState(MiniGameState.One);
+                MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                 PlayerMovement.PortalCounter = 0;
                 PlayerMovement.score = 0;
                 Destroy(this);
