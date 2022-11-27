@@ -55,6 +55,8 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             selectRandomColour();
             //print("phase bool: "+ phase0);
         }
+        
+        //bisognare fare else -> destroy? 
     }
     
     
@@ -72,7 +74,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             phase1 = true;
             //print("Index: " + index);
         }
-        if (state != MiniGameState.One)
+        else
         {
             phase1 = false;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts_A_General;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public Boolean iscolliding ;
     public static int PortalCounter=0;
     public static List<float> ListReactionTime = new List<float>(10);
+    private static bool stop = false; 
 
     void Awake()
     {
@@ -24,6 +26,25 @@ public class PlayerMovement : MonoBehaviour
         speedForward = 10;
         speedLateral = 5;
         targetPos = transform.position;
+        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+    }
+    
+    void OnDestroy()
+    {
+        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged; // unsubscription to state change of MiniGameManager
+    }
+    
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    {
+        if (state == MiniGameState.WaitForNext)
+        {
+            stop = true;
+        }
+
+        else
+        {
+            stop = false;
+        }
     }
 
     private void Start()
@@ -35,20 +56,28 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        controller.velocity = transform.forward * speedForward;
-        targetPos.z = controller.position.z;
-        var step = speedLateral * Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (!stop)
         {
-            MoveRight();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveLeft();
+            controller.velocity = transform.forward * speedForward;
+            targetPos.z = controller.position.z;
+            var step = speedLateral * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MoveRight();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MoveLeft();
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+        else
+        {
+            controller.velocity = transform.forward * 0;
+        }
     }
     
     private void OnTriggerEnter(Collider other)

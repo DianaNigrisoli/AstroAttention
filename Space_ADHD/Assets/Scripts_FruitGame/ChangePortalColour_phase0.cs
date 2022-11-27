@@ -70,7 +70,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             selectFruitColor();
             phase0 = true;
         }
-        if (state != MiniGameState.Zero)
+        else
         {
             phase0 = false;
         }
