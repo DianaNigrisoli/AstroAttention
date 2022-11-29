@@ -86,8 +86,6 @@ public class ChangePortalColour_phase2 : MonoBehaviour
             randomImage = Random2.Range(0, 6);
             fruitImage.sprite = fruitImages[randomImage];
             currentFruit = LoadFruits.myFruitList.fruit[randomImage];
-            
-
         }
     
     void selectFruitColor()
@@ -132,44 +130,24 @@ public class ChangePortalColour_phase2 : MonoBehaviour
     
     void selectRandomColour()
     {
-        int i;
         // Color semanticColor = ListColour_portal[currentFruit.ID]; //semantic color of fruit
         semanticColor = ListColour_portal[currentFruit.ID];
         Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
         List<Color> tempColourList = ListColour_portal;
 
-        // for (i = 0; i < ListColour_portal.Count; i++)
-        // {
-        //     if (tempColourList[i] == correctColor ||
-        //         tempColourList[i] == currentColor)
-        //     {
-        //         tempColourList.RemoveAt(i);
-        //     }
-        // }
-        
         tempColourList.RemoveAll(t => t == semanticColor || t == currentColor);
         
         int tempindex = Random2.Range(0, 1);
         tempColourList.RemoveAt(tempindex);
         
-
-        //print("Size of tempColour: "+ tempColourList.Count);
-        //print("POS 0: " + tempColourList[0]);
-        //print("POS 1: " + tempColourList[1]);
-    
         List<Color> PortalColour = tempColourList;
         PortalColour.Add(currentColor);
         PortalColour.Add(semanticColor);
         
-    
-        //print("Size of Final Portal Colour: "+ PortalColour.Count);
-        //print("PortalColour[0]: " +PortalColour[0]);
-        //STEP 2:
         var rnd = new Random1();
         List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
-    
-        //print("PortalColour[0] after Shuffle: " + ShufflePortalColour[0]);
-    
+        
+
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
             if (gameObj.name == "Portal1")

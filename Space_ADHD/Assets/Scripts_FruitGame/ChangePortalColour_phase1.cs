@@ -23,6 +23,8 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     private List<Color> ListColour_portal = new List<Color>();
     private List<Color> ListColour_fruit = new List<Color>();
+    private Color visibleColor;
+    private Color semanticColor;
     private FunctionTimer functionTimer;
     
     static public int rightPortal1;
@@ -90,8 +92,12 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     void selectFruitColor()
         {
-            index = Random2.Range(0, 3);
-            fruitImage.GetComponent<Image>().color = ListColour_fruit[index];
+            List<Color> tempColourList_fruit = ListColour_fruit;
+            tempColourList_fruit.RemoveAt(currentFruit.ID);
+        
+            index = Random2.Range(0, 2);
+            visibleColor = tempColourList_fruit[index];
+            fruitImage.GetComponent<Image>().color = visibleColor;
         }
     
     void CustomPalette()
@@ -125,28 +131,21 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     void selectRandomColour()
         {
-            Color currentColor = ListColour_portal[index];
+            semanticColor = ListColour_portal[currentFruit.ID];
+            Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
             List<Color> tempColourList = ListColour_portal;
-            tempColourList.RemoveAt(index);
-    
-            int tempindex = Random2.Range(0, 2);
-            tempColourList.RemoveAt(tempindex);
-    
-            //print("Size of tempColour: "+ tempColourList.Count);
-            //print("POS 0: " + tempColourList[0]);
-            //print("POS 1: " + tempColourList[1]);
-    
+
+            tempColourList.RemoveAll(t => t == semanticColor);
+        
+            // int tempindex = Random2.Range(0, 1);
+            // tempColourList.RemoveAt(tempindex);
+            //Per ora (?) i colori sono 4, quindi a noi interessa togliere solo quello 
+        
             List<Color> PortalColour = tempColourList;
-            PortalColour.Add(currentColor);
-    
-            //print("Size of Final Portal Colour: "+ PortalColour.Count);
-            //print("PortalColour[0]: " +PortalColour[0]);
-            //STEP 2:
+            
             var rnd = new Random1();
             List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
-    
-            //print("PortalColour[0] after Shuffle: " + ShufflePortalColour[0]);
-    
+            
             foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
             {
                 if (gameObj.name == "Portal1")

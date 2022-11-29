@@ -85,10 +85,10 @@ public class PlayerMovement : MonoBehaviour
         // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
         if (iscolliding)
         {
-            PortalCounter += 1; 
             ListReactionTime.Add(FunctionTimer.reactionTime);
             print("score: " + score);
-            print("Portal-spawn number: " + PortalCounter); 
+            PortalCounter += 1;
+            print("Portal-spawn number: " + PortalCounter);
             return;
         }
         // Check player position 
