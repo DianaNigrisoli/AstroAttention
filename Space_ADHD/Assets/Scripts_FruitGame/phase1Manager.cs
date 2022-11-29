@@ -9,7 +9,7 @@ namespace Assets.Scripts_FruitGame
     public class phase1Manager : MonoBehaviour
     {
         public static int FinalScore;
-        public static int NumSpawn = 10;
+        private int NumSpawn = 10;
         
         // Start is called before the first frame update
         void Start()

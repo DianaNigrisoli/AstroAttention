@@ -62,7 +62,6 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     }
     
     
-    
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
     {
         if (state == MiniGameState.One)
@@ -74,7 +73,6 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             selectRandomColour();
             //Destroy(this);
             phase1 = true;
-            //print("Index: " + index);
         }
         else
         {

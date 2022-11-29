@@ -111,20 +111,12 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         int tempindex = Random2.Range(0, 2); 
         tempColourList.RemoveAt(tempindex);
         
-        //print("Size of tempColour: "+ tempColourList.Count);
-        //print("POS 0: " + tempColourList[0]);
-        //print("POS 1: " + tempColourList[1]);
-
+       
         List<Color> PortalColour = tempColourList;
         PortalColour.Add(currentColor);
         
-        //print("Size of Final Portal Colour: "+ PortalColour.Count);
-        //print("PortalColour[0]: " +PortalColour[0]);
-        //STEP 2:
         var rnd = new Random1();
         List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
-
-        //print("PortalColour[0] after Shuffle: " + ShufflePortalColour[0]);
         
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
