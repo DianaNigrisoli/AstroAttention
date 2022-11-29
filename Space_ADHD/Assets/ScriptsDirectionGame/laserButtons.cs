@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Assets.Scripts_A_General;
@@ -7,13 +8,14 @@ namespace Assets.ScriptsDirectionGame
     public class laserButtons : MonoBehaviour
     {
         public GameObject button;
-        private bool selected;
+        private bool selected; //TODO: do we need this?
         private AudioSource audioData;
         public GameObject buzzButton;
         private MiniGameState miniGameState; //TODO: useless since I added tutorialPhase... But can be more clear to
                                              //add that we are in the intro phase in my opinion. Davi if you agree
                                              //delete this comment;
         private TutorialPhase tutorialPhase;
+        public static Boolean enabled;
         
         
         void Awake()
@@ -43,12 +45,14 @@ namespace Assets.ScriptsDirectionGame
         {
             button = this.gameObject;
             this.selected = false;
+            enabled = false;
             audioData = button.GetComponent<AudioSource>();
         }
         
         // Update is called once per frame
         void Update()
         {
+            if (!enabled) return;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Input.GetMouseButtonDown(0) && !selected){

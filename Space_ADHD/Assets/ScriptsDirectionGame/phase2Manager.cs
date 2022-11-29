@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts_A_General;
+using Assets.ScriptsDirectionGame;
 
 public class phase2Manager : MonoBehaviour
 {
@@ -90,6 +91,7 @@ public class phase2Manager : MonoBehaviour
         }
         shootingStar.transform.position = spawnPosition;
         shootingStar.transform.rotation=Quaternion.Euler(new Vector3(0, 0, rotZ));
+        laserButtons.enabled = true;
     }
     
     void gameInstance()

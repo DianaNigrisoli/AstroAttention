@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
+using Assets.ScriptsDirectionGame;
 using UnityEngine;
 
 public class phase0Manager : MonoBehaviour
@@ -54,6 +55,7 @@ public class phase0Manager : MonoBehaviour
         }
 
         shootingStar.transform.position = spawnPosition;
+        laserButtons.enabled = true;
     }
 
     void gameInstance()
