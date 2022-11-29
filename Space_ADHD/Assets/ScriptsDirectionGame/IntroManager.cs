@@ -570,6 +570,7 @@ public class IntroManager : MonoBehaviour
     
     private void SpawnShootingStar()
     {
+        laserButtons.enabled = true;
         if (tutorialPhase == TutorialPhase.Five)
         {
             spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
