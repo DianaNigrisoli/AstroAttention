@@ -18,7 +18,10 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
     [SerializeField] private Image fruitImage;
+    [SerializeField] private Image MiniFruit;
+    
     public LoadFruits.Fruit currentFruit;
+    public LoadFruits.Fruit currentMiniFruit;
     int randomImage;
 
     private List<Color> ListColour = new List<Color>(); 
@@ -27,7 +30,8 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     static public int rightPortal1;
     static public int rightPortal2;
     static public int rightPortal3;
-    
+
+    public GameObject ParentGameObject;
     public static bool phase0 = false; 
     
     
@@ -47,7 +51,9 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (phase0)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+            MiniFruit = GameObject.Find("MiniFruit").GetComponentInChildren<Image>();
             selectRandomImage();
+            selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -64,7 +70,9 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (state == MiniGameState.Zero)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+            MiniFruit = GameObject.Find("MiniFruit").GetComponentInChildren<Image>();
             selectRandomImage();
+            selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -84,6 +92,17 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
     }
+
+    // the following function it's needed for phase 3. now it does not properly work
+    void selectMiniImage()
+    {
+       randomImage = Random2.Range(0, 6);
+       MiniFruit.sprite = fruitImages[randomImage];
+       currentMiniFruit = LoadFruits.myFruitList.fruit[randomImage];
+       print(currentMiniFruit);
+    
+    }
+
     void selectFruitColor()
     {
         fruitImage.material.color = Color.white;

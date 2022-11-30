@@ -11,7 +11,7 @@ public class RandomFruit : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
    //[SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] private Image fruitImage;
+    [SerializeField] private Image MiniFruit;
     public static LoadFruits.Fruit currentFruit;
     int randomImage;
 
@@ -19,7 +19,7 @@ public class RandomFruit : MonoBehaviour
     {
         randomImage = Random.Range(0, 6);
         //spriteRenderer.sprite = fruitImages[randomImage];
-        fruitImage.sprite = fruitImages[randomImage];
+        MiniFruit.sprite = fruitImages[randomImage];
         print(randomImage);
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
@@ -27,7 +27,7 @@ public class RandomFruit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+        MiniFruit = GameObject.Find("MiniFruit").GetComponent<Image>();
         selectRandomImage();
     }
 
