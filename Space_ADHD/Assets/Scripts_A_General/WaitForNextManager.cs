@@ -67,7 +67,7 @@ namespace Assets.Scripts_A_General
                     updateMiniGameState();
                     
                 }
-                countdownText.text = (int)currentTime + "s";
+                countdownText.text = ((int)currentTime).ToString();
                 float normalizedValue = Mathf.Clamp(
                     currentTime /startTime, 0.0f, 1.0f);
                 countdownCircleTimer.fillAmount = normalizedValue;
