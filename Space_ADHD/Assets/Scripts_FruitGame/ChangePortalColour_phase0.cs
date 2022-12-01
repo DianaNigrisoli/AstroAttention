@@ -18,7 +18,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
     [SerializeField] private Image fruitImage;
-    [SerializeField] private Image MiniFruit;
+    [SerializeField] SpriteRenderer MiniFruitRender;
     
     public LoadFruits.Fruit currentFruit;
     public LoadFruits.Fruit currentMiniFruit;
@@ -51,7 +51,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (phase0)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-            MiniFruit = GameObject.Find("MiniFruit").GetComponentInChildren<Image>();
+            //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
             selectMiniImage();
             CustomPalette();
@@ -70,7 +70,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (state == MiniGameState.Zero)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-            MiniFruit = GameObject.Find("MiniFruit").GetComponentInChildren<Image>();
+            //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
             selectMiniImage();
             CustomPalette();
@@ -97,7 +97,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     void selectMiniImage()
     {
        randomImage = Random2.Range(0, 6);
-       MiniFruit.sprite = fruitImages[randomImage];
+       MiniFruitRender.sprite= fruitImages[randomImage];
        currentMiniFruit = LoadFruits.myFruitList.fruit[randomImage];
        print(currentMiniFruit);
     
