@@ -65,22 +65,22 @@ public class phase2Manager : MonoBehaviour
         {
             case 0:
             {
-                spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
+                spawnPosition = new Vector3(-2.25f, 4.7f, 16.4f);
                 break;
             }
             case 1:
             {
-                spawnPosition = new Vector3(-2.75f, -0.05f, 16.4f);
+                spawnPosition = new Vector3(-2.25f, 0.45f, 16.4f);
                 break;
             }
             case 2:
             {
-                spawnPosition = new Vector3(2.75f, 5.3f, 16.4f);
+                spawnPosition = new Vector3(2.25f, 4.7f, 16.4f);
                 break;
             }
             case 3:
             {
-                spawnPosition = new Vector3(2.75f, -0.05f, 16.4f);
+                spawnPosition = new Vector3(2.25f, 0.45f, 16.4f);
                 break;
             }
             default:
