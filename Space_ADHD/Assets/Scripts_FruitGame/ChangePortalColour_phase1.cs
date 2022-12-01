@@ -91,6 +91,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     void selectFruitColor()
         {
             //// In this phase the fruit in the canvas MUST NOT have its semantic colour ////
+            // -> same for phase 1,2,3
             
             List<Color> tempColourList_fruit = ListColour_fruit;
             
