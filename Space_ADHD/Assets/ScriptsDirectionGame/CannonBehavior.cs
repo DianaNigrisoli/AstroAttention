@@ -51,7 +51,7 @@ public class CannonBehavior : MonoBehaviour {
 		}
 		else if (phase2Manager.phaseTwo || phase3Manager.phaseThree)
 		{
-			if (shootingStar.transform. position == new Vector3(2.75f, 5.3f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
+			if (shootingStar.transform. position == new Vector3(2.25f, 4.7f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
 			{
 				Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.right * 0.7f);
 				upRightShot = false;
@@ -59,7 +59,7 @@ public class CannonBehavior : MonoBehaviour {
 				downLeftShot = false;
 				downRightShot = false;
 			}
-			if (shootingStar.transform. position == new Vector3(-2.75f, 5.3f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
+			if (shootingStar.transform. position == new Vector3(-2.25f, 4.7f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
 			{
 				Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.left * 0.7f);
 				upRightShot = false;
@@ -67,7 +67,7 @@ public class CannonBehavior : MonoBehaviour {
 				downLeftShot = false;
 				downRightShot = false;
 			}
-			if (shootingStar.transform. position == new Vector3(-2.75f, -0.05f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
+			if (shootingStar.transform. position == new Vector3(-2.25f, 0.45f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
 			{
 				Shoot(Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.left * 0.7f);
 				upRightShot = false;
@@ -75,7 +75,7 @@ public class CannonBehavior : MonoBehaviour {
 				downLeftShot = false;
 				downRightShot = false;
 			}
-			if (shootingStar.transform. position == new Vector3(2.75f, -0.05f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
+			if (shootingStar.transform. position == new Vector3(2.25f, 0.45f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
 			{
 				Shoot(Vector3.forward * 5f + Vector3.down * 0.5f + Vector3.right * 0.7f);
 				upRightShot = false;
