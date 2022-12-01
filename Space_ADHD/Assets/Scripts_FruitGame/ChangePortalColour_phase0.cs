@@ -18,10 +18,8 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
     [SerializeField] private Image fruitImage;
-    [SerializeField] SpriteRenderer MiniFruitRender;
-    
+
     public LoadFruits.Fruit currentFruit;
-    public LoadFruits.Fruit currentMiniFruit;
     int randomImage;
 
     private List<Color> ListColour = new List<Color>(); 
@@ -31,7 +29,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     static public int rightPortal2;
     static public int rightPortal3;
 
-    public GameObject ParentGameObject;
+  
     public static bool phase0 = false; 
     
     
@@ -51,9 +49,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (phase0)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-            //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
-            //selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -70,9 +66,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         if (state == MiniGameState.Zero)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-            //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
-            //selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -87,21 +81,12 @@ public class ChangePortalColour_phase0 : MonoBehaviour
 
     void selectRandomImage()
     {
-        randomImage = Random2.Range(0, 6);
+        randomImage = Random2.Range(0, 9);
         fruitImage.sprite = fruitImages[randomImage];
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
     }
 
-
-    // void selectMiniImage()
-    // {
-    //    randomImage = Random2.Range(0, 6);
-    //    MiniFruitRender.sprite= fruitImages[randomImage];
-    //    currentMiniFruit = LoadFruits.myFruitList.fruit[randomImage];
-    //    print(currentMiniFruit);
-    //
-    // }
 
     void selectFruitColor()
     {
@@ -119,21 +104,33 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             (LoadFruits.myFruitList.fruit[3].B)/255, 0.5f));
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[5].R)/255, (LoadFruits.myFruitList.fruit[5].G)/255,
             (LoadFruits.myFruitList.fruit[5].B)/255, 0.5f));
+        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, (LoadFruits.myFruitList.fruit[7].G)/255,
+            (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
     }
     
     void selectRandomColour()
-    {
+    {   
+        /////// In this phase the semantic color of the fruit in the canvas MUST BE present in one of the portal /////
+        
+        // first color selected: current color is the SEMANTIC COLOR
         Color currentColor = ListColour[currentFruit.ID];
         List<Color> tempColourList = ListColour;
-        tempColourList.RemoveAt(currentFruit.ID);
+        tempColourList.RemoveAt(currentFruit.ID); // tempColourList has 4 elements now
         
-        int tempindex = Random2.Range(0, 2); 
-        tempColourList.RemoveAt(tempindex);
+        // second color removed
+        int tempindex = Random2.Range(0, 4); 
+        tempColourList.RemoveAt(tempindex); //tempColourList has 3 elements now
         
+        // third color removed
+        int tempindex2 = Random2.Range(0, 3); 
+        tempColourList.RemoveAt(tempindex2); //tempColourList has 2 elements now
        
-        List<Color> PortalColour = tempColourList;
-        PortalColour.Add(currentColor);
+        List<Color> PortalColour = tempColourList; // 2 elements 
         
+        // corrent color (SEMANTIC COLOR)  added 
+        PortalColour.Add(currentColor); 
+        
+        // shuffle the 3 elements list
         var rnd = new Random1();
         List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
         

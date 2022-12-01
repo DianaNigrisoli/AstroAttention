@@ -19,7 +19,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     [SerializeField] private Image fruitImage;
     public LoadFruits.Fruit currentFruit;
     int randomImage;
-    private int index;
+    public int index_visCol;
     
     private List<Color> ListColour_portal = new List<Color>();
     private List<Color> ListColour_fruit = new List<Color>();
@@ -82,7 +82,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     void selectRandomImage()
         {
-            randomImage = Random2.Range(0, 6);
+            randomImage = Random2.Range(0, 9);
             fruitImage.sprite = fruitImages[randomImage];
             currentFruit = LoadFruits.myFruitList.fruit[randomImage];
     
@@ -90,12 +90,22 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     void selectFruitColor()
         {
+            //// In this phase the fruit in the canvas MUST NOT have its semantic colour ////
+            
             List<Color> tempColourList_fruit = ListColour_fruit;
-            tempColourList_fruit.RemoveAt(currentFruit.ID);
+            
+            // semantic colour removed
+            tempColourList_fruit.RemoveAt(currentFruit.ID);  // tempColourList has 4 elements now
         
-            index = Random2.Range(0, 2);
-            visibleColor = tempColourList_fruit[index];
+            // selection of a random color between those remained
+            index_visCol = Random2.Range(0, 4);
+            visibleColor = tempColourList_fruit[index_visCol];
             fruitImage.GetComponent<Image>().color = visibleColor;
+            // restore the index of visible color
+            if (currentFruit.ID < index_visCol)
+            {
+                index_visCol += 1;
+            }
         }
     
     void CustomPalette()
@@ -112,6 +122,8 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
                 (LoadFruits.myFruitList.fruit[5].G) / 255,
                 (LoadFruits.myFruitList.fruit[5].B) / 255, 0.5f));
+            ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, (LoadFruits.myFruitList.fruit[7].G)/255,
+                (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
             
             ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
                 (LoadFruits.myFruitList.fruit[1].G) / 255,
@@ -125,22 +137,47 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
                 (LoadFruits.myFruitList.fruit[5].G) / 255,
                 (LoadFruits.myFruitList.fruit[5].B) / 255, 1f));
+            ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, (LoadFruits.myFruitList.fruit[7].G)/255,
+                (LoadFruits.myFruitList.fruit[7].B)/255, 1f));
         }
     
     void selectRandomColour()
         {
+            ////// In this phase the visible colour of the fruit in the canvas MUST BE PRESENT in one portal ///////
+            //// the semantic color of the fruit MUST NOT BE PRESENT in the portal /// 
+
+            //print("vis:" + index_visCol);
+           // print("sem:" + currentFruit.ID);
+            
             semanticColor = ListColour_portal[currentFruit.ID];
             Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
             List<Color> tempColourList = ListColour_portal;
-
-            tempColourList.RemoveAll(t => t == semanticColor);
-        
-            // int tempindex = Random2.Range(0, 1);
-            // tempColourList.RemoveAt(tempindex);
-            //Per ora (?) i colori sono 4, quindi a noi interessa togliere solo quello 
-        
-            List<Color> PortalColour = tempColourList;
             
+            // first color removed: visible color 
+            tempColourList.RemoveAt(index_visCol); // tempColourList has 4 elements now
+            
+            // second color removed: semantic color: the position depend also on the values of index_visCol
+
+            if (index_visCol < currentFruit.ID)
+            {
+                tempColourList.RemoveAt(currentFruit.ID-1); // tempColourList has 3 elements now
+            }
+
+            else 
+            {
+                tempColourList.RemoveAt((currentFruit.ID)); // tempColourList has 3 elements now
+            }
+        
+            // third color removed: 
+            int tempindex = Random2.Range(0, 3);
+            tempColourList.RemoveAt(tempindex); // tempColourList has 2 elements now
+            
+            List<Color> PortalColour = tempColourList; 
+            
+            // visible color   added 
+            PortalColour.Add(currentColor); 
+            
+            // shuffle the 3 elements list 
             var rnd = new Random1();
             List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
             
@@ -175,6 +212,20 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             }
     
         }
+    
+    // codice vecchio 
+    //semanticColor = ListColour_portal[currentFruit.ID];
+    //Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
+    //List<Color> tempColourList = ListColour_portal;
+            
+    // remove current color
+    //tempColourList.RemoveAll(t => t == semanticColor);
+        
+    // remove 4th color: 3 remain
+    //int tempindex = Random2.Range(0, 3);
+    //tempColourList.RemoveAt(tempindex);
+
+    //List<Color> PortalColour = tempColourList;
 
 }
 
