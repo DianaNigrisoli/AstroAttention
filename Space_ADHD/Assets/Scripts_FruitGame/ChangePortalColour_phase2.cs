@@ -83,7 +83,7 @@ public class ChangePortalColour_phase2 : MonoBehaviour
     
     void selectRandomImage()
         {
-            randomImage = Random2.Range(0, 6);
+            randomImage = Random2.Range(0, 8);
             fruitImage.sprite = fruitImages[randomImage];
             currentFruit = LoadFruits.myFruitList.fruit[randomImage];
         }
@@ -93,7 +93,7 @@ public class ChangePortalColour_phase2 : MonoBehaviour
         List<Color> tempColourList_fruit = ListColour_fruit;
         tempColourList_fruit.RemoveAt(currentFruit.ID);
         
-        index = Random2.Range(0, 2);
+        index = Random2.Range(0, 3);
         visibleColor = tempColourList_fruit[index];
         fruitImage.GetComponent<Image>().color = visibleColor;
 
@@ -113,6 +113,9 @@ public class ChangePortalColour_phase2 : MonoBehaviour
             ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
                 (LoadFruits.myFruitList.fruit[5].G) / 255,
                 (LoadFruits.myFruitList.fruit[5].B) / 255, 0.5f));
+            ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+                (LoadFruits.myFruitList.fruit[7].G)/255,
+                (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
             
             ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
                 (LoadFruits.myFruitList.fruit[1].G) / 255,
@@ -126,6 +129,9 @@ public class ChangePortalColour_phase2 : MonoBehaviour
             ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
                 (LoadFruits.myFruitList.fruit[5].G) / 255,
                 (LoadFruits.myFruitList.fruit[5].B) / 255, 1f));
+            ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+                (LoadFruits.myFruitList.fruit[7].G)/255,
+                (LoadFruits.myFruitList.fruit[7].B)/255, 1f));
         }
     
     void selectRandomColour()
@@ -137,7 +143,7 @@ public class ChangePortalColour_phase2 : MonoBehaviour
 
         tempColourList.RemoveAll(t => t == semanticColor || t == currentColor);
         
-        int tempindex = Random2.Range(0, 1);
+        int tempindex = Random2.Range(0, 2);
         tempColourList.RemoveAt(tempindex);
         
         List<Color> PortalColour = tempColourList;

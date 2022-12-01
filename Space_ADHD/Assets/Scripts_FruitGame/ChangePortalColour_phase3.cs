@@ -69,7 +69,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     }
     void selectRandomImage()
     {
-        randomImageCanvas = Random2.Range(0, 6);
+        randomImageCanvas = Random2.Range(0, 8);
         fruitImage.sprite = fruitImages[randomImageCanvas];
         currentFruit = LoadFruits.myFruitList.fruit[randomImageCanvas];
 
@@ -89,6 +89,9 @@ public class ChangePortalColour_phase3 : MonoBehaviour
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
             (LoadFruits.myFruitList.fruit[5].G) / 255,
             (LoadFruits.myFruitList.fruit[5].B) / 255, 0.5f));
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+            (LoadFruits.myFruitList.fruit[7].G)/255,
+            (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
             
         ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
             (LoadFruits.myFruitList.fruit[1].G) / 255,
@@ -102,15 +105,18 @@ public class ChangePortalColour_phase3 : MonoBehaviour
         ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
             (LoadFruits.myFruitList.fruit[5].G) / 255,
             (LoadFruits.myFruitList.fruit[5].B) / 255, 1f));
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+            (LoadFruits.myFruitList.fruit[7].G)/255,
+            (LoadFruits.myFruitList.fruit[7].B)/255, 1f));
     }
     void selectFruitColor()
     {
         List<Color> tempColourList_fruit = ListColour_fruit;
         //tempColourList_fruit.RemoveAt(currentFruit.ID);
-        indexColourCanvas = Random2.Range(0, 3);
+        indexColourCanvas = Random2.Range(0, 4);
         while (indexColourCanvas == currentFruit.ID)
         {
-                    indexColourCanvas = Random2.Range(0, 3);
+                    indexColourCanvas = Random2.Range(0, 4);
         }
         visibleColor = tempColourList_fruit[indexColourCanvas];
         fruitImage.GetComponent<Image>().color = visibleColor;
@@ -118,20 +124,20 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     }
     void selectMiniImage()
     {
-        randomImagePortal1 = Random2.Range(0, 6);
-        randomImagePortal2 = Random2.Range(0, 6);
-        randomImagePortal3 = Random2.Range(0, 6);
+        randomImagePortal1 = Random2.Range(0, 8);
+        randomImagePortal2 = Random2.Range(0, 8);
+        randomImagePortal3 = Random2.Range(0, 8);
         while ((randomImagePortal1 == randomImageCanvas) || 
                (indexColourCanvas != LoadFruits.myFruitList.fruit[randomImagePortal1].ID ) )
         {
-            randomImagePortal1 = Random2.Range(0, 6);
+            randomImagePortal1 = Random2.Range(0, 8);
         }
         
         while ((randomImagePortal2 == randomImagePortal1) || 
                (randomImagePortal2 == randomImageCanvas) || 
                (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal2].ID ) )
         {
-            randomImagePortal2 = Random2.Range(0, 6);
+            randomImagePortal2 = Random2.Range(0, 8);
         }
         
         while ((randomImagePortal3 == randomImagePortal1) || 
@@ -139,7 +145,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
                (randomImagePortal3 == randomImageCanvas) || 
                (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal3].ID ))
         {
-            randomImagePortal3 = Random2.Range(0, 6);
+            randomImagePortal3 = Random2.Range(0, 8);
         }
 
         List<int> miniFruitVector = new List<int>();

@@ -87,7 +87,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
 
     void selectRandomImage()
     {
-        randomImage = Random2.Range(0, 6);
+        randomImage = Random2.Range(0, 9);
         fruitImage.sprite = fruitImages[randomImage];
         currentFruit = LoadFruits.myFruitList.fruit[randomImage];
 
@@ -119,19 +119,28 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             (LoadFruits.myFruitList.fruit[3].B)/255, 0.5f));
         ListColour.Add(new Color((LoadFruits.myFruitList.fruit[5].R)/255, (LoadFruits.myFruitList.fruit[5].G)/255,
             (LoadFruits.myFruitList.fruit[5].B)/255, 0.5f));
+        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, (LoadFruits.myFruitList.fruit[7].G)/255,
+            (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
     }
     
     void selectRandomColour()
-    {
+    {   
+        // first color selected: current color
         Color currentColor = ListColour[currentFruit.ID];
         List<Color> tempColourList = ListColour;
         tempColourList.RemoveAt(currentFruit.ID);
         
-        int tempindex = Random2.Range(0, 2); 
+        // second color removed
+        int tempindex = Random2.Range(0, 3); 
         tempColourList.RemoveAt(tempindex);
         
+        // third color removed
+        int tempindex2 = Random2.Range(0, 2); 
+        tempColourList.RemoveAt(tempindex2);
        
         List<Color> PortalColour = tempColourList;
+        
+        // corrent color added 
         PortalColour.Add(currentColor);
         
         var rnd = new Random1();
