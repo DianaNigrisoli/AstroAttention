@@ -53,7 +53,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
-            selectMiniImage();
+            //selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -72,7 +72,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             //MiniFruitRender = GameObject.Find("MiniFruit").GetComponent<SpriteRenderer>();
             selectRandomImage();
-            selectMiniImage();
+            //selectMiniImage();
             CustomPalette();
             selectRandomColour();
             selectFruitColor();
@@ -93,15 +93,15 @@ public class ChangePortalColour_phase0 : MonoBehaviour
 
     }
 
-    // the following function it's needed for phase 3. now it does not properly work
-    void selectMiniImage()
-    {
-       randomImage = Random2.Range(0, 6);
-       MiniFruitRender.sprite= fruitImages[randomImage];
-       currentMiniFruit = LoadFruits.myFruitList.fruit[randomImage];
-       print(currentMiniFruit);
-    
-    }
+
+    // void selectMiniImage()
+    // {
+    //    randomImage = Random2.Range(0, 6);
+    //    MiniFruitRender.sprite= fruitImages[randomImage];
+    //    currentMiniFruit = LoadFruits.myFruitList.fruit[randomImage];
+    //    print(currentMiniFruit);
+    //
+    // }
 
     void selectFruitColor()
     {
