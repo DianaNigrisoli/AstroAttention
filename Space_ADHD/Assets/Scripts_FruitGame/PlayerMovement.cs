@@ -12,9 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedForward;
     public float speedLateral;
     public Vector3 targetPos;
-    public int playerPos;
     public static int score;
-    public Boolean iscolliding ;
     public static int PortalCounter=0;
     public static List<float> ListReactionTime = new List<float>(10);
     private static bool stop = false; 
@@ -50,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Rigidbody>();
-        iscolliding = false;
     }
 
     // Update is called once per frame
@@ -79,52 +76,50 @@ public class PlayerMovement : MonoBehaviour
             controller.velocity = transform.forward * 0;
         }
     }
-    
-    private void OnTriggerEnter(Collider other)
-    {   
-        // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
-        if (iscolliding)
-        {
-            ListReactionTime.Add(FunctionTimer.reactionTime);
-            print("score: " + score);
-            PortalCounter += 1;
-            print("Portal-spawn number: " + PortalCounter);
+
+    private void OnTriggerEnter(Collider door)
+    {
+        if (door.gameObject.name != "Portals(Clone)")
             return;
-        }
-        // Check player position 
-        if (targetPos.x == 0)
+       if (targetPos.x == 0)
         {
             //check if the color is right
-            if (ChangePortalColour_phase0.rightPortal2 == 1 || ChangePortalColour_phase1.rightPortal2 == 1 || ChangePortalColour_phase2.rightPortal2 == 1)
+            if (ChangePortalColour_phase0.rightPortal2 == 1 || ChangePortalColour_phase1.rightPortal2 == 1 ||
+                ChangePortalColour_phase2.rightPortal2 == 1)
             {
                 score += 1;
             }
         }
+
         if (targetPos.x > 0)
         {
             //check if the color is right
-            if (ChangePortalColour_phase0.rightPortal3 == 1 || ChangePortalColour_phase1.rightPortal3 == 1 || ChangePortalColour_phase2.rightPortal3 == 1)
+            if (ChangePortalColour_phase0.rightPortal3 == 1 || ChangePortalColour_phase1.rightPortal3 == 1 ||
+                ChangePortalColour_phase2.rightPortal3 == 1)
             {
                 score += 1;
             }
         }
+
         if (targetPos.x < 0)
         {
-            if (ChangePortalColour_phase0.rightPortal1 == 1 || ChangePortalColour_phase1.rightPortal1 == 1 || ChangePortalColour_phase2.rightPortal1 == 1)
+            if (ChangePortalColour_phase0.rightPortal1 == 1 || ChangePortalColour_phase1.rightPortal1 == 1 ||
+                ChangePortalColour_phase2.rightPortal1 == 1)
             {
                 score += 1;
             }
         }
-        iscolliding = true;
 
+        ListReactionTime.Add(FunctionTimer.reactionTime);
+        PortalCounter += 1;
+        print("Portal-spawn number: " + PortalCounter);
+        print("score: " + score);
+        return;
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        iscolliding = false;
-    }
-
-   
+    // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
+        
+        
+    
     public void MoveRight()
     {   FunctionTimer.leftLine = false;
         if (targetPos.x < increment)

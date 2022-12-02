@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5186337783974804866}
   - component: {fileID: 2903615838636875855}
   - component: {fileID: 2972704258192244546}
-  - component: {fileID: 2761094111676467370}
   m_Layer: 0
   m_Name: Portal2
   m_TagString: Untagged
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2761094111676467370
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323112725931568395}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1544831991911688777
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +95,6 @@ GameObject:
   - component: {fileID: 4302975808587337695}
   - component: {fileID: 3769934423160506307}
   - component: {fileID: 4910946740109890342}
-  - component: {fileID: 5478937121143136213}
   m_Layer: 0
   m_Name: Portal3
   m_TagString: Untagged
@@ -183,19 +168,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5478937121143136213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544831991911688777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1548292236223328840
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +179,6 @@ GameObject:
   - component: {fileID: 7587193278312925166}
   - component: {fileID: 8395480403642401880}
   - component: {fileID: 1810476623386874776}
-  - component: {fileID: 7645928152653703994}
   m_Layer: 0
   m_Name: Portal1
   m_TagString: Untagged
@@ -281,19 +252,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7645928152653703994
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548292236223328840}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1839726114345586930
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +344,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 578e83dc6fe28d2418e4eef0a961633a, type: 3}
   - {fileID: 21300000, guid: 4dda77384ae0c0c49b4f584fde23ffdf, type: 3}
   fruitImage: {fileID: 0}
-  MiniFruitRender: {fileID: 6619954725546226627}
   currentFruit:
     name: 
     colour: 
@@ -396,16 +353,6 @@ MonoBehaviour:
     A: 0
     hex: 
     ID: 0
-  currentMiniFruit:
-    name: 
-    colour: 
-    R: 0
-    G: 0
-    B: 0
-    A: 0
-    hex: 
-    ID: 0
-  ParentGameObject: {fileID: 0}
 --- !u!114 &7130851090601207471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +385,7 @@ MonoBehaviour:
     A: 0
     hex: 
     ID: 0
+  index_visCol: 0
 --- !u!114 &6016514040488806665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,6 +444,7 @@ MonoBehaviour:
   MiniFruitRender1: {fileID: 6619954725546226627}
   MiniFruitRender2: {fileID: 2423839201497925802}
   MiniFruitRender3: {fileID: 3663666023752680086}
+  index_visCol: 0
   currentFruit:
     name: 
     colour: 
