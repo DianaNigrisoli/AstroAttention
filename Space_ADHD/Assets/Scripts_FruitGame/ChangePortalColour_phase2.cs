@@ -143,30 +143,27 @@ public class ChangePortalColour_phase2 : MonoBehaviour
     void selectRandomColour()
     {
         ///// in this phase the semantic color of the fruit in the canvas MUST BE present in one portal ///////
-        /// as phase 0 ///
+        /// and also the visible color must be present in another portal
         
-        
-        // first color selected: current color (SEMANTIC COLOR)
-        Color currentColor = ListColour_portal[currentFruit.ID];
+        semanticColor = ListColour_portal[currentFruit.ID]; //semantic color of fruit
+        Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
         List<Color> tempColourList = ListColour_portal;
-        tempColourList.RemoveAt(currentFruit.ID); // tempColourList has 4 elements now
+        tempColourList.RemoveAll(t => t == semanticColor || t == currentColor);
         
-        // second color removed
-        int tempindex = Random2.Range(0, 4); 
-        tempColourList.RemoveAt(tempindex); //tempColourList has 3 elements now
+        int tempindex1 = Random2.Range(0, 3);
+        tempColourList.RemoveAt(tempindex1);
         
-        // third color removed
-        int tempindex2 = Random2.Range(0, 3); 
-        tempColourList.RemoveAt(tempindex2); //tempColourList has 2 elements now
-       
-        List<Color> PortalColour = tempColourList; // 2 elements 
+        int tempindex2 = Random2.Range(0, 2);
+        tempColourList.RemoveAt(tempindex2);
         
-        // corrent color (SEMANTIC COLOR) added 
-        PortalColour.Add(currentColor); 
-        
+        //Nel caso in cui aggiungiamo un altro colore o si fa un altro remove oppure si cambia metodo
+
+        tempColourList.Add(currentColor);
+        tempColourList.Add(semanticColor);
+
         // shuffle the 3 elements list
         var rnd = new Random1();
-        List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
+        List<Color> ShufflePortalColour = tempColourList.OrderBy(item => rnd.Next()).ToList();
         
 
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
@@ -221,4 +218,22 @@ public class ChangePortalColour_phase2 : MonoBehaviour
     // var rnd = new Random1();
     // List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
 
+    
+    
+    
+    // first color selected: current color (SEMANTIC COLOR)
+    // Color currentColor = ListColour_portal[currentFruit.ID];
+    // List<Color> tempColourList = ListColour_portal;
+    // tempColourList.RemoveAt(currentFruit.ID); // tempColourList has 4 elements now
+        
+    // // second color removed
+    // int tempindex = Random2.Range(0, 4); 
+    // tempColourList.RemoveAt(tempindex); //tempColourList has 3 elements now
+    //
+    // // third color removed
+    // int tempindex2 = Random2.Range(0, 3); 
+    // tempColourList.RemoveAt(tempindex2); //tempColourList has 2 elements now
+    // // corrent color (SEMANTIC COLOR) added 
+    //    PortalColour.Add(currentColor); 
+    //
 }
