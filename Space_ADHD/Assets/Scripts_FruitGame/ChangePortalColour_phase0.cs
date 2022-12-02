@@ -75,6 +75,9 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         else
         {
             phase0 = false;
+            rightPortal1 = 0;
+            rightPortal2 = 0;
+            rightPortal3 = 0;
         }
     }
     

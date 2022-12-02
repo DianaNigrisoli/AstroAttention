@@ -76,7 +76,10 @@ public class ChangePortalColour_phase2 : MonoBehaviour
             //print("Index: " + index);
         }
         else
-        {
+        {   
+            rightPortal1 = 0;
+            rightPortal2 = 0;
+            rightPortal3 = 0;
             phase2 = false;
         }
     }
