@@ -21,25 +21,5 @@ public class PortalSpawner : MonoBehaviour
         SpawnPortal();
     }
     
-    // void Awake()
-    // {
-    //     MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
-    // }
-    // void OnDestroy()
-    // {
-    //     MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
-    // } 
-    // // Start is called before the first frame update
-    //
-    // private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
-    // {
-    //     if (state == MiniGameState.WaitForNext || state == MiniGameState.Intro)
-    //     {
-    //         Portals.SetActive(false);
-    //     }
-    //     else
-    //     {
-    //         Portals.SetActive(true);
-    //     }
-    // }
+    
 }

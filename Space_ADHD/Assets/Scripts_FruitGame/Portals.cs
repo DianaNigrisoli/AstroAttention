@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts_A_General;
 using Siccity.GLTFUtility;
 using UnityEngine;
 
@@ -31,5 +32,26 @@ public class Portals : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         portalSpawner.SpawnPortal();
+    }
+    
+    void Awake()
+    {
+        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+    }
+    void OnDestroy()
+    {
+        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+    }
+    
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    {
+        if (state == MiniGameState.WaitForNext || state == MiniGameState.Intro)
+        {
+           gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 }
