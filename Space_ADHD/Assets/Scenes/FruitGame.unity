@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 909546611}
   - component: {fileID: 909546612}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image_circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1290,8 +1290,6 @@ MonoBehaviour:
   speedForward: 0
   speedLateral: 0
   targetPos: {x: 0, y: 0, z: 0}
-  playerPos: 0
-  iscolliding: 0
 --- !u!54 &1962802217
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1332,6 +1330,7 @@ GameObject:
   - component: {fileID: 2003607748}
   - component: {fileID: 2003607750}
   - component: {fileID: 2003607749}
+  - component: {fileID: 2003607751}
   m_Layer: 5
   m_Name: FruitImage
   m_TagString: Untagged
@@ -1397,6 +1396,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003607747}
   m_CullTransparentMesh: 1
+--- !u!114 &2003607751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003607747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0446c66cdb030ed4ca41c2dc91665ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitImage: {fileID: 0}
 --- !u!1 &2039468024
 GameObject:
   m_ObjectHideFlags: 0

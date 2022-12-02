@@ -13,9 +13,8 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
-
-
-        private int NumSpawn = 1;
+        
+        private int NumSpawn = 5;
 
         //Cosa fa questo script: 
         //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)
@@ -40,16 +39,16 @@ namespace Assets.Scripts_FruitGame
         IEnumerator waiter()
         {
             yield return new WaitForSecondsRealtime(0.8f);
-                            FinalScore = PlayerMovement.score + (int)PlayerMovement.ListReactionTime.Sum();
-                            
-                            //TODO: FINAL SCORE DA CAMBIARE!!!   
-                            
-                            print("Final Score: "+ FinalScore);
-                            
-                            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
-                            PlayerMovement.PortalCounter = 0;
-                            PlayerMovement.score = 0;
-                            Destroy(this);
+            FinalScore = PlayerMovement.score + (int)PlayerMovement.ListReactionTime.Sum();
+            
+            //TODO: FINAL SCORE DA CAMBIARE!!!   
+            
+            print("Final Score: "+ FinalScore);
+            
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+            PlayerMovement.PortalCounter = 0;
+            PlayerMovement.score = 0;
+            Destroy(this);
         }
     }
 }
