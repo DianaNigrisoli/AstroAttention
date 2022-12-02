@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts_A_General;
 using Assets.ScriptsDirectionGame;
+using TMPro;
 
 public class phase2Manager : MonoBehaviour
 {
     public static bool touch = true;
     public GameObject shootingStar;
+    public GameObject canvas;
     public static int ROTcases = 1000;
     public static int SPTcases = 1000;
     public static bool phaseTwo = true;
     private bool endgame = false;
     private int count = 0;
-
+    public TextMeshProUGUI textObject;
     private GameObject hlines;
     private GameObject vlines;
     // Start is called before the first frame update
     void Start()
     {
         shootingStar = GameObject.Find("smallShootingStar");
+        canvas = GameObject.Find("CanvasIntro");
+        textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         hlines = GameObject.Find("HorizontalLines");
         vlines = GameObject.Find("VerticalLines");
         hlines.transform.position =
@@ -123,7 +127,8 @@ public class phase2Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+            textObject.text = "Select the sector with the comet";
             ROTcases = 1000;
             SPTcases = 1000;
             phaseTwo = false;

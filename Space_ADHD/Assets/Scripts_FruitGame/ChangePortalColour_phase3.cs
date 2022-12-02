@@ -15,11 +15,14 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     [SerializeField] SpriteRenderer MiniFruitRender1;
     [SerializeField] SpriteRenderer MiniFruitRender2;
     [SerializeField] SpriteRenderer MiniFruitRender3;
+    [SerializeField] GameObject myportal1;
+    [SerializeField] GameObject myportal2;
+    [SerializeField] GameObject myportal3;
     private List<Color> ListColour_portal = new List<Color>();
     private List<Color> ListColour_fruit = new List<Color>();
     public static bool phase3 = false; 
     int randomImageCanvas;
-    int randomImagePortal1;
+    int miniFruitCorrectColour;
     int randomImagePortal2;
     int randomImagePortal3;
     private int indexColourCanvas;
@@ -27,6 +30,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     private Color visibleColor;
     public LoadFruits.Fruit currentFruit;
     public LoadFruits.Fruit currentMiniFruit;
+    List<int> miniFruitVector = new List<int>();
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -44,9 +48,9 @@ public class ChangePortalColour_phase3 : MonoBehaviour
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
-            //selectRandomColour();
             selectFruitColor();
             selectMiniImage();
+            selectRandomColour();
         }
         
     }
@@ -58,9 +62,9 @@ public class ChangePortalColour_phase3 : MonoBehaviour
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
-            //selectRandomColour();
             selectFruitColor();
             selectMiniImage();
+            selectRandomColour();
             phase3 = true;
         }
         else
@@ -70,7 +74,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     }
     void selectRandomImage()
     {
-        randomImageCanvas = Random2.Range(0, 9);
+        randomImageCanvas = Random2.Range(0, 10);
         fruitImage.sprite = fruitImages[randomImageCanvas];
         currentFruit = LoadFruits.myFruitList.fruit[randomImageCanvas];
 
@@ -166,44 +170,113 @@ public class ChangePortalColour_phase3 : MonoBehaviour
         
 
          //// CODICE CHE FUNZIA ///
-         randomImagePortal1 = Random2.Range(0, 9);
-         randomImagePortal2 = Random2.Range(0, 9);
+         miniFruitCorrectColour = Random2.Range(0, 9);
+         randomImagePortal2 = randomImageCanvas; //Random2.Range(0, 9);
          randomImagePortal3 = Random2.Range(0, 9);
-         while ((randomImagePortal1 == randomImageCanvas) || 
-                (indexColourCanvas != LoadFruits.myFruitList.fruit[randomImagePortal1].ID ) )
+         while ((miniFruitCorrectColour == randomImageCanvas) || 
+                (indexColourCanvas != LoadFruits.myFruitList.fruit[miniFruitCorrectColour].ID ) )
          {
-             randomImagePortal1 = Random2.Range(0, 9);
+             miniFruitCorrectColour = Random2.Range(0, 9); //image that corresponds to the colour of the canvas
          }
         
-         while ((randomImagePortal2 == randomImagePortal1) || 
-                (randomImagePortal2 == randomImageCanvas) || 
-                (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal2].ID ) )
-         {
-             randomImagePortal2 = Random2.Range(0, 9);
-         }
+         // while ((randomImagePortal2 == randomImagePortal1) || 
+         //        (randomImagePortal2 == randomImageCanvas) || 
+         //        (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal2].ID ) )
+         // {
+         //     randomImagePortal2 = Random2.Range(0, 9);
+         // }
         
-         while ((randomImagePortal3 == randomImagePortal1) || 
+         while ((randomImagePortal3 == miniFruitCorrectColour) || 
                 (randomImagePortal3 == randomImagePortal2) || 
                 (randomImagePortal3 == randomImageCanvas) || 
                 (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal3].ID ))
          {
              randomImagePortal3 = Random2.Range(0, 9);
          }
-
-        List<int> miniFruitVector = new List<int>();
-        miniFruitVector.Add(randomImagePortal1);
-        miniFruitVector.Add(randomImagePortal2);
-        miniFruitVector.Add(randomImagePortal3);
-        var rnd = new Random1();
-        miniFruitVector = miniFruitVector.OrderBy(item => rnd.Next()).ToList();
+         miniFruitVector.Add(miniFruitCorrectColour);
+         miniFruitVector.Add(randomImagePortal2);
+         miniFruitVector.Add(randomImagePortal3);
+         var rnd = new Random1();
+         miniFruitVector = miniFruitVector.OrderBy(item => rnd.Next()).ToList();
         
-        MiniFruitRender1.sprite= fruitImages[miniFruitVector[0]];
-        MiniFruitRender2.sprite= fruitImages[miniFruitVector[1]];
-        MiniFruitRender3.sprite= fruitImages[miniFruitVector[2]];
+         MiniFruitRender1.sprite= fruitImages[miniFruitVector[0]];
+         MiniFruitRender2.sprite= fruitImages[miniFruitVector[1]];
+         MiniFruitRender3.sprite= fruitImages[miniFruitVector[2]];
+
+
         //currentMiniFruit = LoadFruits.myFruitList.fruit[randomImagePortal1];
         // print(" Portale1: "+ LoadFruits.myFruitList.fruit[randomImagePortal1].name);
         // print(" Portale2: "+ LoadFruits.myFruitList.fruit[randomImagePortal2].name);
         // print(" Portale3: "+ LoadFruits.myFruitList.fruit[randomImagePortal3].name);
         
+    }
+
+    void selectRandomColour()
+    {
+        //List<Color> tempColourMiniFruit = ListColour_fruit;
+        int indexColourMinifruit1 = Random2.Range(0, 5);
+        int indexColourMinifruit2 = Random2.Range(0, 5);
+        int indexColourMinifruit3 = Random2.Range(0, 5);
+        
+        if ((miniFruitVector[0]== miniFruitCorrectColour) || (miniFruitVector[0] == randomImageCanvas))
+        {
+            while ((indexColourMinifruit1 == indexColourCanvas) || 
+                   (indexColourMinifruit1 == indexColourMinifruit2) || 
+                   (indexColourMinifruit1 == indexColourMinifruit3))
+            {
+                indexColourMinifruit1 = Random2.Range(0, 5);
+            }
+        }
+        else
+        {
+            while ((indexColourMinifruit1 == indexColourMinifruit2) || (indexColourMinifruit1 == indexColourMinifruit3))
+            {
+                indexColourMinifruit1 = Random2.Range(0, 5);
+            }
+        }
+      
+        if ((miniFruitVector[1]== miniFruitCorrectColour) || (miniFruitVector[1] == randomImageCanvas))
+        {
+            while ((indexColourMinifruit2 == indexColourCanvas) || 
+                   (indexColourMinifruit2 == indexColourMinifruit1) || 
+                   (indexColourMinifruit2 == indexColourMinifruit3))
+            {
+                indexColourMinifruit2 = Random2.Range(0, 5);
+            }
+        }
+        else
+        {
+            while ((indexColourMinifruit2 == indexColourMinifruit1) || (indexColourMinifruit2 == indexColourMinifruit3))
+            {
+                indexColourMinifruit2 = Random2.Range(0, 5);
+            }
+        }
+
+        if ((miniFruitVector[2]== miniFruitCorrectColour) || (miniFruitVector[2] == randomImageCanvas))
+        {
+            while ((indexColourMinifruit3 == indexColourCanvas) ||
+                   (indexColourMinifruit3 == indexColourMinifruit1) || 
+                   (indexColourMinifruit3 == indexColourMinifruit2))
+            {
+                indexColourMinifruit3 = Random2.Range(0, 5);
+            }  
+        }
+        else
+        {
+            while ((indexColourMinifruit3 == indexColourMinifruit1) || (indexColourMinifruit3 == indexColourMinifruit2))
+            {
+                indexColourMinifruit3 = Random2.Range(0, 5);
+            }
+        }
+
+        MiniFruitRender1.color = ListColour_fruit[indexColourMinifruit1];
+        MiniFruitRender2.color = ListColour_fruit[indexColourMinifruit2];
+        MiniFruitRender3.color = ListColour_fruit[indexColourMinifruit3];
+        // myportal1.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit1];
+        // myportal2.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit2];
+        // myportal3.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit3];
+        myportal1.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
+        myportal2.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
+        myportal3.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
     }
 }
