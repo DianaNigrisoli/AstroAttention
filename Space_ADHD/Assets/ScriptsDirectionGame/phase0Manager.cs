@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using Assets.Scripts_A_General;
 using Assets.ScriptsDirectionGame;
 using UnityEngine;
+using TMPro;
 
 public class phase0Manager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool touch = true;
     public GameObject shootingStar;
+	public GameObject canvas;
     public static int cases = 1000;
     public static bool phaseZero = true;
     private bool endgame = false;
     private int count = 0;
+	public TextMeshProUGUI textObject;
+
     void Start()
     {
         shootingStar = GameObject.Find("notShootingStar");
+		canvas = GameObject.Find("CanvasIntro");
+		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -86,7 +92,8 @@ public class phase0Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+			textObject.text = "Select the direction of the comet";
             Destroy(shootingStar);
             cases = 1000;
             phaseZero = false;

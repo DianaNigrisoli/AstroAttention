@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts_A_General;
 using Assets.ScriptsDirectionGame;
+using TMPro;
 
 public class phase1Manager : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class phase1Manager : MonoBehaviour
     public static bool phaseOne = true;
     private bool endgame = false;
     private int count = 0;
-
     private GameObject hlines;
     private GameObject vlines;
 
