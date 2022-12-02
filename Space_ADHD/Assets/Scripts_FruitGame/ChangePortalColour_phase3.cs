@@ -31,6 +31,10 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     public LoadFruits.Fruit currentFruit;
     public LoadFruits.Fruit currentMiniFruit;
     List<int> miniFruitVector = new List<int>();
+    
+    static public int rightPortal1;
+    static public int rightPortal2;
+    static public int rightPortal3;
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -147,12 +151,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     }
     void selectMiniImage()
     {
-        //// in this phase the images shown must be:
-        //      1. a fruit which semantic color is the visible one
-        //      2. a fruit which semantic colo IS NOT the visible one with a random color
-        //      3. a fruit which semantic colo IS NOT the visible one with a random color
-        
-        /////// CODICE PROVA LAURA ///////
+       /////// CODICE PROVA LAURA ///////
         // divion of fruit: creation of 2 list of indexis that indicate the fruits
         // List<int> fruit_visCol;
         // List<int> fruit_diffCol;
@@ -170,10 +169,17 @@ public class ChangePortalColour_phase3 : MonoBehaviour
         
 
          //// CODICE CHE FUNZIA ///
+         //// in this phase the images shown must be:
+         //      1. a fruit which semantic color is the visible one without that colour 
+         //      2. the fruit visible in the canvas with a DIFFERENT colour of the canvas
+         //      3. a fruit which semantic color IS NOT the visible one with a random color
+         
          miniFruitCorrectColour = Random2.Range(0, 9);
-         randomImagePortal2 = randomImageCanvas; //Random2.Range(0, 9);
+         randomImagePortal2 = randomImageCanvas; //Random2.Range(0, 9), same fruit in the canvas
          randomImagePortal3 = Random2.Range(0, 9);
-         while ((miniFruitCorrectColour == randomImageCanvas) || 
+         
+         // first fruit selected 
+         while ((miniFruitCorrectColour == randomImageCanvas) ||  
                 (indexColourCanvas != LoadFruits.myFruitList.fruit[miniFruitCorrectColour].ID ) )
          {
              miniFruitCorrectColour = Random2.Range(0, 9); //image that corresponds to the colour of the canvas
@@ -199,9 +205,24 @@ public class ChangePortalColour_phase3 : MonoBehaviour
          var rnd = new Random1();
          miniFruitVector = miniFruitVector.OrderBy(item => rnd.Next()).ToList();
         
+         // minifruit1
          MiniFruitRender1.sprite= fruitImages[miniFruitVector[0]];
+         if (miniFruitVector[0] == miniFruitCorrectColour)
+             rightPortal1 = 1;
+         else rightPortal1 = 0;
+         
+         // minifruit2
          MiniFruitRender2.sprite= fruitImages[miniFruitVector[1]];
+         if (miniFruitVector[1] == miniFruitCorrectColour)
+             rightPortal2 = 1;
+         else rightPortal2 = 0;
+         
+         // minifruit3
          MiniFruitRender3.sprite= fruitImages[miniFruitVector[2]];
+         if (miniFruitVector[2] == miniFruitCorrectColour)
+             rightPortal3 = 1;
+         else rightPortal3 = 0;
+         
 
 
         //currentMiniFruit = LoadFruits.myFruitList.fruit[randomImagePortal1];

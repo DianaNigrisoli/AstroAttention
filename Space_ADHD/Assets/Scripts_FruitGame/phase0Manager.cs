@@ -13,7 +13,7 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
-
+        
         private int NumSpawn = 5;
 
         //Cosa fa questo script: 
