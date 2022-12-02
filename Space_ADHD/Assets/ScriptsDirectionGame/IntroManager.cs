@@ -70,6 +70,8 @@ public class IntroManager : MonoBehaviour
     private String currentPhaseScreenText;
     private String displayedScreenText;
     private Boolean showTargetingObjects;
+	public GameObject canvas;
+	public TextMeshProUGUI textObject;
     /**/
 
     private TutorialPhase tutorialPhase;
@@ -154,6 +156,9 @@ public class IntroManager : MonoBehaviour
                     break;
                 case TutorialPhase.Nine:
                     MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+					canvas = GameObject.Find("CanvasIntro");
+					textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+					textObject.text = "Select the sector with the comet";
                     Destroy(this);
                     break;
                 case TutorialPhase.Ten:
