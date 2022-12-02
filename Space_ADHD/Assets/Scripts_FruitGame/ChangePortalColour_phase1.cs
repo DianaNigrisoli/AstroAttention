@@ -77,12 +77,15 @@ public class ChangePortalColour_phase1 : MonoBehaviour
         else
         {
             phase1 = false;
+            rightPortal1 = 0;
+            rightPortal2 = 0;
+            rightPortal3 = 0;
         }
     }
     
     void selectRandomImage()
         {
-            randomImage = Random2.Range(0, 9);
+            randomImage = Random2.Range(0, 10);
             fruitImage.sprite = fruitImages[randomImage];
             currentFruit = LoadFruits.myFruitList.fruit[randomImage];
     

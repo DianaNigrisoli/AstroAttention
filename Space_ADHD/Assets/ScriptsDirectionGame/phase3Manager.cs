@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts_A_General;
 using Assets.ScriptsDirectionGame;
+using TMPro;
 
 public class phase3Manager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class phase3Manager : MonoBehaviour
     public static bool phaseThree = true;
     private bool endgame = false;
     private int count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +116,7 @@ public class phase3Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End); //TODO: go to WaitForNext
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End);
             Destroy(shootingStar);
             ROTcases = 1000;
             SPTcases = 1000;
