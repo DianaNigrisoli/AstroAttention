@@ -18,6 +18,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
     [SerializeField] private Image fruitImage;
+    
 
     public LoadFruits.Fruit currentFruit;
     int randomImage;
@@ -80,8 +81,8 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             rightPortal3 = 0;
         }
     }
-    
 
+ 
     void selectRandomImage()
     {
         randomImage = Random2.Range(0, 10);

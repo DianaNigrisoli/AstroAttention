@@ -8,6 +8,8 @@ using Random2 = UnityEngine.Random;
 public class FruitImageCanvasManager : MonoBehaviour
 {
     [SerializeField] private GameObject FruitCanvas;
+    [SerializeField] private GameObject IndicatorCanvas;
+    [SerializeField] private GameObject TextCanvas;
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -18,16 +20,29 @@ public class FruitImageCanvasManager : MonoBehaviour
     } 
     // Start is called before the first frame update
     
+    
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
     {
         if (state == MiniGameState.WaitForNext || state == MiniGameState.Intro)
         {
             FruitCanvas.SetActive(false);
+            IndicatorCanvas.SetActive(false);
+            TextCanvas.SetActive(false);
         }
         else
         {
             FruitCanvas.SetActive(true);
+            IndicatorCanvas.SetActive(true);
+            TextCanvas.SetActive(true);
         }
+        
+        // To have the CanvasIndicators not active at the beginning of each phase
+        if (state == MiniGameState.Zero || state == MiniGameState.One ||
+            state == MiniGameState.Two || state == MiniGameState.Three)
+        {
+            IndicatorCanvas.SetActive(false);
+        }
+        
     }
     
 }
