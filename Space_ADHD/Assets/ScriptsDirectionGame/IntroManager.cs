@@ -575,7 +575,7 @@ namespace Assets.ScriptsDirectionGame
             laserButtons.enabled = true;
             if (tutorialPhase == TutorialPhase.Five)
             {
-                spawnPosition = new Vector3(-2.75f, 5.3f, 16.4f);
+                spawnPosition = new Vector3(-2.25f, 4.7f, 16.4f);
                 shootingStarNoTail.transform.position = spawnPosition;
             }else if (tutorialPhase == TutorialPhase.Seven)
             {
