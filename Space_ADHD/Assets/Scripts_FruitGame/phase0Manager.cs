@@ -14,7 +14,7 @@ namespace Assets.Scripts_FruitGame
     {
         public static int FinalScore;
         
-        private int NumSpawn = 5;
+        private int NumSpawn = 1;
 
         //Cosa fa questo script: 
         //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)

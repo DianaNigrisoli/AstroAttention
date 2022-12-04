@@ -344,7 +344,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 578e83dc6fe28d2418e4eef0a961633a, type: 3}
   - {fileID: 21300000, guid: 4dda77384ae0c0c49b4f584fde23ffdf, type: 3}
   - {fileID: 21300000, guid: 9837429548b02244dbcbce6cd8fc9503, type: 3}
+  indicators:
+  - {fileID: 21300000, guid: 5f87e193ea8cc614fb86837c09f0bd6d, type: 3}
+  - {fileID: 21300000, guid: 9f576c34a080ac5458eb4210fc1d86b3, type: 3}
   fruitImage: {fileID: 0}
+  answerIndicator: {fileID: 0}
   currentFruit:
     name: 
     colour: 

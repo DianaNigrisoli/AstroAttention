@@ -11,7 +11,7 @@ namespace Assets.Scripts_FruitGame
         public static int FinalScore;
         
 
-        private int NumSpawn = 30;
+        private int NumSpawn = 10;
 
 
         // Start is called before the first frame update

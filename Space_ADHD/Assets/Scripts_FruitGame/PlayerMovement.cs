@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts_A_General;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     public static int PortalCounter=0;
     public static List<float> ListReactionTime = new List<float>(10);
     private static bool stop = false; 
+    
+    [SerializeField] Sprite[] indicators;
+    [SerializeField] private Image answerIndicator;
+    [SerializeField] public GameObject IndicatorCanvas;
 
     void Awake()
     {
@@ -25,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         speedLateral = 5;
         targetPos = transform.position;
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        answerIndicator = GameObject.Find("AnswerIndicator").GetComponent<Image>();
     }
     
     void OnDestroy()
@@ -81,15 +87,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (door.gameObject.name != "Portals(Clone)")
             return;
-       if (targetPos.x == 0)
+        IndicatorCanvas.SetActive(true);
+        if (targetPos.x == 0)
         {
             //check if the color is right
             if (ChangePortalColour_phase0.rightPortal2 == 1 || ChangePortalColour_phase1.rightPortal2 == 1 ||
                 ChangePortalColour_phase2.rightPortal2 == 1 || ChangePortalColour_phase3.rightPortal2 == 1)
             {
                 score += 1;
+                answerIndicator.sprite = indicators[0];
+
             }
+            else answerIndicator.sprite = indicators[1];
         }
+    
 
         if (targetPos.x > 0)
         {
@@ -98,7 +109,9 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2.rightPortal3 == 1 || ChangePortalColour_phase3.rightPortal3 == 1)
             {
                 score += 1;
+                answerIndicator.sprite = indicators[0];
             }
+            else answerIndicator.sprite = indicators[1];
         }
 
         if (targetPos.x < 0)
@@ -107,7 +120,9 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2.rightPortal1 == 1 || ChangePortalColour_phase3.rightPortal1 == 1)
             {
                 score += 1;
+                answerIndicator.sprite = indicators[0];
             }
+            else answerIndicator.sprite = indicators[1];
         }
 
         ListReactionTime.Add(FunctionTimer.reactionTime);
@@ -117,9 +132,20 @@ public class PlayerMovement : MonoBehaviour
         return;
     }
     // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
-        
-        
-    
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        IndicatorCanvas.SetActive(false);
+    }
+    private void OnTriggerExit(Collider door)
+    {   
+        if (door.gameObject.name != "Portals(Clone)")
+            return;
+        StartCoroutine(waiter());
+    }
+
+  
     public void MoveRight()
     {   FunctionTimer.leftLine = false;
         if (targetPos.x < increment)
