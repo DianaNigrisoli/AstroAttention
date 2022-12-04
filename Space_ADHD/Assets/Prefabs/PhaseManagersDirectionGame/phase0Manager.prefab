@@ -45,3 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingStar: {fileID: 0}
+  canvas: {fileID: 0}
+  textObject: {fileID: 0}
+  nebulaBehaviour: {fileID: 2202132943384098, guid: 84a39b60eaed010a2ac5de103eb031f9, type: 3}
+  shootingStarExplosionPrefab: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}

@@ -14,11 +14,16 @@ public class phase3Manager : MonoBehaviour
     public static bool phaseThree = true;
     private bool endgame = false;
     private int count = 0;
+    
+    private NebulaBehaviour nebulaBehaviour;
+    [SerializeField] private GameObject shootingStarExplosionPrefab;
+    private GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
     {
         shootingStar = GameObject.Find("smallShootingStar");
+        nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();
     }
     void shootingStarSpawn()
     {
@@ -95,8 +100,17 @@ public class phase3Manager : MonoBehaviour
     
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.23f);
         gameInstance();
+    }
+    
+    IEnumerator HitShootingStar()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var spawnPosition = shootingStar.transform.position;
+        explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
+        StartCoroutine(nebulaBehaviour.Shake(0.7f, 0.3f));
+        shootingStar.transform.position += Vector3.right * 20.0f;
     }
 
     // Update is called once per frame
@@ -107,6 +121,11 @@ public class phase3Manager : MonoBehaviour
         {
             if (touch)
             {
+                if (count > 0)
+                {
+                    StartCoroutine(HitShootingStar());
+                }
+                
                 StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;

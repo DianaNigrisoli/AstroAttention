@@ -16,12 +16,17 @@ public class phase0Manager : MonoBehaviour
     private bool endgame = false;
     private int count = 0;
 	public TextMeshProUGUI textObject;
+    
+    private NebulaBehaviour nebulaBehaviour;
+    [SerializeField] private GameObject shootingStarExplosionPrefab;
+    private GameObject explosion;
 
     void Start()
     {
         shootingStar = GameObject.Find("notShootingStar");
 		canvas = GameObject.Find("CanvasIntro");
 		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();
     }
 
     // Update is called once per frame
@@ -65,13 +70,23 @@ public class phase0Manager : MonoBehaviour
     void gameInstance()
     {
         shootingStarSpawn();
+        Destroy(explosion);
 		laserButtons.timeDG=0.0f;
     }
     
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.23f);
         gameInstance();
+    }
+
+    IEnumerator HitShootingStar()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var spawnPosition = shootingStar.transform.position;
+        explosion = Instantiate(shootingStarExplosionPrefab, spawnPosition, Quaternion.identity, GameObject.Find("All").transform);
+        StartCoroutine(nebulaBehaviour.Shake(0.7f, 0.3f));
+        shootingStar.transform.position += Vector3.right * 10.0f;
     }
     
     void Update()
@@ -81,9 +96,14 @@ public class phase0Manager : MonoBehaviour
         {
             if (touch)
             {
+                if (count > 0)
+                {
+                    StartCoroutine(HitShootingStar());
+                }
+                
                 StartCoroutine(Delay());
                 touch = false;
-                count = count + 1;
+                count += 1;
                 if (count == 11)
                 {
                     endgame = true;
