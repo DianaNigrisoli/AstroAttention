@@ -76,6 +76,7 @@ public class phase1Manager : MonoBehaviour
     void gameInstance()
     {
         shootingStarSpawn();
+		laserButtons.timeDG=0.0f;
     }
     
     IEnumerator Delay()
@@ -88,6 +89,7 @@ public class phase1Manager : MonoBehaviour
     
     void Update()
     {
+		laserButtons.timeDG += Time.deltaTime;
         if (!endgame)
         {
             if (touch)
@@ -95,7 +97,7 @@ public class phase1Manager : MonoBehaviour
                 StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
-                if (count == 10)
+                if (count == 11)
                 {
                     endgame = true;
                 }
