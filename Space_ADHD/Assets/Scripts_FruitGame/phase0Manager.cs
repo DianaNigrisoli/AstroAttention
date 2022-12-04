@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts_A_General;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,8 +14,9 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
+        private int NumSpawn = 10;
         
-        private int NumSpawn = 1;
+        public TextMeshProUGUI textObject; 
 
         //Cosa fa questo script: 
         //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)
@@ -23,12 +25,13 @@ namespace Assets.Scripts_FruitGame
         // Start is called before the first frame update
         void Start()
         {
-            
+            textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
         }
 
         // Update is called once per frame
         void Update()
-        { 
+        {
+            textObject.text = "Select the semantic colour of the fruit";
             if(PlayerMovement.PortalCounter == NumSpawn)
             { 
                 StartCoroutine(waiter());
