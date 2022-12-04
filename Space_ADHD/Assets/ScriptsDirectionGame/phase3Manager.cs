@@ -90,6 +90,7 @@ public class phase3Manager : MonoBehaviour
     void gameInstance()
     {
         shootingStarSpawn();
+		laserButtons.timeDG=0.0f;
     }
     
     IEnumerator Delay()
@@ -101,6 +102,7 @@ public class phase3Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		laserButtons.timeDG += Time.deltaTime;
         if (!endgame)
         {
             if (touch)
@@ -108,7 +110,7 @@ public class phase3Manager : MonoBehaviour
                 StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
-                if (count == 10)
+                if (count == 11)
                 {
                     endgame = true;
                 }
@@ -121,6 +123,7 @@ public class phase3Manager : MonoBehaviour
             ROTcases = 1000;
             SPTcases = 1000;
             phaseThree = false;
+			Debug.Log(laserButtons.errorDirectionG);
             Destroy(this);
         }
     }

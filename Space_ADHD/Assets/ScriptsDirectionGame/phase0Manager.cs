@@ -28,8 +28,6 @@ public class phase0Manager : MonoBehaviour
     void shootingStarSpawn()
     {
         cases  = Random.Range(0, 4);
-        Debug.Log(cases);
-        Debug.Log("Yeah");
         Vector3 spawnPosition = new Vector3(0.0f, 0.0f, 0.0f);
         switch (cases)
         {
@@ -67,6 +65,7 @@ public class phase0Manager : MonoBehaviour
     void gameInstance()
     {
         shootingStarSpawn();
+		laserButtons.timeDG=0.0f;
     }
     
     IEnumerator Delay()
@@ -77,6 +76,7 @@ public class phase0Manager : MonoBehaviour
     
     void Update()
     {
+		laserButtons.timeDG += Time.deltaTime;
         if (!endgame)
         {
             if (touch)
@@ -84,7 +84,7 @@ public class phase0Manager : MonoBehaviour
                 StartCoroutine(Delay());
                 touch = false;
                 count = count + 1;
-                if (count == 10)
+                if (count == 11)
                 {
                     endgame = true;
                 }
