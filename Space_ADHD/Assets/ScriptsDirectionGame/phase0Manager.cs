@@ -24,7 +24,7 @@ public class phase0Manager : MonoBehaviour
     void Start()
     {
         shootingStar = GameObject.Find("notShootingStar");
-		canvas = GameObject.Find("CanvasIntro");
+        canvas = GameObject.Find("CanvasIntro");
 		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();
     }

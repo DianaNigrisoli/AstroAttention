@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 23070237996926210}
   m_Layer: 0
   m_Name: 2d ring target 5 Green
-  m_TagString: Untagged
+  m_TagString: RingTutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
