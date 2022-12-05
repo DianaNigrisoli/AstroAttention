@@ -62,7 +62,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.ThreeScene || state == MiniGameStateFruit.ThreeTutorial)
+        if (state == MiniGameStateFruit.ThreeScene)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
