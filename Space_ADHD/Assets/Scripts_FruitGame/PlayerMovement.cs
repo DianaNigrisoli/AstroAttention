@@ -93,7 +93,9 @@ public class PlayerMovement : MonoBehaviour
         {
             //check if the color is right
             if (ChangePortalColour_phase0.rightPortal2 == 1 || ChangePortalColour_phase1.rightPortal2 == 1 ||
-                ChangePortalColour_phase2.rightPortal2 == 1 || ChangePortalColour_phase3.rightPortal2 == 1)
+                ChangePortalColour_phase2.rightPortal2 == 1 || ChangePortalColour_phase3.rightPortal2 == 1 ||
+                ChangePortalColour_phase0Tutorial.rightPortal2 == 1)
+
             {
                 score += 1;
                 answerIndicator.sprite = indicators[0];
@@ -107,7 +109,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //check if the color is right
             if (ChangePortalColour_phase0.rightPortal3 == 1 || ChangePortalColour_phase1.rightPortal3 == 1 ||
-                ChangePortalColour_phase2.rightPortal3 == 1 || ChangePortalColour_phase3.rightPortal3 == 1)
+                ChangePortalColour_phase2.rightPortal3 == 1 || ChangePortalColour_phase3.rightPortal3 == 1 ||
+                ChangePortalColour_phase0Tutorial.rightPortal3 == 1)
             {
                 score += 1;
                 answerIndicator.sprite = indicators[0];
@@ -118,7 +121,8 @@ public class PlayerMovement : MonoBehaviour
         if (targetPos.x < 0)
         {
             if (ChangePortalColour_phase0.rightPortal1 == 1 || ChangePortalColour_phase1.rightPortal1 == 1 ||
-                ChangePortalColour_phase2.rightPortal1 == 1 || ChangePortalColour_phase3.rightPortal1 == 1)
+                ChangePortalColour_phase2.rightPortal1 == 1 || ChangePortalColour_phase3.rightPortal1 == 1 ||
+                ChangePortalColour_phase0Tutorial.rightPortal1 == 1)
             {
                 score += 1;
                 answerIndicator.sprite = indicators[0];

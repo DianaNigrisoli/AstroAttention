@@ -18,6 +18,10 @@ public class ChangePortalColour_phase1 : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
     [SerializeField] private Image fruitImage;
+    [SerializeField] SpriteRenderer triangle1;
+    [SerializeField] SpriteRenderer triangle2;
+    [SerializeField] SpriteRenderer triangle3;
+    [SerializeField] Sprite triangle;
     public LoadFruits.Fruit currentFruit;
     int randomImage;
     public int index_visCol;
@@ -33,6 +37,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     static public int rightPortal3;
     
     public static bool phase1 = false; 
+    public static bool phase1Tut = false;
     
     
     // Start is called before the first frame update
@@ -65,23 +70,49 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.OneScene || state == MiniGameStateFruit.OneTutorial)
+        if (state == MiniGameStateFruit.OneTutorial)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            //Destroy(this);
+            selectTriangle();   
+            phase1Tut = true;
+        }
+        else if (state == MiniGameStateFruit.OneScene)
+        {
+            phase1Tut = false;
+            triangle1.enabled = false;
+            triangle2.enabled = false;
+            triangle3.enabled = false;
+            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+            selectRandomImage();
+            CustomPalette();
+            selectFruitColor();
+            selectRandomColour();
             phase1 = true;
         }
         else
         {
             phase1 = false;
+            phase1Tut = false;
             rightPortal1 = 0;
             rightPortal2 = 0;
             rightPortal3 = 0;
         }
+    }
+    void selectTriangle()
+    {
+        triangle1.enabled = true;
+        triangle2.enabled = true;
+        triangle3.enabled = true;
+        if (rightPortal1 == 1)
+            triangle1.sprite = triangle;
+        if (rightPortal2 == 1)
+            triangle2.sprite = triangle;
+        if (rightPortal3 == 1)
+            triangle3.sprite = triangle;
     }
     
     void selectRandomImage()

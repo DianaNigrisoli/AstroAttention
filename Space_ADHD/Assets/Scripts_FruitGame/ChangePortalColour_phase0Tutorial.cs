@@ -14,7 +14,7 @@ using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
 
-public class ChangePortalColour_phase0 : MonoBehaviour
+public class ChangePortalColour_phase0Tutorial : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
 
@@ -54,14 +54,14 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     
     private void PortalSpawnerOnPortalSpawn(int obj)
     {
-        if (phase0)
+        if(phase0Tut)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            //print("phase bool: "+ phase0);
+            selectTriangle();
         }
         //bisogna fare else destroy??
     }
@@ -70,25 +70,45 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     // Start is called before the first frame update
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        
-       if (state == MiniGameStateFruit.ZeroScene)
-       {
-           fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+        if (state == MiniGameStateFruit.ZeroTutorial)
+        {
+            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            phase0 = true;
-       }
-       else
-       {
-            phase0 = false;
+            selectTriangle();   
+            phase0Tut = true;
+        }
+       
+        else
+        {
+            triangle1.enabled = false;
+            triangle2.enabled = false;
+            triangle3.enabled = false;
+            phase0Tut = false;
             rightPortal1 = 0;
             rightPortal2 = 0;
             rightPortal3 = 0;
-       }
+        }
     }
 
+    void selectTriangle()
+    {
+        triangle1.enabled = true;
+        triangle2.enabled = true;
+        triangle3.enabled = true;
+        print("portals: "+ rightPortal1+ rightPortal2 + rightPortal3);
+        if (rightPortal1 == 1)
+            triangle1.sprite = triangle;
+        if (rightPortal2 == 1)
+            triangle2.sprite = triangle;
+        if (rightPortal3 == 1)
+            triangle3.sprite = triangle;
+    }
+    
+
+   
     void selectRandomImage()
     {
         randomImage = Random2.Range(0, 10);

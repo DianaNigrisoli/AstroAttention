@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 1555225769867566068}
   - component: {fileID: 6867848938893791037}
   - component: {fileID: 3215495788713636947}
+  - component: {fileID: 1865357876090988186}
   - component: {fileID: 7130851090601207471}
   - component: {fileID: 6016514040488806665}
   - component: {fileID: 2510048436349365187}
@@ -361,6 +362,43 @@ MonoBehaviour:
     A: 0
     hex: 
     ID: 0
+--- !u!114 &1865357876090988186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839726114345586930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedad691fb8344de88cd9cccc9b2045f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitImages:
+  - {fileID: 21300000, guid: 736e484a5a98bf242aed272490601bcf, type: 3}
+  - {fileID: 21300000, guid: fe4f327261562074283ab3f4b3d8baa6, type: 3}
+  - {fileID: 21300000, guid: 238cc1af0a1abdf4ab47d9ef8abce074, type: 3}
+  - {fileID: 21300000, guid: 6c8eec0ea23591b4e83a53832b35ce00, type: 3}
+  - {fileID: 21300000, guid: 3fa0a56d7b7170d468f6a339572ba784, type: 3}
+  - {fileID: 21300000, guid: fb902de49b691394cbbb0e2c28cf0af8, type: 3}
+  - {fileID: 21300000, guid: 689a130c1ccdb714bbb830c5b08b8a93, type: 3}
+  - {fileID: 21300000, guid: 578e83dc6fe28d2418e4eef0a961633a, type: 3}
+  - {fileID: 21300000, guid: 4dda77384ae0c0c49b4f584fde23ffdf, type: 3}
+  - {fileID: 21300000, guid: 9837429548b02244dbcbce6cd8fc9503, type: 3}
+  fruitImage: {fileID: 0}
+  triangle1: {fileID: 4070973052347340286}
+  triangle2: {fileID: 6310236654083306859}
+  triangle3: {fileID: 2285015604772721673}
+  triangle: {fileID: 21300000, guid: a97e154a4782a904d9011ba351c5507d, type: 3}
+  currentFruit:
+    name: 
+    colour: 
+    R: 0
+    G: 0
+    B: 0
+    A: 0
+    hex: 
+    ID: 0
 --- !u!114 &7130851090601207471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +423,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4dda77384ae0c0c49b4f584fde23ffdf, type: 3}
   - {fileID: 21300000, guid: 9837429548b02244dbcbce6cd8fc9503, type: 3}
   fruitImage: {fileID: 0}
+  triangle1: {fileID: 4070973052347340286}
+  triangle2: {fileID: 6310236654083306859}
+  triangle3: {fileID: 2285015604772721673}
+  triangle: {fileID: 21300000, guid: a97e154a4782a904d9011ba351c5507d, type: 3}
   currentFruit:
     name: 
     colour: 

@@ -113,10 +113,6 @@ namespace Assets.Scripts_FruitGame
                     MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ThreeScene);
                     lastPlayedPhase = MiniGameStateFruit.ThreeScene;
                     break;
-                case MiniGameStateFruit.ThreeScene:
-                    MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ThreeTutorial);
-                    lastPlayedPhase = MiniGameStateFruit.ThreeTutorial;
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(lastPlayedPhase), lastPlayedPhase, null);
             }
