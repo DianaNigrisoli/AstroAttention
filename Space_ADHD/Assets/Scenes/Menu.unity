@@ -2728,7 +2728,7 @@ GameObject:
   - component: {fileID: 2033430751}
   - component: {fileID: 2033430750}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: MiniGameSelectionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

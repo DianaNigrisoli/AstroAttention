@@ -12,16 +12,17 @@ namespace Assets.ScriptsDirectionGame
         private bool selected; //TODO: do we need this?
         private AudioSource audioData;
         public GameObject buzzButton;
-        private MiniGameState miniGameState; //TODO: useless since I added tutorialPhase... But can be more clear to
-                                             //add that we are in the intro phase in my opinion. Davi if you agree
-                                             //delete this comment;
+        private MiniGameState miniGameState;
         private TutorialPhase tutorialPhase;
         public static Boolean enabled;
         public static float FinalScore;
 		public static double reactionTime=5.0d;
-		public static double[] MAreactionTime = new double[] {0, 0, 1, 0, 0};
+		public static double[] reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
 		public static float timeDG;
 		public static int errorDirectionG = 0;
+		public static double[] reactionTimeMean = new double[] {0, 0, 0, 0};
+		public static double[] reactionTimeStd = new double[] {0, 0, 0, 0};
+		public static int[] errorsDirectionG = new int[] {0, 0, 0, 0};
         
         void Awake()
         {
@@ -34,12 +35,45 @@ namespace Assets.ScriptsDirectionGame
             MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
             IntroManager.OnTutorialPhaseChanged += IntroManagerOnOnTutorialPhaseChanged;
         }
-        
+                
         private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState newState)
         {
+			switch (miniGameState)
+        	{
+                case MiniGameState.Zero:
+					reactionTimeMean[0] = reactionTimeMeanStd[3];
+					reactionTimeStd[0] = reactionTimeMeanStd[4];
+					errorsDirectionG[0] = errorDirectionG;
+					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					errorDirectionG = 0;
+                    break;
+                case MiniGameState.One:
+					reactionTimeMean[1] = reactionTimeMeanStd[3];
+					reactionTimeStd[1] = reactionTimeMeanStd[4];
+					errorsDirectionG[1] = errorDirectionG;
+					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					errorDirectionG = 0;
+                    break;
+				case MiniGameState.Two:
+					reactionTimeMean[2] = reactionTimeMeanStd[3];
+					reactionTimeStd[2] = reactionTimeMeanStd[4];
+					errorsDirectionG[2] = errorDirectionG;
+					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					errorDirectionG = 0;
+					break;
+				case MiniGameState.Three:
+					reactionTimeMean[3] = reactionTimeMeanStd[3];
+					reactionTimeStd[3] = reactionTimeMeanStd[4];
+					errorsDirectionG[3] = errorDirectionG;
+					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					errorDirectionG = 0;
+					break;
+                default:
+                    break;
+            }
             miniGameState = newState;
         }
-        
+
         private void IntroManagerOnOnTutorialPhaseChanged(TutorialPhase newPhase)
         {
             tutorialPhase = newPhase;
@@ -54,7 +88,7 @@ namespace Assets.ScriptsDirectionGame
             audioData = button.GetComponent<AudioSource>();
         }
         
-		double[] computeMovingAverage(double newValue, double oldValue, double count, double s1, double s2)
+		double[] computeMeanStd(double newValue, double oldValue, double count, double s1, double s2)
 		{
 			double[] output = new double[5]; //[s1, s2, count, mean, std]
 			output[0] = s1 + newValue;
@@ -78,13 +112,13 @@ namespace Assets.ScriptsDirectionGame
                     {
                         case "UpperRightButtonQuad":
                             if (phase0Manager.cases == 2 || phase1Manager.cases == 1 || (phase2Manager.ROTcases == 1) ||
-                                (phase3Manager.SPTcases == 2) || (miniGameState == MiniGameState.Intro && tutorialPhase == TutorialPhase.Seven))
+                                (phase3Manager.SPTcases == 2) || (tutorialPhase == TutorialPhase.Seven))
                             {
 								if (tutorialPhase == TutorialPhase.Seven){reactionTime = 5.0d;}
 								else
 								{
 									reactionTime = (double)timeDG;
-									MAreactionTime = computeMovingAverage(timeDG, MAreactionTime[3], MAreactionTime[2], MAreactionTime[0], MAreactionTime[1]);
+									reactionTimeMeanStd = computeMeanStd(timeDG, reactionTimeMeanStd[3], reactionTimeMeanStd[2], reactionTimeMeanStd[0], reactionTimeMeanStd[1]);
 								}
 								if (reactionTime>5){reactionTime=5;}
                                 CannonBehavior.upRightShot = true;
@@ -102,13 +136,14 @@ namespace Assets.ScriptsDirectionGame
                             }
                             break;
                         case "UpperLeftButtonQuad":
-                            if (phase0Manager.cases==0 || phase1Manager.cases == 3 || (phase2Manager.ROTcases == 3) || (phase3Manager.SPTcases == 0) || (miniGameState == MiniGameState.Intro && tutorialPhase == TutorialPhase.Five))
+                            if (phase0Manager.cases==0 || phase1Manager.cases == 3 || (phase2Manager.ROTcases == 3) ||
+								 (phase3Manager.SPTcases == 0) || (tutorialPhase == TutorialPhase.Five))
                             {
 								if (tutorialPhase == TutorialPhase.Five){reactionTime = 5.0d;}
 								else
 								{
 									reactionTime = (double)timeDG;
-									MAreactionTime = computeMovingAverage(timeDG, MAreactionTime[3], MAreactionTime[2], MAreactionTime[0], MAreactionTime[1]);
+									reactionTimeMeanStd = computeMeanStd(timeDG, reactionTimeMeanStd[3], reactionTimeMeanStd[2], reactionTimeMeanStd[0], reactionTimeMeanStd[1]);
 								}						
 								if (reactionTime>5){reactionTime=5;}
                                 CannonBehavior.upLeftShot = true;
@@ -129,7 +164,7 @@ namespace Assets.ScriptsDirectionGame
                             if (phase0Manager.cases == 3 || phase1Manager.cases == 0 || (phase2Manager.ROTcases == 0) || (phase3Manager.SPTcases == 3))
                             {
 								reactionTime = (double)timeDG;
-								MAreactionTime = computeMovingAverage(timeDG, MAreactionTime[3], MAreactionTime[2], MAreactionTime[0], MAreactionTime[1]);
+								reactionTimeMeanStd = computeMeanStd(timeDG, reactionTimeMeanStd[3], reactionTimeMeanStd[2], reactionTimeMeanStd[0], reactionTimeMeanStd[1]);
 								if (reactionTime>5){reactionTime=5;}
                                 CannonBehavior.downRightShot = true;
                                 phase0Manager.touch = true;
@@ -148,7 +183,7 @@ namespace Assets.ScriptsDirectionGame
                             if (phase0Manager.cases == 1 || phase1Manager.cases == 2 || (phase2Manager.ROTcases == 2) || (phase3Manager.SPTcases == 1))
                             {
 								reactionTime = (double)timeDG;
-								MAreactionTime = computeMovingAverage(timeDG, MAreactionTime[3], MAreactionTime[2], MAreactionTime[0], MAreactionTime[1]);
+								reactionTimeMeanStd = computeMeanStd(timeDG, reactionTimeMeanStd[3], reactionTimeMeanStd[2], reactionTimeMeanStd[0], reactionTimeMeanStd[1]);
 								if (reactionTime>5){reactionTime=5;}
                                 CannonBehavior.downLeftShot = true;
                                 phase0Manager.touch = true;
