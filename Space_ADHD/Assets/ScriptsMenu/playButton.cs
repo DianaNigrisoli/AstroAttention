@@ -22,8 +22,7 @@ public class playButton : MonoBehaviour
 
     void Start()
     {
-        this.transform.position = new Vector3(Screen.width / 2, Screen.height / 6, 50);
-        this.GetComponent<Button>().onClick.AddListener(TaskOnClick);
+	    this.GetComponent<Button>().onClick.AddListener(TaskOnClick);
         this.moveKingBool = false;
         gameObject.SetActive(false);
 		txtBox.enabled = false;
