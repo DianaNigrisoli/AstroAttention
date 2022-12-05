@@ -1,3 +1,4 @@
+using Assets.Scripts_A_General;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -18,6 +19,27 @@ namespace Assets.Scripts
         private bool selected;
         private float suggestionDelay = 8.5f;
         
+        private GameState gameState;
+    
+        void Awake()
+        {
+            GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+        }
+
+        void OnDestroy()
+        {
+            GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+        }
+
+        private void GameManagerOnOnGameStateChanged(GameState state)
+        {
+            gameState = state;
+            if (state == GameState.Map)
+            {
+                suggestionDelay = 8.5f;
+            }
+        }
+        
     
         // Start is called before the first frame update
         void Start()
@@ -31,6 +53,8 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            transform.Rotate(0, rotationY*Time.deltaTime, rotationZ*Time.deltaTime); //rotates rotationY degrees per second around y axis
+            if (gameState != GameState.Map) return;
             suggestionDelay -= Time.deltaTime;
             if (suggestionDelay <= 0 && !selected)
             {
@@ -47,12 +71,11 @@ namespace Assets.Scripts
                 {
                     buttonAction.selectedPlanet = gameObject.name;
                     selected = true;
-                    MenuManager.planetSelected = selected;
+                    MenuSuggestionController.planetSelected = selected;
                     childRing.SetActive(false);
                     unityEvent.Invoke();
                 }
             }
-            transform.Rotate(0, rotationY*Time.deltaTime, rotationZ*Time.deltaTime); //rotates rotationY degrees per second around y axis
         }
     }
 }
