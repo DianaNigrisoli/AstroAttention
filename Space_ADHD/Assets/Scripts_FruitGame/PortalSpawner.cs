@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using UnityEngine;
 
 public class PortalSpawner : MonoBehaviour

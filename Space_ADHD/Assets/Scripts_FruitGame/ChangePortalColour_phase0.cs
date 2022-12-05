@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Timers;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
@@ -18,6 +19,10 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     [SerializeField] Sprite[] fruitImages;
 
     [SerializeField] private Image fruitImage;
+    [SerializeField] SpriteRenderer triangle1;
+    [SerializeField] SpriteRenderer triangle2;
+    [SerializeField] SpriteRenderer triangle3;
+    [SerializeField] Sprite triangle;
     
 
     public LoadFruits.Fruit currentFruit;
@@ -32,16 +37,18 @@ public class ChangePortalColour_phase0 : MonoBehaviour
 
   
     public static bool phase0 = false; 
-    
-    
+    public static bool phase0Tut = false;
+
+
     void Awake()
     {
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         Portals.OnPortalSpawn += PortalSpawnerOnPortalSpawn;
     }
+
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
         Portals.OnPortalSpawn -= PortalSpawnerOnPortalSpawn;
     }
     
@@ -52,25 +59,24 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
-            selectRandomColour();
             selectFruitColor();
+            selectRandomColour();
             //print("phase bool: "+ phase0);
         }
-        
         //bisogna fare else destroy??
     }
 
     
     // Start is called before the first frame update
-    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameState.Zero)
+        if (state == MiniGameStateFruit.ZeroTutorial || state == MiniGameStateFruit.ZeroScene )
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
-            selectRandomColour();
             selectFruitColor();
+            selectRandomColour();
             phase0 = true;
         }
         else
@@ -81,8 +87,10 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             rightPortal3 = 0;
         }
     }
+    
+    
 
- 
+   
     void selectRandomImage()
     {
         randomImage = Random2.Range(0, 10);

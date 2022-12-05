@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using System.ComponentModel;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using UnityEngine.UI;
 
 public class LoadFruits : MonoBehaviour
@@ -32,18 +33,18 @@ public class LoadFruits : MonoBehaviour
     
     void Awake()
     {
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
     }
     
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
     }
     
     // Start is called before the first frame update
-    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if(state == MiniGameState.Intro)
+        if(state == MiniGameStateFruit.Intro)
         {
             int n_col = 8;
             string[] data = testAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);

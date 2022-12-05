@@ -14,7 +14,7 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 10;
+        private int NumSpawn = 5;
         
         public TextMeshProUGUI textObject; 
 
@@ -26,12 +26,13 @@ namespace Assets.Scripts_FruitGame
         void Start()
         {
             textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
-            textObject.text = "Select the semantic colour of the fruit";
+            textObject.text = "Select the real colour of the fruit";
             if(PlayerMovement.PortalCounter == NumSpawn)
             { 
                 StartCoroutine(waiter());
@@ -48,7 +49,7 @@ namespace Assets.Scripts_FruitGame
             
             print("Final Score: "+ FinalScore);
             
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
             PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
             Destroy(this);

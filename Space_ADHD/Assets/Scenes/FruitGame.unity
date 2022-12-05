@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &98257334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 98257335}
+  - component: {fileID: 98257336}
+  m_Layer: 0
+  m_Name: WaitForNextFruitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &98257335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98257334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.67933, y: 79.524086, z: 3.592781}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98257336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98257334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7a5ba09d7262b4aa3c4a4fcdc7b4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introCanvas: {fileID: 1213752423}
+  countdownCircleTimer: {fileID: 909546612}
+  countdownText: {fileID: 1832264762}
 --- !u!1 &106199579
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +409,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326772806}
   m_CullTransparentMesh: 1
+--- !u!1 &383915433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383915435}
+  - component: {fileID: 383915434}
+  m_Layer: 0
+  m_Name: MiniGameManagerFruit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &383915434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383915433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1db80b7ab7ebca42b8eb01637901e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  phase0Manager: {fileID: 5481986501559016084, guid: bbb449906771c5b4ab43678a4f490e22, type: 3}
+  phase1Manager: {fileID: 4747959850155140779, guid: a258893349b5f224982b4be054e1ff53, type: 3}
+  phase2Manager: {fileID: 7832486838415021705, guid: 6832f57e70e0e3943a6a6f7edf8a3c16, type: 3}
+  phase3Manager: {fileID: 9046228242512948052, guid: 643ae3018f75a7848a92f332ea47b619, type: 3}
+  phase0TutorialManager: {fileID: 5718749290070272424, guid: 6f36db5b36472ea4597df2f46e1ba297, type: 3}
+  phase1TutorialManager: {fileID: 7145941510632041947, guid: 54ac15df05b33b746a4e7024fe8f9de3, type: 3}
+  phase2TutorialManager: {fileID: 1796459626706345256, guid: 1ac4c468a568cdb4082773e6cc58270a, type: 3}
+  phase3TutorialManager: {fileID: 61005050738658337, guid: 1f3213af4c3c8894d9125359e89ef759, type: 3}
+--- !u!4 &383915435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383915433}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.67933, y: 79.524086, z: 3.592781}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &476711881
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,18 +30,18 @@ public class PlayerMovement : MonoBehaviour
         speedForward = 10;
         speedLateral = 5;
         targetPos = transform.position;
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         answerIndicator = GameObject.Find("AnswerIndicator").GetComponent<Image>();
     }
     
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged; // unsubscription to state change of MiniGameManager
+        MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged; // unsubscription to state change of MiniGameManager
     }
     
-    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameState.WaitForNext)
+        if (state == MiniGameStateFruit.WaitForNext)
         {
             stop = true;
         }

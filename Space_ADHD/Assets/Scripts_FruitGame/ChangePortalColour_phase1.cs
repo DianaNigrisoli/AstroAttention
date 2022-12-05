@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Timers;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
@@ -37,12 +38,12 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         Portals.OnPortalSpawn += PortalSpawnerOnPortalSpawn;
     }
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
         Portals.OnPortalSpawn -= PortalSpawnerOnPortalSpawn;
     } 
     
@@ -62,9 +63,9 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     }
     
     
-    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameState.One)
+        if (state == MiniGameStateFruit.OneScene || state == MiniGameStateFruit.OneTutorial)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();

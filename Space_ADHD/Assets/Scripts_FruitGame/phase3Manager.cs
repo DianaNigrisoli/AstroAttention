@@ -10,7 +10,7 @@ namespace Assets.Scripts_FruitGame
     public class phase3Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 10;
+        private int NumSpawn = 5;
 
         public TextMeshProUGUI textObject;
         // Start is called before the first frame update
@@ -37,7 +37,7 @@ namespace Assets.Scripts_FruitGame
                 
             print("Final Score: "+ FinalScore);
                 
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.End);
             PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
             Destroy(this);

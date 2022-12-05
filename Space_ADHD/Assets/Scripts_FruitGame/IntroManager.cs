@@ -22,17 +22,17 @@ namespace Assets.Scripts_FruitGame
 
         void Awake()
         {
-            MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+            MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         }
 
         void OnDestroy()
         {
-            MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+            MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
         }
 
-        private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+        private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
         {
-            if (state == MiniGameState.Intro)
+            if (state == MiniGameStateFruit.Intro)
             {
                     //per ora non fa nulla
             }
@@ -42,7 +42,7 @@ namespace Assets.Scripts_FruitGame
         void Update()
         {
 
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
             Destroy(this);
 
         }

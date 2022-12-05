@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
+using Assets.Scripts_FruitGame;
 using Siccity.GLTFUtility;
 using UnityEngine;
 
@@ -36,16 +37,16 @@ public class Portals : MonoBehaviour
     
     void Awake()
     {
-        MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
     }
     void OnDestroy()
     {
-        MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
+        MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
     }
     
-    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
+    private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameState.WaitForNext || state == MiniGameState.Intro)
+        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro)
         {
            gameObject.SetActive(false);
         }
