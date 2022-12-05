@@ -14,7 +14,7 @@ using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
 
-public class ChangePortalColour_phase0 : MonoBehaviour
+public class ChangePortalColour_phase0Tutorial : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
 
@@ -28,7 +28,10 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     public LoadFruits.Fruit currentFruit;
     int randomImage;
 
-    private List<Color> ListColour = new List<Color>(); 
+    private List<Color> ListColour_portal = new List<Color>(); 
+    private List<Color> ListColour_fruit = new List<Color>();
+    private Color visibleColor;
+    
     private FunctionTimer functionTimer;
 
     static public int rightPortal1;
@@ -54,14 +57,14 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     
     private void PortalSpawnerOnPortalSpawn(int obj)
     {
-        if (phase0)
+        if(phase0Tut)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            //print("phase bool: "+ phase0);
+            selectTriangle();
         }
         //bisogna fare else destroy??
     }
@@ -70,25 +73,45 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     // Start is called before the first frame update
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        
-       if (state == MiniGameStateFruit.ZeroScene)
-       {
-           fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
+        if (state == MiniGameStateFruit.ZeroTutorial)
+        {
+            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            phase0 = true;
-       }
-       else
-       {
-            phase0 = false;
+            selectTriangle();   
+            phase0Tut = true;
+        }
+       
+        else
+        {
+            triangle1.enabled = false;
+            triangle2.enabled = false;
+            triangle3.enabled = false;
+            phase0Tut = false;
             rightPortal1 = 0;
             rightPortal2 = 0;
             rightPortal3 = 0;
-       }
+        }
     }
 
+    void selectTriangle()
+    {
+        triangle1.enabled = true;
+        triangle2.enabled = true;
+        triangle3.enabled = true;
+        print("portals: "+ rightPortal1+ rightPortal2 + rightPortal3);
+        if (rightPortal1 == 1)
+            triangle1.sprite = triangle;
+        if (rightPortal2 == 1)
+            triangle2.sprite = triangle;
+        if (rightPortal3 == 1)
+            triangle3.sprite = triangle;
+    }
+    
+
+   
     void selectRandomImage()
     {
         randomImage = Random2.Range(0, 10);
@@ -100,22 +123,44 @@ public class ChangePortalColour_phase0 : MonoBehaviour
 
     void selectFruitColor()
     {
-        fruitImage.material.color = Color.white;
+        visibleColor = ListColour_fruit[currentFruit.ID];
+        fruitImage.GetComponent<Image>().color = visibleColor;
     }
     
     
     void CustomPalette()
     {
-        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255, (LoadFruits.myFruitList.fruit[1].G) / 255,
-            (LoadFruits.myFruitList.fruit[1].B) / 255, 0.5f));
-        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[0].R)/255, (LoadFruits.myFruitList.fruit[0].G)/255,
-            (LoadFruits.myFruitList.fruit[0].B)/255, 0.5f));
-        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[3].R)/255, (LoadFruits.myFruitList.fruit[3].G)/255,    
-            (LoadFruits.myFruitList.fruit[3].B)/255, 0.5f));
-        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[5].R)/255, (LoadFruits.myFruitList.fruit[5].G)/255,
-            (LoadFruits.myFruitList.fruit[5].B)/255, 0.5f));
-        ListColour.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, (LoadFruits.myFruitList.fruit[7].G)/255,
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
+                (LoadFruits.myFruitList.fruit[1].G) / 255,
+                (LoadFruits.myFruitList.fruit[1].B) / 255, 0.5f));
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[0].R) / 255,
+                (LoadFruits.myFruitList.fruit[0].G) / 255,
+                (LoadFruits.myFruitList.fruit[0].B) / 255, 0.5f));
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[3].R) / 255,
+            (LoadFruits.myFruitList.fruit[3].G) / 255,
+            (LoadFruits.myFruitList.fruit[3].B) / 255, 0.5f));
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
+            (LoadFruits.myFruitList.fruit[5].G) / 255,
+            (LoadFruits.myFruitList.fruit[5].B) / 255, 0.5f));
+        ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+            (LoadFruits.myFruitList.fruit[7].G)/255,
             (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
+        
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
+            (LoadFruits.myFruitList.fruit[1].G) / 255,
+            (LoadFruits.myFruitList.fruit[1].B) / 255, 1f));
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[0].R) / 255,
+            (LoadFruits.myFruitList.fruit[0].G) / 255,
+            (LoadFruits.myFruitList.fruit[0].B) / 255, 1f));
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[3].R) / 255,
+            (LoadFruits.myFruitList.fruit[3].G) / 255,
+            (LoadFruits.myFruitList.fruit[3].B) / 255, 1f));
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
+            (LoadFruits.myFruitList.fruit[5].G) / 255,
+            (LoadFruits.myFruitList.fruit[5].B) / 255, 1f));
+        ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
+            (LoadFruits.myFruitList.fruit[7].G)/255,
+            (LoadFruits.myFruitList.fruit[7].B)/255, 1f));
     }
     
     void selectRandomColour()
@@ -123,8 +168,8 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         /////// In this phase the semantic color of the fruit in the canvas MUST BE present in one of the portal /////
         
         // first color selected: current color is the SEMANTIC COLOR
-        Color currentColor = ListColour[currentFruit.ID];
-        List<Color> tempColourList = ListColour;
+        Color currentColor = ListColour_portal[currentFruit.ID];
+        List<Color> tempColourList = ListColour_portal;
         tempColourList.RemoveAt(currentFruit.ID); // tempColourList has 4 elements now
         
         // second color removed

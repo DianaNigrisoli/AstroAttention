@@ -65,7 +65,7 @@ public class ChangePortalColour_phase2 : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.TwoScene || state == MiniGameStateFruit.TwoTutorial  )
+        if (state == MiniGameStateFruit.TwoScene)
         {
             CustomPalette();
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
