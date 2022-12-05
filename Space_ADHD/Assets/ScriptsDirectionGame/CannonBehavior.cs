@@ -45,7 +45,7 @@ namespace Assets.ScriptsDirectionGame
     	// Update is called once per frame
     	void Update ()
     	{
-    		if (miniGameState == MiniGameState.Zero || miniGameState == MiniGameState.One)
+    		if (miniGameState == MiniGameState.Zero || miniGameState == MiniGameState.One || miniGameState == MiniGameState.Intro)
     		{
     			if (upRightShot)
     			{
