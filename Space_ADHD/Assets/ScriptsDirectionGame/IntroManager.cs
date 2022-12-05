@@ -157,6 +157,7 @@ namespace Assets.ScriptsDirectionGame
                         canvas = GameObject.Find("CanvasIntro");
                         textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
                         textObject.text = "Select the sector with the comet";
+                        Destroy(GameObject.Find("SkipTutorial"));
                         Destroy(this);
                         break;
                     case TutorialPhase.Ten:
