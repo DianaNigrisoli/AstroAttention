@@ -52,24 +52,28 @@ namespace Assets.ScriptsDirectionGame
     				Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.right * 0.7f);
     				upRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (1.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (upLeftShot)
     			{
     				Shoot(Vector3.forward * 5f + Vector3.up * 0.99f + Vector3.left * 0.7f);
     				upLeftShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (1.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (downLeftShot)
     			{
     				Shoot(Vector3.forward * 5f + Vector3.down * 0.4f + Vector3.left * 0.7f);
     				downLeftShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (1.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (downRightShot)
     			{
     				Shoot(Vector3.forward * 5f + Vector3.down * 0.4f + Vector3.right * 0.7f);
     				downRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (1.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     		}
     		else if (miniGameState == MiniGameState.Two || miniGameState == MiniGameState.Three)
@@ -82,6 +86,7 @@ namespace Assets.ScriptsDirectionGame
     				downLeftShot = false;
     				downRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (2.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (shootingStar.transform. position == new Vector3(-2.25f, 4.7f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
     			{
@@ -91,6 +96,7 @@ namespace Assets.ScriptsDirectionGame
     				downLeftShot = false;
     				downRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (2.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (shootingStar.transform. position == new Vector3(-2.25f, 0.45f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
     			{
@@ -100,6 +106,7 @@ namespace Assets.ScriptsDirectionGame
     				downLeftShot = false;
     				downRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (2.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     			if (shootingStar.transform. position == new Vector3(2.25f, 0.45f, 16.4f) && (upRightShot || upLeftShot || downRightShot || downLeftShot))
     			{
@@ -109,6 +116,7 @@ namespace Assets.ScriptsDirectionGame
     				downLeftShot = false;
     				downRightShot = false;
     				kidScoreDirectionG = kidScoreDirectionG + (2.0f * (5-laserButtons.reactionTime)) + 1;
+					Debug.Log(CannonBehavior.kidScoreDirectionG);
     			}
     		}
     	}

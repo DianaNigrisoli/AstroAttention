@@ -112,12 +112,12 @@ public class phase0Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
 			textObject.text = "Select the direction of the comet";
             Destroy(shootingStar);
             cases = 1000;
             phaseZero = false;
             Destroy(this);
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
         }
     }
 }

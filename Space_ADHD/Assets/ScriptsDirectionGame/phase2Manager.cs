@@ -150,12 +150,12 @@ public class phase2Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
             textObject.text = "Select the sector with the comet";
             ROTcases = 1000;
             SPTcases = 1000;
             phaseTwo = false;
             Destroy(this);
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
         }
     }
 }
