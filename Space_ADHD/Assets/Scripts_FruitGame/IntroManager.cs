@@ -93,9 +93,9 @@ namespace Assets.Scripts_FruitGame
                     case IntroPhase.Two:
                         HandlePhaseTwo();
                         break;
-                    // case IntroPhase.Three:
-                    //     //HandlePhaseThree();
-                    //     break;
+                    case IntroPhase.Three:
+                        HandlePhaseThree();
+                        break;
                     // case IntroPhase.Four:
                     //     //HandlePhaseFour();
                     //     break;
@@ -149,15 +149,26 @@ namespace Assets.Scripts_FruitGame
 
         void HandlePhaseTwo()
         {
-            txtBox.enabled = false;
-            showingTutorial = false;
-            playerSpaceship.SetActive(true);
-            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+            }
+            else
+            {
+                WaitForInputOrTimer(nextPhase: IntroPhase.Three);
+            }
         }
 
         void HandlePhaseThree()
         {
-            
+            txtBox.enabled = false;
+            showingTutorial = false;
+            playerSpaceship.SetActive(true);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
         }
 
         void HandlePhaseFour()
@@ -236,7 +247,7 @@ namespace Assets.Scripts_FruitGame
             introText.SetText("");
          
             tutorialRobot = Instantiate(tutorialRobotPrefab, GameObject.Find("All").transform);
-            tutorialRobot.transform.position = new Vector3(1.51f, -2.18f, 1.25f);
+            tutorialRobot.transform.position = new Vector3(1.51f, -0.68f, 1.25f);
             tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
             tutorialRobot.transform.localScale = new Vector3(5f, 5f, 5f);
             //tutorialRobot.SetActive(true);
