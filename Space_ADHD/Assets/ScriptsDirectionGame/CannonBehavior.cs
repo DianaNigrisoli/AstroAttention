@@ -124,7 +124,7 @@ namespace Assets.ScriptsDirectionGame
     	private void Shoot(Vector3 direction)
     	{
     		laserButtons.enabled = false;
-    		GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+    		GameObject go = GameObject.Instantiate(m_shotPrefab, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("All").transform) as GameObject;
     		go.GetComponent<Rigidbody>().velocity = direction * 50.0f;
     		GameObject.Destroy(go, 1.5f);
     	}

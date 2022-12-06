@@ -13,8 +13,7 @@ using Assets.Scripts_FruitGame;
 using Random1 = System.Random;
 using Random2 = UnityEngine.Random;
 
-
-public class ChangePortalColour_phase1 : MonoBehaviour
+public class ChangePortalColour_phase1Tutorial : MonoBehaviour
 {
     [SerializeField] Sprite[] fruitImages;
     [SerializeField] private Image fruitImage;
@@ -36,7 +35,6 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     static public int rightPortal2;
     static public int rightPortal3;
     
-    public static bool phase1 = false; 
     public static bool phase1Tut = false;
     
     
@@ -54,13 +52,14 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
     private void PortalSpawnerOnPortalSpawn(int obj)
     {
-        if (phase1)
+        if (phase1Tut)
         {
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
+            selectTriangle();
             //print("phase bool: "+ phase0);
         }
         
@@ -80,28 +79,20 @@ public class ChangePortalColour_phase1 : MonoBehaviour
             selectTriangle();   
             phase1Tut = true;
         }
-        else if (state == MiniGameStateFruit.OneScene)
+        
+        else
         {
-            phase1Tut = false;
             triangle1.enabled = false;
             triangle2.enabled = false;
             triangle3.enabled = false;
-            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
-            selectRandomImage();
-            CustomPalette();
-            selectFruitColor();
-            selectRandomColour();
-            phase1 = true;
-        }
-        else
-        {
-            phase1 = false;
             phase1Tut = false;
             rightPortal1 = 0;
             rightPortal2 = 0;
             rightPortal3 = 0;
+        
         }
     }
+    
     void selectTriangle()
     {
         triangle1.enabled = true;
@@ -264,5 +255,3 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     //List<Color> PortalColour = tempColourList;
 
 }
-
-
