@@ -137,13 +137,13 @@ public class phase3Manager : MonoBehaviour
         }
         else
         {
-            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End);
             Destroy(shootingStar);
             ROTcases = 1000;
             SPTcases = 1000;
             phaseThree = false;
 			Debug.Log(laserButtons.errorDirectionG);
             Destroy(this);
+            MiniGameManager.instance.UpdateMiniGameState(MiniGameState.End);
         }
     }
 }

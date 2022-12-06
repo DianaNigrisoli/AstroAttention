@@ -9,10 +9,11 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager instance = null;
     public MiniGameState state;
-    public GameObject phase0Manager;
-    public GameObject phase1Manager;
-    public GameObject phase2Manager;
-    public GameObject phase3Manager;
+    [SerializeField] GameObject phase0Manager;
+    [SerializeField] GameObject phase1Manager;
+    [SerializeField] GameObject phase2Manager;
+    [SerializeField] GameObject phase3Manager;
+    //[SerializeField] GameObject endPhaseManager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -38,7 +39,6 @@ public class MiniGameManager : MonoBehaviour
             case MiniGameState.WaitForNext:
                 break;
             case MiniGameState.End:
-                SceneManager.LoadScene("Menu");
                 break;
             case MiniGameState.Zero:
                 Instantiate(phase0Manager);
