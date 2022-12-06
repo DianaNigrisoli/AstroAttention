@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.WaitForNext)
+        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro)
         {
             stop = true;
         }

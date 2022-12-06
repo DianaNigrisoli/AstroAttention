@@ -19,6 +19,7 @@ namespace Assets.Scripts_FruitGame
         [SerializeField] private RawImage txtBox;
         //[SerializeField] private RawImage fruitTable;
         [SerializeField] private GameObject tutorialRobotPrefab;
+        [SerializeField] private GameObject playerSpaceship;
         private GameObject tutorialRobot;
         
         List<Boolean> waitForUserInput = new List<bool>();
@@ -44,7 +45,7 @@ namespace Assets.Scripts_FruitGame
         private String currentPhaseIntroRobotText;
         private String displayedIntroRobotText;
         private String currentPhaseScreenText;
-        private String displayedIntroText;
+        //private String displayedIntroText;
         private Boolean showTargetingObjects;
         
         
@@ -65,12 +66,13 @@ namespace Assets.Scripts_FruitGame
             if (state == MiniGameStateFruit.Intro)
             {
                 //Un-comment these two lines and comment the others if you don't want to show the tutorial
-                txtBox.enabled = false;
-                MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
-                // Debug.Log("Starting Tutorial");
-                // PrepareTutorialData();
-                // introPhase = IntroPhase.Zero;
-                // showingTutorial = true;
+                // txtBox.enabled = false;
+                // MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
+                Debug.Log("Starting Tutorial");
+                PrepareTutorialData();
+                introPhase = IntroPhase.Zero;
+                showingTutorial = true;
+                playerSpaceship.SetActive(false);
                 
             }
         }
@@ -86,11 +88,11 @@ namespace Assets.Scripts_FruitGame
                         HandlePhaseZero();
                         break;
                     case IntroPhase.One:
-                        //HandlePhaseOne();
+                        HandlePhaseOne();
                         break;
-                    // case IntroPhase.Two:
-                    //     //HandlePhaseTwo();
-                    //     break;
+                    case IntroPhase.Two:
+                        HandlePhaseTwo();
+                        break;
                     // case IntroPhase.Three:
                     //     //HandlePhaseThree();
                     //     break;
@@ -104,9 +106,10 @@ namespace Assets.Scripts_FruitGame
                 
                 
             }
-
-            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
-            Destroy(this);
+            
+           
+            
+            //Destroy(this);
         }
 
         
@@ -129,12 +132,27 @@ namespace Assets.Scripts_FruitGame
 
         void HandlePhaseOne ()
         {
-            
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+            }
+            else
+            {
+                WaitForInputOrTimer(nextPhase: IntroPhase.Two);
+            }
+           
         }
 
         void HandlePhaseTwo()
         {
-            
+            txtBox.enabled = false;
+            showingTutorial = false;
+            playerSpaceship.SetActive(true);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
         }
 
         void HandlePhaseThree()
@@ -213,15 +231,15 @@ namespace Assets.Scripts_FruitGame
             int index = IDs.FindIndex(a => a.Equals((int)introPhase));
 
             currentPhaseIntroRobotText = tutorialRobotTexts[index];
-            //currentPhaseScreenText = tutorialScreenTexts[index];
             waitTimer = waitSeconds[index];
 
             introText.SetText("");
-            //screenText.SetText("");
-            //screenTargeting.enabled = false;
+         
             tutorialRobot = Instantiate(tutorialRobotPrefab, GameObject.Find("All").transform);
+            tutorialRobot.transform.position = new Vector3(1.51f, -2.18f, 1.25f);
             tutorialRobot.transform.Rotate(-3.611f, -154.285f, 0);
-            tutorialRobot.transform.position = new Vector3(0.115f, 1.362f, 0.937f);
+            tutorialRobot.transform.localScale = new Vector3(5f, 5f, 5f);
+            //tutorialRobot.SetActive(true);
 
             AudioSource[] tutorialRobotVoices;
             tutorialRobotVoices = tutorialRobot.GetComponents<AudioSource>();
@@ -248,10 +266,8 @@ namespace Assets.Scripts_FruitGame
             {
                 if (displayedIntroRobotText.Length < currentPhaseIntroRobotText.Length){
                     displayedIntroRobotText += currentPhaseIntroRobotText[displayedIntroRobotText.Length];
-                }else if (displayedIntroText.Length < currentPhaseScreenText.Length)
-                {
-                    displayedIntroText += currentPhaseScreenText[displayedIntroText.Length];
                 }
+                
                 else
                 {
                     writing = false;

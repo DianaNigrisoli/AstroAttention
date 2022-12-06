@@ -833,6 +833,7 @@ MonoBehaviour:
   introText: {fileID: 566852481}
   txtBox: {fileID: 929484348}
   tutorialRobotPrefab: {fileID: 1431970472270652, guid: d1ce76d9880d2224daf799edbd26b1a0, type: 3}
+  playerSpaceship: {fileID: 1962802214}
 --- !u!4 &694908796
 Transform:
   m_ObjectHideFlags: 0
