@@ -112,19 +112,19 @@ public class ChangePortalColour_phase0 : MonoBehaviour
     {
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
                 (LoadFruits.myFruitList.fruit[1].G) / 255,
-                (LoadFruits.myFruitList.fruit[1].B) / 255, 0.5f));
+                (LoadFruits.myFruitList.fruit[1].B) / 255, 0.9f));
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[0].R) / 255,
                 (LoadFruits.myFruitList.fruit[0].G) / 255,
-                (LoadFruits.myFruitList.fruit[0].B) / 255, 0.5f));
+                (LoadFruits.myFruitList.fruit[0].B) / 255, 0.9f));
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[3].R) / 255,
             (LoadFruits.myFruitList.fruit[3].G) / 255,
-            (LoadFruits.myFruitList.fruit[3].B) / 255, 0.5f));
+            (LoadFruits.myFruitList.fruit[3].B) / 255, 0.9f));
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[5].R) / 255,
             (LoadFruits.myFruitList.fruit[5].G) / 255,
-            (LoadFruits.myFruitList.fruit[5].B) / 255, 0.5f));
+            (LoadFruits.myFruitList.fruit[5].B) / 255, 0.9f));
         ListColour_portal.Add(new Color((LoadFruits.myFruitList.fruit[7].R)/255, 
             (LoadFruits.myFruitList.fruit[7].G)/255,
-            (LoadFruits.myFruitList.fruit[7].B)/255, 0.5f));
+            (LoadFruits.myFruitList.fruit[7].B)/255, 0.9f));
         
         ListColour_fruit.Add(new Color((LoadFruits.myFruitList.fruit[1].R) / 255,
             (LoadFruits.myFruitList.fruit[1].G) / 255,

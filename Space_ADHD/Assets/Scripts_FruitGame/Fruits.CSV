@@ -1,9 +1,9 @@
 Fruit, Color, R, G, B, A, hexadecimal, ID
 banana, giallo, 248, 255, 0, 255, F8FF00,1
-fragola, rosso, 255, 38, 0, 255, FF2600,0
+fragola, rosso, 198, 20, 20, 255, FF2600,0
 limone, giallo, 248, 255, 0, 255, F8FF00,1
 pera, verde, 105, 217, 38, 255, 69D926,2
-ciliegia, rosso, 255, 38, 0, 255, FF2600,0
+ciliegia, rosso, 198, 20, 20, 255, FF2600,0
 uva, viola, 112, 32, 154, 255, 70209A,3
 broccolo, verde, 105, 217, 38, 255, 69D926,2
 arancia, arancione, 239, 110, 0, 255, EF6E00, 4
