@@ -172,7 +172,7 @@ public class ChangePortalColour_phase2Tutorial : MonoBehaviour
         /// and also the visible color must be present in another portal
         
         semanticColor = ListColour_portal[currentFruit.ID]; //semantic color of fruit
-        Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
+        Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.1f)); //visible color on fruit
         List<Color> tempColourList = ListColour_portal;
         // Removed first 2 colors
         tempColourList.RemoveAll(t => t == semanticColor || t == currentColor); // now 3 color

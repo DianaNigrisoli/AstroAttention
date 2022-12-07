@@ -4,11 +4,17 @@ using Assets.Scripts_A_General;
 using Assets.Scripts_FruitGame;
 using UnityEngine;
 using TMPro;
+using System;
+using System.IO;
+using Assets.ScriptsDirectionGame;
+using UnityEngine.UI;
+using Random = System.Random;
 
 public class phase0TutorialManager : MonoBehaviour
 {
     private int NumScore = 2;
     public TextMeshProUGUI textObject;
+    
     void Start()
     {
         textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();

@@ -17,7 +17,7 @@ public class MiniGameManagerFruit : MonoBehaviour
     public GameObject phase1TutorialManager;
     public GameObject phase2TutorialManager;
     public GameObject phase3TutorialManager;
-    
+
     public static event Action<MiniGameStateFruit> OnMiniGameStateChanged;
     
     private void Awake()
@@ -51,6 +51,8 @@ public class MiniGameManagerFruit : MonoBehaviour
                 break;
             case MiniGameStateFruit.End:
                 SceneManager.LoadScene("Menu");
+                break;
+            case MiniGameStateFruit.Instructions:
                 break;
             case MiniGameStateFruit.ZeroTutorial:
                 Instantiate(phase0TutorialManager);
@@ -87,3 +89,5 @@ public class MiniGameManagerFruit : MonoBehaviour
 
     }
 }
+
+

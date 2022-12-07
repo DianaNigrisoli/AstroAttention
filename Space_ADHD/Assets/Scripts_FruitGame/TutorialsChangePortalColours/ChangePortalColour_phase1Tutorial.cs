@@ -177,7 +177,7 @@ public class ChangePortalColour_phase1Tutorial : MonoBehaviour
            // print("sem:" + currentFruit.ID);
             
             semanticColor = ListColour_portal[currentFruit.ID];
-            Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
+            Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.1f)); //visible color on fruit
             List<Color> tempColourList = ListColour_portal;
             
             // first color removed: visible color 

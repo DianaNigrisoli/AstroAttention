@@ -27,7 +27,7 @@ public class FruitImageCanvasManager : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro)
+        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions)
         {
             FruitCanvas.SetActive(false);
             IndicatorCanvas.SetActive(false);

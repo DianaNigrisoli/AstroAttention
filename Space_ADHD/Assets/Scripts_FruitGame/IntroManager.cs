@@ -168,7 +168,7 @@ namespace Assets.Scripts_FruitGame
             txtBox.enabled = false;
             showingTutorial = false;
             playerSpaceship.SetActive(true);
-            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
         }
 
         void HandlePhaseFour()

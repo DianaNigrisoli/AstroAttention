@@ -5,6 +5,7 @@ namespace Assets.Scripts_FruitGame
         Intro,
         WaitForNext,
         End,
+        Instructions,
         ZeroTutorial,
         ZeroScene,
         OneTutorial,
