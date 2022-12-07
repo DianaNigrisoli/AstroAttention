@@ -1,0 +1,3 @@
+﻿introPhase;tutorialRobotText;tutorialScreenText;waitForUserInput;waitSeconds;tutorialTargetingObject;positionX;positionY;positionZ;rotationX;rotationY;rotationZ
+0;New phase!;;;5;;;;;;;
+1;Follow the instructions. The right portal is signed with a triangle;;;10;;;;;;;
