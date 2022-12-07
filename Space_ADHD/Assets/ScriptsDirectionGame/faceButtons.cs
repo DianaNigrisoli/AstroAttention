@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.ScriptsDirectionGame;
 
 public class faceButtons : MonoBehaviour
 {
@@ -29,6 +30,29 @@ public class faceButtons : MonoBehaviour
         image3.color = new Color(image3.color.r, image3.color.g, image3.color.b, 1f);
         image1.color = new Color(image1.color.r, image1.color.g, image1.color.b, 0.5f);
         image2.color = new Color(image2.color.r, image2.color.g, image2.color.b, 0.5f);
+        switch (this.name)
+        {
+            case "Q1Green":
+                submitButton.susValue = 3;
+                break;
+            case "Q2Green":
+                submitButton.evalValue = 3;
+                break;
+            case "Q1Yellow":
+                submitButton.susValue = 2;
+                break;
+            case "Q2Yellow":
+                submitButton.evalValue = 2;
+                break;
+            case "Q1Red":
+                submitButton.susValue = 1;
+                break;
+            case "Q2Red":
+                submitButton.evalValue = 1;
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
