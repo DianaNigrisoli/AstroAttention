@@ -15,9 +15,13 @@ namespace Assets.Scripts_FruitGame
     public class IntroManager : MonoBehaviour
     {
         [SerializeField] private GameObject tutorialCanvas;
+        [SerializeField] private GameObject tableCanvas;
         [SerializeField] private TextMeshProUGUI introText;
         [SerializeField] private RawImage txtBox;
-        //[SerializeField] private RawImage fruitTable;
+        [SerializeField] private Image fruitImage;
+        [SerializeField] Sprite[] fruitImages;
+        [SerializeField] private Image fruitTable;
+        [SerializeField] Sprite table;
         [SerializeField] private GameObject tutorialRobotPrefab;
         [SerializeField] private GameObject playerSpaceship;
         private GameObject tutorialRobot;
@@ -39,6 +43,7 @@ namespace Assets.Scripts_FruitGame
         
         
         private float waitTimer;
+        private float waitTimer2=20f;
         
         private Boolean writing;
         private float writerTimer;
@@ -47,6 +52,7 @@ namespace Assets.Scripts_FruitGame
         private String currentPhaseScreenText;
         //private String displayedIntroText;
         private Boolean showTargetingObjects;
+        private Boolean showTable = false;
         
         
         public static event Action<IntroPhase> OnIntroPhaseChanged;
@@ -73,6 +79,7 @@ namespace Assets.Scripts_FruitGame
                 introPhase = IntroPhase.Zero;
                 showingTutorial = true;
                 playerSpaceship.SetActive(false);
+                tableCanvas.SetActive(false);
                 
             }
         }
@@ -96,9 +103,9 @@ namespace Assets.Scripts_FruitGame
                     case IntroPhase.Three:
                         HandlePhaseThree();
                         break;
-                    // case IntroPhase.Four:
-                    //     //HandlePhaseFour();
-                    //     break;
+                    case IntroPhase.Four:
+                        HandlePhaseFour();
+                        break;
                     
                     //Da continuare fino a phase 6 (per ora) 
                     
@@ -165,15 +172,35 @@ namespace Assets.Scripts_FruitGame
 
         void HandlePhaseThree()
         {
-            txtBox.enabled = false;
-            showingTutorial = false;
-            playerSpaceship.SetActive(true);
-            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
+
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+                showTable = true;
+            }
+            else if (showTable)
+            {
+                HideRobotShowTable();
+            }
+            else
+            {
+
+                DestroyandExit(IntroPhase.Four);
+            }
+            
         }
 
         void HandlePhaseFour()
         {
-            
+            txtBox.enabled = false;
+            showingTutorial = false;
+            playerSpaceship.SetActive(true);
+            tableCanvas.SetActive(false);
+            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
         }
         
         //****************************************************************************************
@@ -303,5 +330,39 @@ namespace Assets.Scripts_FruitGame
             txtBox.enabled = false;
             introText.SetText("");
         }
+        
+        
+        private void HideRobotShowTable()
+        {
+            waitTimer -= Time.deltaTime;
+            bool condition;
+            //if(introPhase == TutorialPhase.Five) condition = waitTimer < 0.0f;
+            condition = Input.GetMouseButtonDown(0) || waitTimer < 0.0f;
+            if (!condition) return;
+            tutorialRobot.SetActive(false);
+            txtBox.enabled = false;
+            introText.SetText("");
+            
+            tableCanvas.SetActive(true);
+            fruitTable.sprite = table;
+            fruitTable.GetComponent<Image>().color = Color.white;
+            
+            showTable = false;
+        }
+
+
+        private void DestroyandExit(IntroPhase nextPhase)
+        {
+            waitTimer2 -= Time.deltaTime;
+            bool condition2;
+            condition2 = Input.GetMouseButtonDown(0) || waitTimer2 < 0.0f;
+            if (!condition2) return;
+            tableCanvas.SetActive(false);
+            introPhase = nextPhase;
+            OnIntroPhaseChanged?.Invoke(introPhase);
+            Destroy(tutorialRobot);
+            phaseStarted = false;
+        }
+        
     }
 }
