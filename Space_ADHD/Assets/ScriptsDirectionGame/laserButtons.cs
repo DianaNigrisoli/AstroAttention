@@ -17,12 +17,9 @@ namespace Assets.ScriptsDirectionGame
         public static Boolean enabled;
         public static float FinalScore;
 		public static double reactionTime=5.0d;
-		public static double[] reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
 		public static float timeDG;
 		public static int errorDirectionG = 0;
-		public static double[] reactionTimeMean = new double[] {0, 0, 0, 0};
-		public static double[] reactionTimeStd = new double[] {0, 0, 0, 0};
-		public static int[] errorsDirectionG = new int[] {0, 0, 0, 0};
+		public static double[] reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
         
         void Awake()
         {
@@ -33,45 +30,12 @@ namespace Assets.ScriptsDirectionGame
         void OnDestroy()
         {
             MiniGameManager.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;
-            IntroManager.OnTutorialPhaseChanged += IntroManagerOnOnTutorialPhaseChanged;
+            IntroManager.OnTutorialPhaseChanged -= IntroManagerOnOnTutorialPhaseChanged;
         }
                 
         private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState newState)
         {
-			switch (miniGameState)
-        	{
-                case MiniGameState.Zero:
-					reactionTimeMean[0] = reactionTimeMeanStd[3];
-					reactionTimeStd[0] = reactionTimeMeanStd[4];
-					errorsDirectionG[0] = errorDirectionG;
-					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
-					errorDirectionG = 0;
-                    break;
-                case MiniGameState.One:
-					reactionTimeMean[1] = reactionTimeMeanStd[3];
-					reactionTimeStd[1] = reactionTimeMeanStd[4];
-					errorsDirectionG[1] = errorDirectionG;
-					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
-					errorDirectionG = 0;
-                    break;
-				case MiniGameState.Two:
-					reactionTimeMean[2] = reactionTimeMeanStd[3];
-					reactionTimeStd[2] = reactionTimeMeanStd[4];
-					errorsDirectionG[2] = errorDirectionG;
-					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
-					errorDirectionG = 0;
-					break;
-				case MiniGameState.Three:
-					reactionTimeMean[3] = reactionTimeMeanStd[3];
-					reactionTimeStd[3] = reactionTimeMeanStd[4];
-					errorsDirectionG[3] = errorDirectionG;
-					reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
-					errorDirectionG = 0;
-					break;
-                default:
-                    break;
-            }
-            miniGameState = newState;
+			miniGameState = newState;
         }
 
         private void IntroManagerOnOnTutorialPhaseChanged(TutorialPhase newPhase)

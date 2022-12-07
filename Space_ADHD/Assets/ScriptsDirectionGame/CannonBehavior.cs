@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using Assets.ScriptsDirectionGame;
 using Assets.Scripts_A_General;
+using System.Linq;
 
 namespace Assets.ScriptsDirectionGame
 {
@@ -16,6 +17,9 @@ namespace Assets.ScriptsDirectionGame
     	public GameObject target;
         public GameObject shootingStar;
         public static double kidScoreDirectionG = 0.0d;
+		public static double[] reactionTimeMean = new double[4];
+		public static double[] reactionTimeStd = new double[4];
+		public static int[] errorsDirectionG = new int[4];
         private MiniGameState miniGameState;
     
     	void Start()
@@ -40,6 +44,39 @@ namespace Assets.ScriptsDirectionGame
         private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState newState)
         {
             miniGameState = newState;
+			switch (miniGameState)
+        	{
+                case MiniGameState.One:
+					reactionTimeMean[0] = laserButtons.reactionTimeMeanStd[3];
+					reactionTimeStd[0] = laserButtons.reactionTimeMeanStd[4];
+					errorsDirectionG[0] = laserButtons.errorDirectionG;
+					laserButtons.reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					laserButtons.errorDirectionG = 0;
+					break;
+                case MiniGameState.Two:
+					reactionTimeMean[1] = laserButtons.reactionTimeMeanStd[3];
+					reactionTimeStd[1] = laserButtons.reactionTimeMeanStd[4];
+					errorsDirectionG[1] = laserButtons.errorDirectionG;
+					laserButtons.reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					laserButtons.errorDirectionG = 0;
+					break;
+				case MiniGameState.Three:
+					reactionTimeMean[2] = laserButtons.reactionTimeMeanStd[3];
+					reactionTimeStd[2] = laserButtons.reactionTimeMeanStd[4];
+					errorsDirectionG[2] = laserButtons.errorDirectionG;
+					laserButtons.reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					laserButtons.errorDirectionG = 0;
+                    break;
+				case MiniGameState.End:
+					reactionTimeMean[3] = laserButtons.reactionTimeMeanStd[3];
+					reactionTimeStd[3] = laserButtons.reactionTimeMeanStd[4];
+					errorsDirectionG[3] = laserButtons.errorDirectionG;
+					laserButtons.reactionTimeMeanStd = new double[] {0, 0, 1, 0, 0};
+					laserButtons.errorDirectionG = 0;
+                    break;
+                default:
+                    break;
+            }
         }
             
     	// Update is called once per frame

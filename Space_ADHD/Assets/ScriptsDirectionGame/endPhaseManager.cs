@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts_A_General;
 using Assets.ScriptsDirectionGame;
-//namespace Assets.Scripts_A_General
-//{
+
     public class endPhaseManager : MonoBehaviour
     {
 		[SerializeField] GameObject endCanvas;

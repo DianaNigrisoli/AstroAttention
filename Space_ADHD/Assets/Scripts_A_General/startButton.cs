@@ -36,7 +36,7 @@ namespace Assets.Scripts_A_General
                 GameManager.instance.UpdateGameState(GameState.Map);
                 if (!File.Exists(csvPath)){
                     var csv = new StringBuilder();
-                    var first = "I Game";
+                    var first = "ID Game";
                     var second = "Game Type";
                     var third = "Game Phase";
                     var fourth = "Player";
