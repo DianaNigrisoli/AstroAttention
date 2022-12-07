@@ -48,6 +48,13 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
         MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         Portals.OnPortalSpawn += PortalSpawnerOnPortalSpawn;
     }
+    
+    IEnumerator waiter()
+    {
+        yield return new WaitForSecondsRealtime(0.02f);
+        selectTriangle();   
+        phase0Tut = true;
+    }
 
     void OnDestroy()
     {
@@ -80,8 +87,8 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            selectTriangle();   
-            phase0Tut = true;
+            StartCoroutine(waiter());
+            
         }
        
         else

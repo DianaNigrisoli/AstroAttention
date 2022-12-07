@@ -14,7 +14,7 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 5;
+        private int NumSpawn = 10;
         
         public TextMeshProUGUI textObject; 
 
