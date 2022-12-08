@@ -22,16 +22,4 @@ public class UserSelectionManager : MonoBehaviour
     {
         userSelectionPanel.SetActive(state == GameState.UserSelection);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -4,6 +4,7 @@ namespace Assets.Scripts_A_General
     {
         UserSelection,
         Map,
+        DoctorInterface,
         Settings,
         FruitGame,
         DirectionGame

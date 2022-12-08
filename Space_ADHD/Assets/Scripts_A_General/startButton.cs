@@ -30,26 +30,13 @@ namespace Assets.Scripts_A_General
         {
             if (validUserIds.IsMatch(userId.text))
             {
+                BuildCsv();
                 GameManager.instance.CurrentUserId = userId.text;
                 Debug.Log("Selected user ID: " + GameManager.instance.CurrentUserId);
-                GameManager.instance.UpdateGameState(GameState.Map);
-                if (!File.Exists(csvPath)){
-                    var csv = new StringBuilder();
-                    var first = "ID Game";
-                    var second = "Game Type";
-                    var third = "Game Phase";
-                    var fourth = "Player";
-                    var fifth = "Reaction Time Mean";
-                    var sixth = "Reaction Time Std";
-                    var seventh = "Errors Number";
-                    var eighth = "Kid Score";
-                    var ninth = "Date";
-                    var tenth = "SUS";
-                    var eleventh = "Kid Autoevaluation";
-                    var newLine = $"{first},{second},{third},{fourth},{fifth},{sixth},{seventh},{eighth},{ninth},{tenth},{eleventh}";
-                    csv.AppendLine(newLine);
-                    File.WriteAllText(csvPath, csv.ToString());
-                }
+                
+                GameManager.instance.UpdateGameState(GameManager.instance.CurrentUserId == "Doctor"
+                    ? GameState.DoctorInterface
+                    : GameState.Map);
             }
             else
             {
@@ -58,35 +45,26 @@ namespace Assets.Scripts_A_General
                 placeholderText.color = Color.red;
                 placeholderText.text = "Only letters, numbers, and '_'";
             }
-
-            Sendmail();
         }
 
-        private void Sendmail()
-        {      
-            var message = new EmailMessage()
-            {
-                From = "group09manager@gmail.com",
-                To = "raffo24999@gmail.com",
-                MessageText = "test",
-                Subject = "test at " + DateTime.Now
-            };
-
-            try
-            {
-                using (var client = new SmtpClient())
-                {
-                    client.Connect("smtp.gmail.com", 465, true);
-                    client.Authenticate(message.From, "qkaxevtbriorwtut");
-                    client.Send(message.GetMessage());
-                    client.Disconnect(true);
-                }
-            
-            
-            }
-            catch (Exception ex)
-            {
-                Debug.Log(ex.Message);
+        private void BuildCsv()
+        {
+            if (!File.Exists(csvPath)){
+                var csv = new StringBuilder();
+                var first = "ID Game";
+                var second = "Game Type";
+                var third = "Game Phase";
+                var fourth = "Player";
+                var fifth = "Reaction Time Mean";
+                var sixth = "Reaction Time Std";
+                var seventh = "Errors Number";
+                var eighth = "Kid Score";
+                var ninth = "Date";
+                var tenth = "SUS";
+                var eleventh = "Kid Autoevaluation";
+                var newLine = $"{first},{second},{third},{fourth},{fifth},{sixth},{seventh},{eighth},{ninth},{tenth},{eleventh}";
+                csv.AppendLine(newLine);
+                File.WriteAllText(csvPath, csv.ToString());
             }
         }
     }

@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.DirectionGame:
                 break;
+            case GameState.DoctorInterface:
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
