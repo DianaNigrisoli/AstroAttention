@@ -6,6 +6,7 @@ using Assets.Scripts_FruitGame;
 using Assets.ScriptsDirectionGame;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -16,15 +17,20 @@ namespace Assets.Scripts_FruitGame
     {
         [SerializeField] private GameObject tutorialCanvas;
         [SerializeField] private GameObject tableCanvas;
+        [SerializeField] private GameObject fruitCanvas;
         [SerializeField] private TextMeshProUGUI introText;
         [SerializeField] private RawImage txtBox;
         [SerializeField] private Image fruitImage;
-        [SerializeField] Sprite[] fruitImages;
+        [SerializeField] private Sprite banana;
         [SerializeField] private Image fruitTable;
-        [SerializeField] Sprite table;
+        [SerializeField] private Sprite table;
         [SerializeField] private GameObject tutorialRobotPrefab;
         [SerializeField] private GameObject playerSpaceship;
+        //[SerializeField] private GameObject tutorialRingSectorsPrefab;
+        [FormerlySerializedAs("tutorialRingCanvas")] [SerializeField] private GameObject tutorialRing;
+        
         private GameObject tutorialRobot;
+        private GameObject ring;
         
         List<Boolean> waitForUserInput = new List<bool>();
         private Boolean phaseStarted;
@@ -37,22 +43,27 @@ namespace Assets.Scripts_FruitGame
         List<string> tutorialRobotTexts = new List<string>();
         //List<string> tutorialScreenTexts = new List<string>();
         List<float> waitSeconds = new List<float>();
+        
+        //***NON serve! Cancellare 
         List<string> tutorialTargetingObject = new List<string>();
         List<MyVector3> targetingObjectPositions = new List<MyVector3>();
         List<MyVector3> targetingObjectRotations = new List<MyVector3>();
-        
+        private Boolean showTargetingObjects;
+        //***
         
         private float waitTimer;
-        private float waitTimer2=20f;
+        private float waitTimer2=20f; //timer for showing the fruit image/table.
+        
+        private const float RotationZ = 30.0f;
         
         private Boolean writing;
         private float writerTimer;
         private String currentPhaseIntroRobotText;
         private String displayedIntroRobotText;
         private String currentPhaseScreenText;
-        //private String displayedIntroText;
-        private Boolean showTargetingObjects;
-        private Boolean showTable = false;
+        private Boolean showImg = false;
+        private Boolean showRing = false;
+        
         
         
         public static event Action<IntroPhase> OnIntroPhaseChanged;
@@ -80,7 +91,8 @@ namespace Assets.Scripts_FruitGame
                 showingTutorial = true;
                 playerSpaceship.SetActive(false);
                 tableCanvas.SetActive(false);
-                
+                fruitCanvas.SetActive(false);
+
             }
         }
 
@@ -146,10 +158,17 @@ namespace Assets.Scripts_FruitGame
             else if(writing)
             {
                 ShowTutorialRobotAndScreenText();
+                showImg = true;
+            }
+            else if (showImg)
+            {
+                ShowTableImage(fruitCanvas, fruitImage, banana);
+                showRing = false;
             }
             else
             {
-                WaitForInputOrTimer(nextPhase: IntroPhase.Two);
+                MoveRing();
+                DestroyandExit(nextPhase:IntroPhase.Two, canvas: fruitCanvas);
             }
            
         }
@@ -180,16 +199,15 @@ namespace Assets.Scripts_FruitGame
             else if(writing)
             {
                 ShowTutorialRobotAndScreenText();
-                showTable = true;
+                showImg = true;
             }
-            else if (showTable)
+            else if (showImg)
             {
-                HideRobotShowTable();
+                ShowTableImage(tableCanvas, fruitTable, table);
             }
             else
             {
-
-                DestroyandExit(IntroPhase.Four);
+                DestroyandExit(nextPhase: IntroPhase.Four, canvas: tableCanvas);
             }
             
         }
@@ -332,37 +350,60 @@ namespace Assets.Scripts_FruitGame
         }
         
         
-        private void HideRobotShowTable()
+        private void ShowTableImage(GameObject canvas, Image img, Sprite sprite_img)
         {
             waitTimer -= Time.deltaTime;
             bool condition;
-            //if(introPhase == TutorialPhase.Five) condition = waitTimer < 0.0f;
             condition = Input.GetMouseButtonDown(0) || waitTimer < 0.0f;
             if (!condition) return;
             tutorialRobot.SetActive(false);
             txtBox.enabled = false;
             introText.SetText("");
             
-            tableCanvas.SetActive(true);
-            fruitTable.sprite = table;
-            fruitTable.GetComponent<Image>().color = Color.white;
-            
-            showTable = false;
+            canvas.SetActive(true);
+            img.sprite = sprite_img;
+            img.GetComponent<Image>().color = Color.white;
+
+            if (introPhase == IntroPhase.One)
+            {
+                // ring = Instantiate(tutorialRingSectorsPrefab, new Vector3(-1.04f, 3.133f, 6.709461f),
+                //     Quaternion.identity, GameObject.Find("All").transform);
+                tutorialRing.SetActive(true);
+            }
+
+            showImg = false;
+           
         }
 
 
-        private void DestroyandExit(IntroPhase nextPhase)
+        private void DestroyandExit(IntroPhase nextPhase, GameObject canvas)
         {
             waitTimer2 -= Time.deltaTime;
             bool condition2;
             condition2 = Input.GetMouseButtonDown(0) || waitTimer2 < 0.0f;
             if (!condition2) return;
-            tableCanvas.SetActive(false);
+
+            canvas.SetActive(false);
+            
+            // if (nextPhase==IntroPhase.Two) 
+            // {ring.SetActive(false);}
+             // if (introPhase == IntroPhase.One)
+             // {
+             //     tutorialRing.SetActive(false);
+             // }
+             
             introPhase = nextPhase;
             OnIntroPhaseChanged?.Invoke(introPhase);
             Destroy(tutorialRobot);
             phaseStarted = false;
+            
         }
-        
+
+        private void MoveRing()
+        {
+            tutorialRing.transform.Rotate(0, 0, RotationZ*Time.deltaTime);
+            tutorialRing.transform.position = tutorialRing.transform.position + 
+                                                  new Vector3(0.0f, Mathf.Sin(Time.time*3f)/250f, 0.0f);
+        }
     }
 }
