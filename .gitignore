@@ -16,7 +16,7 @@ Space_ADHD/[Aa]ssets/Resources/stats.csv.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
-
+Space_ADHD/Assets/Resources/stats.csv.meta
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
