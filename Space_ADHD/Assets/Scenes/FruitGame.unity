@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -943,6 +943,7 @@ MonoBehaviour:
   tutorialRobotPrefab: {fileID: 1431970472270652, guid: d1ce76d9880d2224daf799edbd26b1a0, type: 3}
   playerSpaceship: {fileID: 1962802214}
   tutorialRing: {fileID: 2045679385}
+  PortalsIntro: {fileID: 1839726114345586930, guid: 475895dda6a901e4aacf627524a03fcc, type: 3}
 --- !u!4 &694908796
 Transform:
   m_ObjectHideFlags: 0

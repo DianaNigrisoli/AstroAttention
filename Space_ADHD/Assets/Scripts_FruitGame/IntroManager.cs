@@ -26,11 +26,12 @@ namespace Assets.Scripts_FruitGame
         [SerializeField] private Sprite table;
         [SerializeField] private GameObject tutorialRobotPrefab;
         [SerializeField] private GameObject playerSpaceship;
-        //[SerializeField] private GameObject tutorialRingSectorsPrefab;
-        [FormerlySerializedAs("tutorialRingCanvas")] [SerializeField] private GameObject tutorialRing;
+        [SerializeField] private GameObject tutorialRing;
+        [SerializeField] private GameObject PortalsIntro;
         
         private GameObject tutorialRobot;
         private GameObject ring;
+        private GameObject portals;
         
         List<Boolean> waitForUserInput = new List<bool>();
         private Boolean phaseStarted;
@@ -52,7 +53,7 @@ namespace Assets.Scripts_FruitGame
         //***
         
         private float waitTimer;
-        private float waitTimer2=20f; //timer for showing the fruit image/table.
+        private float waitTimer2; //timer for showing the fruit image/table.
         
         private const float RotationZ = 30.0f;
         
@@ -119,6 +120,12 @@ namespace Assets.Scripts_FruitGame
                     case IntroPhase.Four:
                         HandlePhaseFour();
                         break;
+                    case IntroPhase.Five:
+                        HandlePhaseFive();
+                        break;
+                    case IntroPhase.Six:
+                        HandlePhaseSix();
+                        break;
                     
                     //Da continuare fino a phase 6 (per ora) 
                     
@@ -165,6 +172,7 @@ namespace Assets.Scripts_FruitGame
             {
                 ShowTableImage(fruitCanvas, fruitImage, banana);
                 showRing = false;
+                waitTimer2 = 10.0f;
             }
             else
             {
@@ -205,6 +213,7 @@ namespace Assets.Scripts_FruitGame
             else if (showImg)
             {
                 ShowTableImage(tableCanvas, fruitTable, table);
+                waitTimer2 = 20.0f;
             }
             else
             {
@@ -212,15 +221,74 @@ namespace Assets.Scripts_FruitGame
             }
             
         }
-
+        
         void HandlePhaseFour()
         {
-            txtBox.enabled = false;
-            showingTutorial = false;
-            playerSpaceship.SetActive(true);
-            tableCanvas.SetActive(false);
-            MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+                showImg = true;
+                waitTimer2 = 10.0f;
+            }
+            else if (showImg)
+            {
+                ShowPortals();
+            }
+            else
+            {
+                WaitForInputOrTimer(nextPhase: IntroPhase.Five);
+            }
         }
+        
+        void HandlePhaseFive()
+        {
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+            }
+            else
+            {
+                WaitForInputOrTimer(nextPhase: IntroPhase.Six);
+            }
+        }
+        
+        void HandlePhaseSix()
+        {
+            if (!phaseStarted)
+            {
+                PrepareRobotAndTextAndVariables();
+            }
+            else if(writing)
+            {
+                ShowTutorialRobotAndScreenText();
+            }
+            else
+            {
+                waitTimer -= Time.deltaTime;
+                bool condition;
+                //if(introPhase == TutorialPhase.Five) condition = waitTimer < 0.0f;
+                condition = Input.GetMouseButtonDown(0) || waitTimer < 0.0f;
+                if (!condition) return;
+                Destroy(tutorialRobot);
+                phaseStarted = false;
+                txtBox.enabled = false;
+                introText.SetText("");
+                txtBox.enabled = false;
+                showingTutorial = false;
+                playerSpaceship.SetActive(true);
+                tableCanvas.SetActive(false);
+                MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
+            }
+        }
+        
         
         //****************************************************************************************
         private void PrepareTutorialData()
@@ -345,6 +413,7 @@ namespace Assets.Scripts_FruitGame
             introPhase = nextPhase;
             OnIntroPhaseChanged?.Invoke(introPhase);
             Destroy(tutorialRobot);
+            Destroy(portals);
             phaseStarted = false;
             txtBox.enabled = false;
             introText.SetText("");
@@ -375,6 +444,39 @@ namespace Assets.Scripts_FruitGame
             showImg = false;
            
         }
+        
+        private void ShowPortals()
+        {
+            waitTimer2 -= Time.deltaTime;
+            bool condition;
+            condition = Input.GetMouseButtonDown(0) || waitTimer2 < 0.0f;
+            if (!condition) return;
+            txtBox.enabled = false;
+            introText.SetText("");
+            
+            AudioSource[] tutorialRobotVoices;
+            tutorialRobotVoices = tutorialRobot.GetComponents<AudioSource>();
+            Random r = new Random();
+            int rInt = r.Next(0, tutorialRobotVoices.Length);
+            tutorialRobotVoices[rInt].Play();
+            
+            // tutorialRobot.transform.position = Vector3.MoveTowards(tutorialRobot.transform.position, new Vector3(4f, -0.68f, 2.7f),
+            //                 Time.deltaTime * 0.5f);
+            
+            portals = Instantiate(PortalsIntro, GameObject.Find("All").transform);
+            GameObject  portal1 = portals.transform.Find("Portal1").gameObject;
+            GameObject  portal2 = portals.transform.Find("Portal2").gameObject;
+            GameObject  portal3 = portals.transform.Find("Portal3").gameObject;
+            
+            portal1.GetComponent<Renderer>().material.color = new Color(248/255f,255/255f,0f, 0.9f);
+            portal2.GetComponent<Renderer>().material.color = new Color(198/255f,20/255f,2/255f,0.9f);
+            portal3.GetComponent<Renderer>().material.color = new Color(112/255f,32/255f,154/255f,0.9f);
+            
+            portals.transform.position = new Vector3(0, 2, 5);
+            
+            showImg = false;
+           
+        }
 
 
         private void DestroyandExit(IntroPhase nextPhase, GameObject canvas)
@@ -385,10 +487,8 @@ namespace Assets.Scripts_FruitGame
             if (!condition2) return;
 
             canvas.SetActive(false);
-            
-            // if (nextPhase==IntroPhase.Two) 
-            // {ring.SetActive(false);}
-             // if (introPhase == IntroPhase.One)
+
+            // if (introPhase == IntroPhase.One)
              // {
              //     tutorialRing.SetActive(false);
              // }
