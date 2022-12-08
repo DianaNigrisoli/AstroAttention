@@ -8,6 +8,7 @@ namespace Assets.Scripts_A_General
 
         void Awake()
         {
+            doctorPanel.SetActive(false);
             GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
         }
 

@@ -16,14 +16,11 @@ namespace Assets.Scripts_A_General
         [SerializeField] private TMP_InputField email;
         [SerializeField] private TextMeshProUGUI placeholderText;
         
-        private string csvPath;
     
         // Start is called before the first frame update
         void Start()
         {
             GetComponent<Button>().onClick.AddListener(TaskOnClick);
-            csvPath = Application.dataPath;
-            csvPath = csvPath + "/Resources/stats.csv";
         }
 
         private void TaskOnClick()
