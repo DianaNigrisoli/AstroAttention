@@ -1,12 +1,11 @@
+using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.IO;
-using Assets.Scripts_A_General;
-using System.Reflection;
 using System.Text;
+using MailKit.Net.Smtp;
 
 namespace Assets.Scripts_A_General
 {
@@ -58,6 +57,36 @@ namespace Assets.Scripts_A_General
                 placeholderText.fontSize = 10.8f;
                 placeholderText.color = Color.red;
                 placeholderText.text = "Only letters, numbers, and '_'";
+            }
+
+            Sendmail();
+        }
+
+        private void Sendmail()
+        {      
+            var message = new EmailMessage()
+            {
+                From = "group09manager@gmail.com",
+                To = "raffo24999@gmail.com",
+                MessageText = "test",
+                Subject = "test at " + DateTime.Now
+            };
+
+            try
+            {
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate(message.From, "qkaxevtbriorwtut");
+                    client.Send(message.GetMessage());
+                    client.Disconnect(true);
+                }
+            
+            
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.Message);
             }
         }
     }
