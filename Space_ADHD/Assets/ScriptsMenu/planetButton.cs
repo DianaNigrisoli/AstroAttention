@@ -48,6 +48,7 @@ namespace Assets.Scripts
             this.selected = false;
             childRingScale = childRing.transform.localScale;
             childRing.SetActive(false);
+            gameState = GameManager.instance.State; //work around when getting back to menu after end of a game
         }
 
         // Update is called once per frame

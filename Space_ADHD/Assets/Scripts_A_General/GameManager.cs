@@ -33,25 +33,22 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
-        
         OnGameStateChanged?.Invoke(newState);
     }
 
     void Start()
     {
-        UpdateGameState(GameState.UserSelection);
+        if(instance == this)
+            UpdateGameState(GameState.UserSelection);
     }
 
-    void Awake()
-    {
-        gameObject.tag = "GameManager";
-        GameObject[] gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
-        if (gameManagers.Length > 1)
-        {
+    void Awake(){
+        if(instance == null){
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }else if(instance != this){
             Destroy(this.gameObject);
         }
-        instance = this;
-        DontDestroyOnLoad(this);    
     }
 
     public string CurrentUserId
@@ -67,5 +64,6 @@ public class GameManager : MonoBehaviour
         }
         set => currentUserId = value;
     }
-    
+
+    public GameState State => state;
 }

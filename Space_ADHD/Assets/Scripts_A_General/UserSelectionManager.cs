@@ -10,6 +10,7 @@ public class UserSelectionManager : MonoBehaviour
 
     void Awake()
     {
+        userSelectionPanel.SetActive(false);
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 
