@@ -30,7 +30,7 @@
      showguides="true"
      inkscape:zoom="1.0677312"
      inkscape:cx="206.51264"
-     inkscape:cy="581.13875"
+     inkscape:cy="656.06397"
      inkscape:window-width="1920"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -155,5 +155,24 @@
        x="115.84381"
        y="119.02353"
        ry="0" />
+    <rect
+       style="fill:#5f5fd3;stroke-width:0.315414"
+       id="rect5944"
+       width="118.32212"
+       height="34.646812"
+       x="8.1270752"
+       y="183.2677"
+       ry="6.7591071"
+       inkscape:export-filename="inputField.png"
+       inkscape:export-xdpi="213.16901"
+       inkscape:export-ydpi="213.16901" />
+    <rect
+       style="fill:#8787de;stroke-width:0.299316"
+       id="rect5946"
+       width="115.38145"
+       height="31.995459"
+       x="9.5974121"
+       y="184.59338"
+       ry="6.2418656" />
   </g>
 </svg>
