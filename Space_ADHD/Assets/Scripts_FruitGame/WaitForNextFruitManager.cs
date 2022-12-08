@@ -8,7 +8,7 @@ namespace Assets.Scripts_FruitGame
 {
     public class WaitForNextFruitManager : MonoBehaviour
     {
-        [SerializeField] private GameObject introCanvas;
+        [SerializeField] private GameObject canvasWaitForNext;
         [SerializeField] private Image countdownCircleTimer;
         [SerializeField] private TextMeshProUGUI countdownText;
 
@@ -45,33 +45,42 @@ namespace Assets.Scripts_FruitGame
         {
             if (state == MiniGameStateFruit.WaitForNext)
             {
-                introCanvas.SetActive(true);
-                // TODO: it seems that the built in canvas scaler works fine, eventually change this code
-                // countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
-                // countdownText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, 0);
-                
-                 currentTime = startTime;
-                 countdownCircleTimer.fillAmount = 1.0f;
-                 countdownText.text = (int)currentTime + "s";
-                 updateTime = true;
-                
-                
+                if (startTime == 0)
+                {
+                    canvasWaitForNext.SetActive(false);
+                    currentTime = startTime;
+                    updateTime = true;
+                }
+                else if (startTime >= 0)
+                {
+                    canvasWaitForNext.SetActive(true);
+
+                    // TODO: it seems that the built in canvas scaler works fine, eventually change this code
+                    // countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
+                    // countdownText.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.30f, 0);
+
+                    currentTime = startTime;
+                    countdownCircleTimer.fillAmount = 1.0f;
+                    countdownText.text = (int)currentTime + "s";
+                    updateTime = true;
+                }
             }
-            else
+            else if (state != MiniGameStateFruit.WaitForNext)
             {
-                introCanvas.SetActive(false);
+                canvasWaitForNext.SetActive(false);
             }
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            introCanvas.SetActive(false);
+            canvasWaitForNext.SetActive(false);
         }
 
         // Update is called once per frame
         void Update()
         {
+            
             if (updateTime)
             {
                 currentTime -= Time.deltaTime;
@@ -80,7 +89,7 @@ namespace Assets.Scripts_FruitGame
                     // Stop the countdown timer              
                     updateTime = false;
                     currentTime = 0.0f;
-                    introCanvas.SetActive(false);
+                    canvasWaitForNext.SetActive(false);
                     updateMiniGameState();
 
                 }
@@ -90,6 +99,7 @@ namespace Assets.Scripts_FruitGame
                     currentTime / startTime, 0.0f, 1.0f);
                 countdownCircleTimer.fillAmount = normalizedValue;
             }
+        
         }
 
         void updateMiniGameState()

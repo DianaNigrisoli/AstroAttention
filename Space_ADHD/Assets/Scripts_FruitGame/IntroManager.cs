@@ -92,6 +92,7 @@ namespace Assets.Scripts_FruitGame
                 playerSpaceship.SetActive(false);
                 tableCanvas.SetActive(false);
                 fruitCanvas.SetActive(false);
+                
 
             }
         }
