@@ -18,7 +18,7 @@ public class Portals : MonoBehaviour
 
    private void OnTriggerExit(Collider other)
     {   
-        Destroy(gameObject,5f); //this will destroy the obj
+        Destroy(gameObject,0.5f); //this will destroy the obj
         portalSpawner.SpawnPortal();
         
         OnPortalSpawn?.Invoke(0); // if there is at least one subscriber invoke the function

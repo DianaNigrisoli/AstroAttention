@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         score = 0;
-        increment = 3;
-        speedForward = 10;
-        speedLateral = 5;
+        increment = 3.4f; //prima 3
+        speedForward = 20;
+        speedLateral = 7; // prima 5
         targetPos = transform.position;
         MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         answerIndicator = GameObject.Find("AnswerIndicator").GetComponent<Image>();

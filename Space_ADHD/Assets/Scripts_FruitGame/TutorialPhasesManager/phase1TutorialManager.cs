@@ -7,7 +7,7 @@ using TMPro;
 
 public class phase1TutorialManager : MonoBehaviour
 {
-    private int NumScore = 2;
+    private int NumScore = 3;
     public TextMeshProUGUI textObject;
     void Start()
     {
@@ -17,7 +17,7 @@ public class phase1TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textObject.text = "Select the visible colour";
+        textObject.text = "Select the visible colour of the fruit";
         if(PlayerMovement.score == NumScore)
         { 
             StartCoroutine(waiter());

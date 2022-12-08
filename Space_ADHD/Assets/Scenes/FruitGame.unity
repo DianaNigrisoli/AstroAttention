@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7a5ba09d7262b4aa3c4a4fcdc7b4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introCanvas: {fileID: 1213752423}
+  canvasWaitForNext: {fileID: 1213752423}
   countdownCircleTimer: {fileID: 909546612}
   countdownText: {fileID: 1832264762}
 --- !u!1 &106199579
@@ -1946,15 +1946,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 900
+      value: 698.90625
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 900
+      value: 698.90625
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 900
+      value: 698.90625
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1962,7 +1962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 490
+      value: 476
       objectReference: {fileID: 0}
     - target: {fileID: 4700037727778562, guid: 0c65783a29ff6694bbafac711d77e5b1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2659,15 +2659,15 @@ RectTransform:
   m_GameObject: {fileID: 2003607747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8549999, y: 0.8549999, z: 0.8549999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 555270325}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -899.9999}
+  m_AnchoredPosition: {x: 0, y: -923}
   m_SizeDelta: {x: 350, y: 470}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003607749

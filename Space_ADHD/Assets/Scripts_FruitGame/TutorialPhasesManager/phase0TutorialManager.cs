@@ -12,7 +12,7 @@ using Random = System.Random;
 
 public class phase0TutorialManager : MonoBehaviour
 {
-    private int NumScore = 2;
+    private int NumScore = 3;
     public TextMeshProUGUI textObject;
     
     void Start()
@@ -22,7 +22,7 @@ public class phase0TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textObject.text = "Select the real colour";
+        textObject.text = "Select the real colour of the fruit";
         if(PlayerMovement.score == NumScore)
         { 
             StartCoroutine(waiter());

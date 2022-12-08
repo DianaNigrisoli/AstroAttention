@@ -55,7 +55,7 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
         selectTriangle();   
         phase0Tut = true;
     }
-
+    
     void OnDestroy()
     {
         MiniGameManagerFruit.OnMiniGameStateChanged -= MiniGameManagerOnOnMiniGameStateChanged;

@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public GameObject player;
     
-    private Vector3 offset = new Vector3(0, 4, -11);
+    private Vector3 offset = new Vector3(0, 4, -14); //prima -11
     
     // Update is called once per frame
     void Update()

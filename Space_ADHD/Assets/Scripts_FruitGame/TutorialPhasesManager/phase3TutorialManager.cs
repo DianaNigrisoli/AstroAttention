@@ -7,7 +7,7 @@ using TMPro;
 
 public class phase3TutorialManager : MonoBehaviour
 {
-    private int NumScore = 2;
+    private int NumScore = 3;
     public TextMeshProUGUI textObject;
   
     void Start()
