@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - RingTutorial
+  - IntroFruit
   layers:
   - Default
   - TransparentFX
