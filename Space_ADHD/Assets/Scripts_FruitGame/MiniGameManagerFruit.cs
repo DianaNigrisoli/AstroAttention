@@ -50,7 +50,6 @@ public class MiniGameManagerFruit : MonoBehaviour
             case MiniGameStateFruit.WaitForNext:
                 break;
             case MiniGameStateFruit.End:
-                SceneManager.LoadScene("Menu");
                 break;
             case MiniGameStateFruit.Instructions:
                 break;

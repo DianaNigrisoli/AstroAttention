@@ -46,7 +46,8 @@ public class Portals : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions)
+        if (state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions ||
+            state == MiniGameStateFruit.End)
         {
            gameObject.SetActive(false);
         }

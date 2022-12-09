@@ -16,8 +16,18 @@ public class PlayerMovement : MonoBehaviour
     public float speedLateral;
     public Vector3 targetPos;
     public static int score;
+    public static float time1portal;
+    
+    // For the entire game
+    public static double[] reactionTimeMean = new double[4];
+    public static double[] reactionTimeStd = new double[4];
+    public static int[] errorsFruitsG = new int[4];
+    public static int kidScoreFruitG = 0; 
+    
+    // For the single phase
     public static int PortalCounter=0;
     public static List<float> ListReactionTime = new List<float>(10);
+    public static List<int> ListScore = new List<int>(10);
     private static bool stop = false; 
     
     [SerializeField] Sprite[] indicators;
@@ -42,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if ( state == MiniGameStateFruit.Intro  || state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Instructions)
+        if ( state == MiniGameStateFruit.Intro  || state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.Instructions ||
+             state == MiniGameStateFruit.End)
         {
             stop = true;
         }
@@ -89,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (door.gameObject.name != "Portals(Clone)")
             return;
+        time1portal = FunctionTimer.time;
         IndicatorCanvas.SetActive(true);
         if (targetPos.x == 0)
         {
@@ -100,10 +112,15 @@ public class PlayerMovement : MonoBehaviour
 
             {
                 score += 1;
+                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
 
             }
-            else answerIndicator.sprite = indicators[1];
+            else
+            {
+                ListScore.Add(0);
+                answerIndicator.sprite = indicators[1];
+            }
         }
     
 
@@ -116,9 +133,15 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2Tutorial.rightPortal3 == 1 || ChangePortalColour_phase3Tutorial.rightPortal3 == 1)
             {
                 score += 1;
+                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
             }
-            else answerIndicator.sprite = indicators[1];
+            else
+            {
+                ListScore.Add(0);
+                answerIndicator.sprite = indicators[1];
+            }
+                
         }
 
         if (targetPos.x < 0)
@@ -129,13 +152,24 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2Tutorial.rightPortal1 == 1 ||ChangePortalColour_phase3Tutorial.rightPortal1 == 1)
             {
                 score += 1;
+                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
             }
-            else answerIndicator.sprite = indicators[1];
+            else 
+            {
+                ListScore.Add(0);
+                answerIndicator.sprite = indicators[1];
+            }
         }
 
         ListReactionTime.Add(FunctionTimer.reactionTime);
         PortalCounter += 1;
+        string s = "";
+        foreach (var a in ListReactionTime)
+        {
+            s += a.ToString() + ", ";
+        }
+        print("reaction times: " + s);
         print("Portal-spawn number: " + PortalCounter);
         print("score: " + score);
         return;
@@ -147,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.1f);
         IndicatorCanvas.SetActive(false);
     }
+    
     private void OnTriggerExit(Collider door)
     {   
         if (door.gameObject.name != "Portals(Clone)")

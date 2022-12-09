@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FunctionTimer : MonoBehaviour
 {
-    public float time;
+    public static float time;
     public static int counter;
     public static Boolean leftLine;
     public static Boolean rightLine;

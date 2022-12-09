@@ -41,6 +41,8 @@ public class instructionsManager : MonoBehaviour
     [SerializeField] private RawImage txtBox;
     [SerializeField] private GameObject instructionsCanvas;
     List<string> istructionsList = new List<string>();
+
+    private MiniGameStateFruit previousGameState;
     
 
 
@@ -65,8 +67,8 @@ public class instructionsManager : MonoBehaviour
             tutorialPhase = TutorialPreGamePhase.Zero;
             showingTutorial = true;
             playerSpaceship.SetActive(true);
-                
         }
+        else previousGameState = state;
     }
 
     void Update()
