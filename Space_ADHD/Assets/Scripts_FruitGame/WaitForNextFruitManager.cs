@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts_FruitGame;
 
 namespace Assets.Scripts_FruitGame
 {
@@ -12,17 +13,20 @@ namespace Assets.Scripts_FruitGame
         [SerializeField] private Image countdownCircleTimer;
         [SerializeField] private TextMeshProUGUI countdownText;
 
-        private float startTime = 0.0f;
+        private float startTime = 3f;
+        //private float startTime_skip = 5f;
         private float currentTime;
         private bool updateTime;
         private MiniGameStateFruit lastPlayedPhase;
         private List<MiniGameStateFruit> stateOrder = new List<MiniGameStateFruit>();
+        private List<MiniGameStateFruit> stateOrder_skip = new List<MiniGameStateFruit>();
         private int stateIndex = 0;
         
 
         void Awake()
         {
             MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+            stateOrder.Add(MiniGameStateFruit.Instructions);
             stateOrder.Add(MiniGameStateFruit.ZeroTutorial);
             stateOrder.Add(MiniGameStateFruit.ZeroScene);
             stateOrder.Add(MiniGameStateFruit.Instructions);
@@ -34,6 +38,13 @@ namespace Assets.Scripts_FruitGame
             stateOrder.Add(MiniGameStateFruit.Instructions);
             stateOrder.Add(MiniGameStateFruit.ThreeTutorial);
             stateOrder.Add(MiniGameStateFruit.ThreeScene);
+
+            
+            stateOrder_skip.Add(MiniGameStateFruit.ZeroScene);
+            stateOrder_skip.Add(MiniGameStateFruit.OneScene);
+            stateOrder_skip.Add(MiniGameStateFruit.TwoScene);
+            stateOrder_skip.Add(MiniGameStateFruit.ThreeScene);
+            
         }
 
         void OnDestroy()
@@ -84,13 +95,23 @@ namespace Assets.Scripts_FruitGame
             if (updateTime)
             {
                 currentTime -= Time.deltaTime;
-                if (currentTime <= 0.0f)
+                if (currentTime <= 0.0f && !SkipTutorialButton.TutorialSkipped)
                 {
                     // Stop the countdown timer              
                     updateTime = false;
                     currentTime = 0.0f;
                     canvasWaitForNext.SetActive(false);
-                    updateMiniGameState();
+                    updateMiniGameState_noSkip();
+
+                }
+                
+                else if (currentTime <= 0.0f && SkipTutorialButton.TutorialSkipped)
+                {
+                    // Stop the countdown timer              
+                    updateTime = false;
+                    currentTime = 0.0f;
+                    canvasWaitForNext.SetActive(false);
+                    updateMiniGameState_yesSkip();
 
                 }
 
@@ -102,15 +123,29 @@ namespace Assets.Scripts_FruitGame
         
         }
 
-        void updateMiniGameState()
+        private void updateMiniGameState_noSkip()
         {
             MiniGameManagerFruit.instance.UpdateMiniGameState(stateOrder[stateIndex]);
-            if ((stateIndex) % 3 == 0)
-                startTime = 3f;
+            if ((stateIndex-1) % 3 == 0)
+                startTime = 4f;
             else startTime = 0f;
             stateIndex++;
         }
 
+        private void updateMiniGameState_yesSkip()
+        {
+            MiniGameManagerFruit.instance.UpdateMiniGameState(stateOrder_skip[stateIndex]);
+            startTime = 4f;
+            stateIndex++;
+            
+        }
+        
+            
+            
+    }
+        
+        
+        
         // private void updateMiniGameState()
         // {
         //     switch (lastPlayedPhase)
@@ -155,6 +190,6 @@ namespace Assets.Scripts_FruitGame
         //             throw new ArgumentOutOfRangeException(nameof(lastPlayedPhase), lastPlayedPhase, null);
         //     }
         // }
-    }
-
 }
+
+

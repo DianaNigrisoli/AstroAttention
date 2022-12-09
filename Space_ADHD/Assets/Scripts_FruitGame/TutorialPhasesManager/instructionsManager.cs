@@ -7,12 +7,13 @@ using System;
 using System.IO;
 using Assets.ScriptsDirectionGame;
 using UnityEngine.UI;
+using SkipTutorialButton = Assets.Scripts_FruitGame.SkipTutorialButton;
 
 public class instructionsManager : MonoBehaviour
 {
     List<Boolean> waitForUserInput = new List<bool>();
     private Boolean phaseStarted;
-    private bool showingTutorial;
+    public static bool showingTutorial;
     private static TutorialPreGamePhase tutorialPhase;
     
     private float waitTimer;
@@ -87,13 +88,23 @@ public class instructionsManager : MonoBehaviour
                 // case IntroPhase.Four:
                 //     //HandlePhaseFour();
                 //     break;
-
-                //Da continuare fino a phase 6 (per ora) 
+                
 
             }
-
-
+            
         }
+        
+        // else if (SkipTutorialButton.TutorialSkipped && !showingTutorial)
+        // {
+        //     switch (tutorialPhase)
+        //     {
+        //         case TutorialPreGamePhase.Zero:
+        //             HandlePhaseZero_short();
+        //             break; 
+        //         
+        //     }
+        //     
+        // }
     }
     
     void HandlePhaseZero ()
@@ -111,6 +122,23 @@ public class instructionsManager : MonoBehaviour
             WaitForInputOrTimer(nextPhase: TutorialPreGamePhase.One);
         }
             
+    }
+
+    void HandlePhaseZero_short()
+    {
+        if (!phaseStarted)
+        {
+            PrepareTextAndVariables();
+        }
+        else if (writing)
+        {
+            ShowTutorialScreenText();
+        }
+        else
+        {
+            GoToWaitForNext();
+        }
+        
     }
     
     void HandlePhaseOne ()
@@ -248,5 +276,20 @@ public class instructionsManager : MonoBehaviour
         phaseStarted = false;
         txtBox.enabled = false;
         instructionsText.SetText("");
+    }
+
+    private void GoToWaitForNext()
+    {
+        waitTimer -= Time.deltaTime;
+                        
+        bool condition;
+        condition = Input.GetMouseButtonDown(0) || waitTimer < 0.0f;
+        if (!condition) return;
+                        
+        phaseStarted = false;
+        txtBox.enabled = false;
+        instructionsText.SetText("");
+        playerSpaceship.SetActive(true);
+        MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);   
     }
 }

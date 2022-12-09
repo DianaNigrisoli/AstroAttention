@@ -36,7 +36,7 @@ namespace Assets.Scripts_FruitGame
         List<Boolean> waitForUserInput = new List<bool>();
         private Boolean phaseStarted;
         
-        private bool showingTutorial;
+        public static bool showingTutorial;
         private IntroPhase introPhase;
 
         /*Variables to manage tutorial phases*/
@@ -127,14 +127,21 @@ namespace Assets.Scripts_FruitGame
                         HandlePhaseSix();
                         break;
                     
-                    //Da continuare fino a phase 6 (per ora) 
                     
                 }
                 
                 
             }
             
-           
+            else if (SkipTutorialButton.TutorialSkipped && !showingTutorial)
+            {
+                txtBox.enabled = false;
+                introText.SetText("");
+                Destroy(tutorialRobot);
+                Destroy(portals); 
+                //fruitCanvas.SetActive(false);
+                playerSpaceship.SetActive(true);
+            }
             
             //Destroy(this);
         }
@@ -285,7 +292,7 @@ namespace Assets.Scripts_FruitGame
                 showingTutorial = false;
                 playerSpaceship.SetActive(true);
                 tableCanvas.SetActive(false);
-                MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
+                MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
             }
         }
         
@@ -487,12 +494,7 @@ namespace Assets.Scripts_FruitGame
             if (!condition2) return;
 
             canvas.SetActive(false);
-
-            // if (introPhase == IntroPhase.One)
-             // {
-             //     tutorialRing.SetActive(false);
-             // }
-             
+            
             introPhase = nextPhase;
             OnIntroPhaseChanged?.Invoke(introPhase);
             Destroy(tutorialRobot);
