@@ -15,8 +15,8 @@ namespace Assets.Scripts_A_General
         {
             var body = MessageText;
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("test", From));
-            message.To.Add(new MailboxAddress("test", To));
+            message.From.Add(new MailboxAddress("Group09Manager", From));
+            message.To.Add(new MailboxAddress("", To));
             message.Subject = Subject;
             // message.Body = new TextPart("plain") { Text = body };
 
@@ -26,7 +26,7 @@ namespace Assets.Scripts_A_General
                 {
                     Text = body
                 };
-                multipartBody.Add( textPart );
+                multipartBody.Add(textPart);
                 
                 string attachmentPath = Application.dataPath + "/Resources/stats.csv";
                 var attachmentPart = new MimePart( "file/csv" )

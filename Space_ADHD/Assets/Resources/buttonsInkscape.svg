@@ -29,8 +29,8 @@
      showgrid="false"
      showguides="true"
      inkscape:zoom="1.0677312"
-     inkscape:cx="206.51264"
-     inkscape:cy="656.06397"
+     inkscape:cx="349.80714"
+     inkscape:cy="656.064"
      inkscape:window-width="1920"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -57,7 +57,7 @@
        x="8.1270752"
        y="127.98196"
        ry="6.7591071"
-       inkscape:export-filename="buttons/buttonPlay.png"
+       inkscape:export-filename="buttons/buttonMenu.png"
        inkscape:export-xdpi="213.16901"
        inkscape:export-ydpi="213.16901" />
     <rect
@@ -86,7 +86,7 @@
          id="tspan5482"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#212178;fill-opacity:1;stroke-width:0.60632"
          x="28.257944"
-         y="142.56067">PLAY</tspan></text>
+         y="142.56067">MENU</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#3737c8;fill-opacity:0;stroke-width:0.60632"
@@ -97,7 +97,7 @@
          id="tspan4256"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#3737c8;fill-opacity:1;stroke-width:0.60632"
          x="28.257944"
-         y="141.60564">PLAY</tspan></text>
+         y="141.60564">MENU</tspan></text>
     <rect
        style="fill:#5f5fd3;stroke-width:0.274115"
        id="rect5494"
@@ -106,7 +106,7 @@
        x="106.55474"
        y="127.98196"
        ry="6.7591071"
-       inkscape:export-filename="buttons/buttonPlayPressed.png"
+       inkscape:export-filename="buttons/buttonMenuPressed.png"
        inkscape:export-xdpi="213.16901"
        inkscape:export-ydpi="213.16901" />
     <rect
@@ -135,7 +135,7 @@
          id="tspan5500"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#212178;fill-opacity:1;stroke-width:0.60632"
          x="126.68562"
-         y="147.21381">PLAY</tspan></text>
+         y="147.21381">MENU</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#3737c8;fill-opacity:0;stroke-width:0.60632"
@@ -146,7 +146,7 @@
          id="tspan5504"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.1686px;font-family:Purisa;-inkscape-font-specification:'Purisa Bold';fill:#3737c8;fill-opacity:1;stroke-width:0.60632"
          x="126.68562"
-         y="146.25877">PLAY</tspan></text>
+         y="146.25877">MENU</tspan></text>
     <rect
        style="fill:#212178;fill-opacity:0;stroke-width:0.195091"
        id="rect5616"
