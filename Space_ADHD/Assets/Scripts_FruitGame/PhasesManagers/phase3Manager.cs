@@ -64,6 +64,7 @@ namespace Assets.Scripts_FruitGame
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.End);
             PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
+            textObject.text = "";
 //            PlayerMovement.ListReactionTime = new List<float>(PlayerMovement.ListReactionTime.Count);
             Destroy(this);
         }

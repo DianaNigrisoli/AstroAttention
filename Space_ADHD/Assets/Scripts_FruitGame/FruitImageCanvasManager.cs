@@ -31,14 +31,16 @@ public class FruitImageCanvasManager : MonoBehaviour
         {
             FruitCanvas.SetActive(false);
             IndicatorCanvas.SetActive(false);
-            TextCanvas.SetActive(false);
         }
         else
         {
             FruitCanvas.SetActive(true);
             IndicatorCanvas.SetActive(true);
-            TextCanvas.SetActive(true);
         }
+        if (state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions)
+            TextCanvas.SetActive(false);
+        else TextCanvas.SetActive(true);
+                
         
         // To have the CanvasIndicators not active at the beginning of each phase
         if (state == MiniGameStateFruit.ZeroScene || state == MiniGameStateFruit.OneScene ||

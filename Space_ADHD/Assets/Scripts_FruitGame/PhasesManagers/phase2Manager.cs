@@ -69,6 +69,7 @@ namespace Assets.Scripts_FruitGame
             PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
             PlayerMovement.ListReactionTime.Clear();
+            textObject.text = "";
 //            PlayerMovement.ListReactionTime = new List<float>(PlayerMovement.ListReactionTime.Count);
             Destroy(this);
         }

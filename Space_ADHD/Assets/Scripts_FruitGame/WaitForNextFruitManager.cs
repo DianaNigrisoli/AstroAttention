@@ -12,6 +12,8 @@ namespace Assets.Scripts_FruitGame
         [SerializeField] private GameObject canvasWaitForNext;
         [SerializeField] private Image countdownCircleTimer;
         [SerializeField] private TextMeshProUGUI countdownText;
+        [SerializeField] private GameObject canvasInstructions;
+        public TextMeshProUGUI textInstructions;
 
         private float startTime = 3f;
         //private float startTime_skip = 5f;
@@ -44,7 +46,8 @@ namespace Assets.Scripts_FruitGame
             stateOrder_skip.Add(MiniGameStateFruit.OneScene);
             stateOrder_skip.Add(MiniGameStateFruit.TwoScene);
             stateOrder_skip.Add(MiniGameStateFruit.ThreeScene);
-            
+
+
         }
 
         void OnDestroy()
@@ -59,12 +62,15 @@ namespace Assets.Scripts_FruitGame
                 if (startTime == 0)
                 {
                     canvasWaitForNext.SetActive(false);
+                    canvasInstructions.SetActive(false);
                     currentTime = startTime;
                     updateTime = true;
                 }
                 else if (startTime >= 0)
                 {
                     canvasWaitForNext.SetActive(true);
+                    canvasInstructions.SetActive(true);
+                    textInstructions = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
 
                     // TODO: it seems that the built in canvas scaler works fine, eventually change this code
                     // countdownCircleTimer.transform.position = new Vector3(Screen.width / 2.0f, Screen.height / 1.33f, 0);
@@ -95,6 +101,7 @@ namespace Assets.Scripts_FruitGame
             if (updateTime)
             {
                 currentTime -= Time.deltaTime;
+                updateInstructions();
                 if (currentTime <= 0.0f && !SkipTutorialButton.TutorialSkipped)
                 {
                     // Stop the countdown timer              
@@ -102,6 +109,7 @@ namespace Assets.Scripts_FruitGame
                     currentTime = 0.0f;
                     canvasWaitForNext.SetActive(false);
                     updateMiniGameState_noSkip();
+                    
 
                 }
                 
@@ -112,7 +120,6 @@ namespace Assets.Scripts_FruitGame
                     currentTime = 0.0f;
                     canvasWaitForNext.SetActive(false);
                     updateMiniGameState_yesSkip();
-
                 }
 
                 countdownText.text = ((int)currentTime).ToString();
@@ -123,6 +130,35 @@ namespace Assets.Scripts_FruitGame
         
         }
 
+        private void updateInstructions()
+        {
+            if (SkipTutorialButton.TutorialSkipped)
+            {
+                print(stateIndex);
+                if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.ZeroScene )
+                    textInstructions.text = "Select the real colour of the fruit";
+                if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.OneScene )
+                    textInstructions.text = "Select the visible colour of the fruit";
+                if (stateOrder_skip[stateIndex] == MiniGameStateFruit.TwoScene)
+                    textInstructions.text = "Select the real colour of the fruit";
+                if (stateOrder_skip[stateIndex] == MiniGameStateFruit.ThreeScene)
+                    textInstructions.text = "Depending on the visible colour, select the right fruit";
+            }
+            else
+            {
+                if ( stateOrder[stateIndex] == MiniGameStateFruit.Instructions )
+                    canvasInstructions.SetActive(false);
+                if ( stateOrder[stateIndex] == MiniGameStateFruit.ZeroScene )
+                    textInstructions.text = "Select the real colour of the fruit";
+                if ( stateOrder[stateIndex] == MiniGameStateFruit.OneScene )
+                    textInstructions.text = "Select the visible colour of the fruit";
+                if (stateOrder[stateIndex] == MiniGameStateFruit.TwoScene)
+                    textInstructions.text = "Select the real colour of the fruit";
+                if (stateOrder[stateIndex] == MiniGameStateFruit.ThreeScene)
+                    textInstructions.text = "Depending on the visible colour, select the right fruit";
+            }
+           
+        }
         private void updateMiniGameState_noSkip()
         {
             MiniGameManagerFruit.instance.UpdateMiniGameState(stateOrder[stateIndex]);
