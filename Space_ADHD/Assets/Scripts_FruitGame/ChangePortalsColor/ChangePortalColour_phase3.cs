@@ -56,6 +56,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
             selectFruitColor();
             selectMiniImage();
             selectRandomColour();
+            ColorBackground();
         }
         
     }
@@ -70,6 +71,7 @@ public class ChangePortalColour_phase3 : MonoBehaviour
             selectFruitColor();
             selectMiniImage();
             selectRandomColour();
+            ColorBackground();
             phase3 = true;
         }
         else
@@ -300,5 +302,16 @@ public class ChangePortalColour_phase3 : MonoBehaviour
         myportal1.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
         myportal2.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
         myportal3.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    private void ColorBackground()
+    {
+        foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
+        {
+            if (gameObj.name == "Portal1" || gameObj.name == "Portal2" || gameObj.name == "Portal3")
+            {
+                gameObj.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
+            }
+        }
     }
 }

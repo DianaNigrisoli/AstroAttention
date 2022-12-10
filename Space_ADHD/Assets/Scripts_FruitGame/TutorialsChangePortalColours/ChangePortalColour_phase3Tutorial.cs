@@ -321,9 +321,9 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
         // myportal1.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit1];
         // myportal2.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit2];
         // myportal3.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit3];
-        myportal1.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
-        myportal2.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
-        myportal3.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f);
+        myportal1.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
+        myportal2.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
+        myportal3.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
     }
 }
 
