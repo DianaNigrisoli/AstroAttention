@@ -33,7 +33,17 @@ namespace Assets.Scripts_A_General
             }
             catch (FormatException)
             {
-                
+                email.text = "";
+                placeholderText.fontSize = 10.8f;
+                placeholderText.color = Color.red;
+                placeholderText.text = "Incorrect address format";
+            }
+            catch (ArgumentException)
+            {
+                email.text = "";
+                placeholderText.fontSize = 10.8f;
+                placeholderText.color = Color.red;
+                placeholderText.text = "Please fill with an address";
             }
             if (isValid)
             {
