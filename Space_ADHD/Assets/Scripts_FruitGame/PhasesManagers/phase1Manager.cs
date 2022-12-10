@@ -60,7 +60,7 @@ namespace Assets.Scripts_FruitGame
             PlayerMovement.reactionTimeMean[currentPhase] = PlayerMovement.ListReactionTime.Sum() / PlayerMovement.ListReactionTime.Count;
             PlayerMovement.reactionTimeStd[currentPhase] = CalculateStdDev(PlayerMovement.ListReactionTime);
             PlayerMovement.errorsFruitsG[currentPhase] = 10 - PlayerMovement.score;
-            PlayerMovement.kidScoreFruitG = (int)CalculateFinalScore(PlayerMovement.ListReactionTime,
+            PlayerMovement.kidScoreFruitG += (int)CalculateFinalScore(PlayerMovement.ListReactionTime,
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
             
             

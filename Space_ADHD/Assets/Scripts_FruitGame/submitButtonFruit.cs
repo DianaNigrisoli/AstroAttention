@@ -36,13 +36,11 @@ public class submitButtonFruit : MonoBehaviour
     		currentID = -1;
     	}
     	Debug.Log(currentID);
-        print("Laura1");
         this.GetComponent<Button>().onClick.AddListener(TaskOnClick2);
     }
 
     private void TaskOnClick2()
     {
-	    print("Laura2");
 	    print(susValue);
 	    print(evalValue);
     	if (susValue != -1 && evalValue != -1)
