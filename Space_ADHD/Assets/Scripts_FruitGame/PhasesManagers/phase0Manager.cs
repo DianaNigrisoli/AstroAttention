@@ -18,8 +18,9 @@ namespace Assets.Scripts_FruitGame
         private int NumSpawn = 10;
         private int currentPhase = 0;
         
-        public TextMeshProUGUI textObject; 
+        public TextMeshProUGUI textObject;
 
+        //[SerializeField] private GameObject portals;
         //Cosa fa questo script: 
         //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)
         //Tiene conto di numero di portali spawnati (contati nel player movement) e triggera l'inizio della fase successiva
@@ -33,9 +34,10 @@ namespace Assets.Scripts_FruitGame
         // Update is called once per frame
         void Update()
         {
+            
             textObject.text = "Select the real colour of the fruit";
             if(PlayerMovement.PortalCounter == NumSpawn)
-            { 
+            {
                 StartCoroutine(waiter());
             }
             
@@ -62,13 +64,7 @@ namespace Assets.Scripts_FruitGame
         {
             yield return new WaitForSecondsRealtime(0.8f);
                 //TODO: FINAL SCORE DA CAMBIARE!!!   
-            // In ogni phase manager calcolare elemento iesimo delle liste:
-            //     Mean
-            //     Std
-            //     errors
-            
-            // prove
-            
+                
             PlayerMovement.reactionTimeMean[currentPhase] = PlayerMovement.ListReactionTime.Sum() / PlayerMovement.ListReactionTime.Count;
             PlayerMovement.reactionTimeStd[currentPhase] = CalculateStdDev(PlayerMovement.ListReactionTime);
             PlayerMovement.errorsFruitsG[currentPhase] = 10 - PlayerMovement.score;

@@ -55,5 +55,6 @@ public class Portals : MonoBehaviour
         {
             gameObject.SetActive(true);
         }
+        
     }
 }

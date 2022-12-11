@@ -134,7 +134,6 @@ namespace Assets.Scripts_FruitGame
         {
             if (SkipTutorialButton.TutorialSkipped)
             {
-                print(stateIndex);
                 if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.ZeroScene )
                     textInstructions.text = "Select the real colour of the fruit";
                 if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.OneScene )
