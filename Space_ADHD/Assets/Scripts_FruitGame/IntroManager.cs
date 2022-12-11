@@ -63,10 +63,9 @@ namespace Assets.Scripts_FruitGame
         private String displayedIntroRobotText;
         private String currentPhaseScreenText;
         private Boolean showImg = false;
-        private Boolean showRing = false;
-        
-        
-        
+
+
+
         public static event Action<IntroPhase> OnIntroPhaseChanged;
         
         void Awake()
@@ -178,7 +177,6 @@ namespace Assets.Scripts_FruitGame
             else if (showImg)
             {
                 ShowTableImage(fruitCanvas, fruitImage, banana);
-                showRing = false;
                 waitTimer2 = 10.0f;
             }
             else

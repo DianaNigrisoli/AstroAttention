@@ -142,7 +142,7 @@ namespace Assets.Scripts_FruitGame
                 if (stateOrder_skip[stateIndex] == MiniGameStateFruit.TwoScene)
                     textInstructions.text = "Select the real colour of the fruit";
                 if (stateOrder_skip[stateIndex] == MiniGameStateFruit.ThreeScene)
-                    textInstructions.text = "Depending on the visible colour, select the right fruit";
+                    textInstructions.text = "Choose the fruit that has its real color like the one on top";
             }
             else
             {

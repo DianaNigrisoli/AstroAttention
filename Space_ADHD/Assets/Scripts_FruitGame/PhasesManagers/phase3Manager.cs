@@ -24,12 +24,13 @@ namespace Assets.Scripts_FruitGame
         // Update is called once per frame
         void Update()
         {
-            textObject.text = "Depending on the visible colour, select the right fruit";
+            textObject.text = "Choose the fruit that has its real color like the one on top";
             if(PlayerMovement.PortalCounter == NumSpawn)
             {
                 StartCoroutine(waiter());
             }
         }
+        
         private double CalculateStdDev(List<float> values)
         {
             double avg = values.Sum()/values.Count;
