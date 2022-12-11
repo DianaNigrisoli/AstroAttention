@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts_FruitGame;
-using Assets.ScriptsDirectionGame;
+//using Assets.ScriptsDirectionGame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -47,8 +47,8 @@ namespace Assets.Scripts_FruitGame
         
         //***NON serve! Cancellare 
         List<string> tutorialTargetingObject = new List<string>();
-        List<MyVector3> targetingObjectPositions = new List<MyVector3>();
-        List<MyVector3> targetingObjectRotations = new List<MyVector3>();
+        // List<MyVector3> targetingObjectPositions = new List<MyVector3>();
+        // List<MyVector3> targetingObjectRotations = new List<MyVector3>();
         private Boolean showTargetingObjects;
         //***
         
@@ -327,22 +327,22 @@ namespace Assets.Scripts_FruitGame
                         tutorialTargetingObject.Add(values[5]);
                         //Debug.Log(tutorialTargetingObject[tutorialTargetingObject.Count - 1]);
 
-                        try
-                        {
-                            targetingObjectPositions.Add(new MyVector3(float.Parse(values[6]), float.Parse(values[7]), float.Parse(values[8])));
-                        }
-                        catch (FormatException)
-                        {
-                            targetingObjectPositions.Add(new MyVector3(-1f, -1f, -1f));
-                        }
-                        try
-                        {
-                            targetingObjectRotations.Add(new MyVector3(float.Parse(values[9]), float.Parse(values[10]), float.Parse(values[11])));
-                        }
-                        catch (FormatException)
-                        {
-                            targetingObjectRotations.Add(new MyVector3(0f, 0f, 0f));
-                        }
+                        // try
+                        // {
+                        //     targetingObjectPositions.Add(new MyVector3(float.Parse(values[6]), float.Parse(values[7]), float.Parse(values[8])));
+                        // }
+                        // catch (FormatException)
+                        // {
+                        //     targetingObjectPositions.Add(new MyVector3(-1f, -1f, -1f));
+                        // }
+                        // try
+                        // {
+                        //     targetingObjectRotations.Add(new MyVector3(float.Parse(values[9]), float.Parse(values[10]), float.Parse(values[11])));
+                        // }
+                        // catch (FormatException)
+                        // {
+                        //     targetingObjectRotations.Add(new MyVector3(0f, 0f, 0f));
+                        // }
                     }
                     else
                     {

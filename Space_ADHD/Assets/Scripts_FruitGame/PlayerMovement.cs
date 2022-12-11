@@ -6,6 +6,7 @@ using Assets.Scripts_FruitGame;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
@@ -34,6 +35,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Image answerIndicator;
     [SerializeField] public GameObject IndicatorCanvas;
 
+    public AudioSource wrongSound;
+    public AudioSource rightSound;
+
+    [SerializeField] private AudioClip wrong_clip;
+    [SerializeField] private AudioClip right_clip;
+    
+
+
+
+
+
     void Awake()
     {
         score = 0;
@@ -43,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         targetPos = transform.position;
         MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
         answerIndicator = GameObject.Find("AnswerIndicator").GetComponent<Image>();
+        
     }
     
     void OnDestroy()
@@ -67,6 +80,15 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Rigidbody>();
+        
+        wrongSound = gameObject.AddComponent<AudioSource>();
+        wrongSound.clip = wrong_clip;
+        wrongSound.volume = 0.1f;
+        wrongSound.playOnAwake = false;
+        
+        rightSound = gameObject.AddComponent<AudioSource>();
+        rightSound.clip = right_clip;
+        rightSound.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -114,12 +136,14 @@ public class PlayerMovement : MonoBehaviour
                 score += 1;
                 ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
+                rightSound.Play();
 
             }
             else
             {
                 ListScore.Add(0);
                 answerIndicator.sprite = indicators[1];
+                wrongSound.Play();
             }
         }
     
@@ -135,11 +159,13 @@ public class PlayerMovement : MonoBehaviour
                 score += 1;
                 ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
+                rightSound.Play();
             }
             else
             {
                 ListScore.Add(0);
                 answerIndicator.sprite = indicators[1];
+                wrongSound.Play();
             }
                 
         }
@@ -154,11 +180,13 @@ public class PlayerMovement : MonoBehaviour
                 score += 1;
                 ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
+                rightSound.Play();
             }
             else 
             {
                 ListScore.Add(0);
                 answerIndicator.sprite = indicators[1];
+                wrongSound.Play();
             }
         }
 
