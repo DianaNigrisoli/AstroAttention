@@ -24,6 +24,7 @@ namespace Assets.Scripts_A_General
             validUserIds = new Regex(@"^[a-zA-Z0-9_]+$");
             csvPath = Application.dataPath;
             csvPath = csvPath + "/Resources/stats.csv";
+            placeholderText.text = GameManager.instance.Language == "ENG"? "Enter user ID..." : "Inserisci nome utente...";
         }
 
         private void TaskOnClick()
@@ -43,7 +44,7 @@ namespace Assets.Scripts_A_General
                 userId.text = "";
                 placeholderText.fontSize = 10.8f;
                 placeholderText.color = Color.red;
-                placeholderText.text = "Only letters, numbers, and '_'";
+                placeholderText.text = GameManager.instance.Language == "ENG"? "Only letters, numbers, and '_'" : "Solo lettere, numeri e '_'";
             }
         }
 

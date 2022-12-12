@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
+using Assets.ScriptsMenu;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class MenuSuggestionController : MonoBehaviour
     private float suggestionDelay = 6.5f;
     private Boolean startWriting;
     public static Boolean planetSelected;
-    private String suggestionText = "Let's explore some planets!";
+    private String suggestionText;
     private String displayedSuggestionText = "";
     private float writerTimer = 0.0f;
 
@@ -22,11 +23,20 @@ public class MenuSuggestionController : MonoBehaviour
     void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+        flagButton.OnLanguageChanged += FlagButtonOnOnLanguageChanged;
+    }
+
+    private void FlagButtonOnOnLanguageChanged()
+    {
+        suggestionText = GameManager.instance.Language == "ITA"
+            ? "Oh no! La navicella è rotta. Facciamo visita a queti pianeti per chiedere aiuto"
+            : "Oh no! My spaceship is broken! Let's stop by these planets and ask for help";
     }
 
     void OnDestroy()
     {
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+        flagButton.OnLanguageChanged -= FlagButtonOnOnLanguageChanged;
     }
 
     private void GameManagerOnOnGameStateChanged(GameState state)
@@ -44,6 +54,9 @@ public class MenuSuggestionController : MonoBehaviour
         planetSelected = false;
         startWriting = false;
         suggestionPosition = suggestion.transform.position;
+        suggestionText = PlayerPrefs.GetString("language") == "ITA"
+            ? "Oh no! La navicella è rotta. Visitiamo questi pianeti per chiedere aiuto"
+            : "Oh no! My spaceship is broken! Let's stop by these planets and ask for help";
     }
 
     // Update is called once per frame
