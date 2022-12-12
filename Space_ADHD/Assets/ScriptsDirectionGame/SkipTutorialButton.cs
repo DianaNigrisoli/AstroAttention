@@ -18,7 +18,7 @@ namespace Assets.ScriptsDirectionGame
             MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
             var canvas = GameObject.Find("CanvasIntro");
             var textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-            textObject.text = "Select the sector with the comet";
+            textObject.text = GameManager.instance.Language == "ITA"? "Seleziona il settore con la cometa" : "Select the sector with the comet";
             var IntroManager = GameObject.Find("IntroManager");
             Destroy(IntroManager);
             for (int i = 0; i < 2; i++)

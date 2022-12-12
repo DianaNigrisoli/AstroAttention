@@ -26,7 +26,13 @@ public class SettingsManager : MonoBehaviour
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
         flagButton.OnLanguageChanged -= FlagButtonOnOnLanguageChanged;
     }
-    
+
+    void Start()
+    {
+        settingsPanel.SetActive(GameManager.instance.State == GameState.Settings || GameManager.instance.State == GameState.UserSelection);
+        flag.gameObject.SetActive(GameManager.instance.State == GameState.Settings);
+    }
+
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
         settingsPanel.SetActive(state is GameState.Settings or GameState.UserSelection or GameState.DoctorInterface);

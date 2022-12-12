@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 using System.Collections.Generic;
+using Assets.Scripts_A_General;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -114,10 +115,10 @@ public class playButton : MonoBehaviour
 			switch (selectedPlanet)
         	{
 	            case "planet1Button":
-					SceneManager.LoadScene("FruitGame");
+		            SceneManager.LoadScene("FruitGame");
                 	break;
             	case "planet2Button":
-                	SceneManager.LoadScene("DirectionGame");
+	                SceneManager.LoadScene("DirectionGame");
                 	break;
             	default:
                 	Debug.Log("GG");

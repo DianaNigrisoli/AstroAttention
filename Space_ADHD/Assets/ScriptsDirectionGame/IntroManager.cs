@@ -156,7 +156,7 @@ namespace Assets.ScriptsDirectionGame
                         MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                         canvas = GameObject.Find("CanvasIntro");
                         textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-                        textObject.text = "Select the sector with the comet";
+                        textObject.text = GameManager.instance.Language == "ITA"? "Seleziona il settore con la cometa" : "Select the sector with the comet";
                         Destroy(GameObject.Find("SkipTutorial"));
                         Destroy(this);
                         break;
@@ -591,8 +591,8 @@ namespace Assets.ScriptsDirectionGame
         private void PrepareTutorialData()
         {
             var header = true;
-
-            var path = Application.dataPath + "/Resources/directionGameTutorialData.csv";
+            
+            var path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "directionGameTutorialData.csv" : "directionGameTutorialData_ita.csv");
 
             using var reader = new StreamReader(path);
             while (!reader.EndOfStream)

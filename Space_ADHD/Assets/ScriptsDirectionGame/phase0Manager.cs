@@ -112,7 +112,7 @@ public class phase0Manager : MonoBehaviour
         }
         else
         {
-			textObject.text = "Select the direction of the comet";
+            textObject.text = GameManager.instance.Language == "ITA"? "Seleziona la direzione della cometa" : "Select the direction of the comet";
             Destroy(shootingStar);
             cases = 1000;
             phaseZero = false;

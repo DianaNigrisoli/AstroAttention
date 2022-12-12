@@ -151,7 +151,7 @@ public class phase2Manager : MonoBehaviour
         else
         {
             shootingStar.transform.position = new Vector3(-100f, 100f, 16.4f);
-            textObject.text = "Select the sector with the comet";
+            textObject.text = GameManager.instance.Language == "ITA"? "Seleziona il settore con la cometa" : "Select the sector with the comet";
             ROTcases = 1000;
             SPTcases = 1000;
             phaseTwo = false;
