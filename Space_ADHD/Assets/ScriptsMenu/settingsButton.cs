@@ -23,8 +23,7 @@ public class settingsButton : MonoBehaviour
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(TaskOnClick);
-        backToState = GameState.Map;
-        gameState = GameState.Map;
+        gameState = GameManager.instance.State;
     }
 
     private void TaskOnClick()
