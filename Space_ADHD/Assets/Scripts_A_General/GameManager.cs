@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private GameState state;
     private string currentUserId;
+    private string language;
+
     public static event Action<GameState> OnGameStateChanged;
     public void UpdateGameState(GameState newState)
     {
@@ -38,6 +40,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        language = PlayerPrefs.GetString("language");
+        if (String.IsNullOrEmpty(language))
+        {
+            Language = "ENG";
+        }
         if(instance == this)
             UpdateGameState(GameState.UserSelection);
     }
@@ -63,6 +70,16 @@ public class GameManager : MonoBehaviour
             return currentUserId;
         }
         set => currentUserId = value;
+    }
+    
+    public string Language
+    {
+        get => language;
+        set
+        {
+            PlayerPrefs.SetString("language", value);
+            language = value;
+        }
     }
 
     public GameState State => state;
