@@ -69,7 +69,7 @@ public class playButton : MonoBehaviour
 	{
 		List<string> listA = new List<string>();
         List<string> listB = new List<string>();
-        var path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "dialogs.csv" : "dialog_ita.csv");
+        var path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "dialogs.csv" : "dialogs_ita.csv");
         using (var reader = new StreamReader(path))
         {
             while (!reader.EndOfStream)
