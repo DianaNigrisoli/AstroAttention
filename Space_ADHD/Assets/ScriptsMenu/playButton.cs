@@ -33,6 +33,7 @@ public class playButton : MonoBehaviour
         selectedPlanet = buttonAction.selectedPlanet;
         Debug.Log("Starting Intro" + " " + selectedPlanet);
         this.transform.position = new Vector3(Screen.width*2, Screen.height*2, 50);
+        GameObject.Find("ButtonSettings").SetActive(false);
         miniGameIntro();
     }
 
