@@ -18,8 +18,6 @@ namespace Assets.ScriptsMenu
         private void TaskOnClick()
         {
             GameManager.instance.Language = GameManager.instance.Language == "ENG" ? "ITA" : "ENG";
-            GameManager.instance.UpdateGameState(GameState.Settings);
-            
             OnLanguageChanged?.Invoke();
         }
     }
