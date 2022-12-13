@@ -13,7 +13,7 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] GameObject phase1Manager;
     [SerializeField] GameObject phase2Manager;
     [SerializeField] GameObject phase3Manager;
-    //[SerializeField] GameObject endPhaseManager;
+    [SerializeField] GameObject musicManager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -42,6 +42,7 @@ public class MiniGameManager : MonoBehaviour
                 break;
             case MiniGameState.Zero:
                 Instantiate(phase0Manager);
+                musicManager.SetActive(true);
                 break;
             case MiniGameState.One:
                 Instantiate(phase1Manager);
