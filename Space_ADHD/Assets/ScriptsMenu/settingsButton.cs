@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class settingsButton : MonoBehaviour
 {
 
-    public GameState gameState;
-    public GameState backToState;
+    private GameState gameState;
+    private GameState backToState;
     
     void Awake()
     {
