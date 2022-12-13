@@ -88,6 +88,12 @@ public class phase0Manager : MonoBehaviour
         StartCoroutine(nebulaBehaviour.Shake(0.7f, 0.3f));
         shootingStar.transform.position += Vector3.right * 10.0f;
     }
+
+    IEnumerator seconds()
+    {
+        yield return new WaitForSeconds(1.22f);
+		endgame = true;
+    }
     
     void Update()
     {
@@ -96,7 +102,7 @@ public class phase0Manager : MonoBehaviour
         {
             if (touch)
             {
-                if (count > 0)
+                if (count < 11)
                 {
                     StartCoroutine(HitShootingStar());
                 }
@@ -104,9 +110,9 @@ public class phase0Manager : MonoBehaviour
                 StartCoroutine(Delay());
                 touch = false;
                 count += 1;
-                if (count == 11)
+                if (count==11)
                 {
-                    endgame = true;
+			        StartCoroutine(seconds());
                 }
             }
         }
