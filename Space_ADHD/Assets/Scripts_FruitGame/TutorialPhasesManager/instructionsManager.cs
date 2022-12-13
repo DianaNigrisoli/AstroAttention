@@ -173,7 +173,9 @@ public class instructionsManager : MonoBehaviour
             string headerNames;
             Boolean header = true;
 
-            string path = Application.dataPath + "/Resources/fruitMinigameTutorial.csv";
+            string path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG"
+                ? "fruitMinigameTutorial.csv"
+                : "fruitMinigameTutorial_ita.csv");;
             
             using (var reader = new StreamReader(path))
             {

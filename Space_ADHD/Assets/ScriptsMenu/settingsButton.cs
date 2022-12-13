@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class settingsButton : MonoBehaviour
 {
 
-    public GameState gameState;
-    public GameState backToState;
+    private GameState gameState;
+    private GameState backToState;
     
     void Awake()
     {
@@ -23,8 +23,7 @@ public class settingsButton : MonoBehaviour
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(TaskOnClick);
-        backToState = GameState.Map;
-        gameState = GameState.Map;
+        gameState = GameManager.instance.State;
     }
 
     private void TaskOnClick()
