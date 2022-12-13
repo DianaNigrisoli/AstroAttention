@@ -28,6 +28,8 @@ public class MenuSuggestionController : MonoBehaviour
 
     private void FlagButtonOnOnLanguageChanged()
     {
+        suggestion.SetText("");
+        displayedSuggestionText = "";
         suggestionText = GameManager.instance.Language == "ITA"
             ? "Oh no! La navicella è rotta. Visitiamo questi pianeti per chiedere aiuto"
             : "Oh no! My spaceship is broken! Let's stop by these planets and ask for help";
