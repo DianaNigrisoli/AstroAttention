@@ -21,7 +21,22 @@ public class playButton : MonoBehaviour
     public TextMeshProUGUI dialog;
 	public RawImage txtBox;
 
-    void Start()
+	void Awake()
+	{
+		GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+	}
+
+	void OnDestroy()
+	{
+		GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+	}
+
+	private void GameManagerOnOnGameStateChanged(GameState state)
+	{
+		gameObject.GetComponent<Button>().interactable = state != GameState.Settings;
+	}
+
+	void Start()
     {
 	    this.GetComponent<Button>().onClick.AddListener(TaskOnClick);
         this.moveKingBool = false;
