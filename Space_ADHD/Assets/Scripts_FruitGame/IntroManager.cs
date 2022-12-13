@@ -301,7 +301,10 @@ namespace Assets.Scripts_FruitGame
             string headerNames;
             Boolean header = true;
 
-            string path = Application.dataPath + "/Resources/fruitMinigameIntro.csv";
+            // string path = Application.dataPath + "/Resources/fruitMinigameIntro.csv";
+            string path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG"
+                ? "fruitMinigameIntro.csv"
+                : "fruitMinigameIntro_ita.csv");
             
             using (var reader = new StreamReader(path))
             {

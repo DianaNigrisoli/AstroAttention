@@ -1,0 +1,8 @@
+﻿introPhase;tutorialRobotText;tutorialScreenText;waitForUserInput;waitSeconds;tutorialTargetingObject;positionX;positionY;positionZ;rotationX;rotationY;rotationZ
+0;Ciao;;;10;;;;;;;
+1;Sullo schermo in alto vedrai l'immagine di un frutto o di una verdura;;;5;fruitCanvas;;;;;;
+2;Queste saranno colorate o con il loro colore reale o con un colore diverso;;;10;;;;;;;
+3;Ora ti mostro la relazione fra frutta/verdura e il loro colore originale;;;20;Table;;;;;;
+4;Volerai attraverso 3 portali colorati. Dovrai scegliere quello giusto;;;10;portals;;;;;;
+5;Puoi muoverti a destra o a sinistra usando le frecce della tastiera;;;10;buttons;;;;;;
+6;Per sapere cosa fare guarda sempre le istruzioni sullo schermo;;;10;;;;;;;
