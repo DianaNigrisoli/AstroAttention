@@ -2,7 +2,8 @@ using Assets.Scripts_A_General;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Assets.ScriptsDirectionGame;
+    
 namespace Assets.ScriptsDirectionGame
 {
     public class SkipTutorialButton : MonoBehaviour
@@ -45,7 +46,7 @@ namespace Assets.ScriptsDirectionGame
         // Update is called once per frame
         void Update()
         {
-        
+            musciManager.sound.Stop();
         }
     }
 }
