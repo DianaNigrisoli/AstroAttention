@@ -13,6 +13,8 @@ namespace Assets.Scripts_FruitGame
         public static int FinalScore;
         private int NumSpawn = 10;
         private int currentPhase = 3;
+        private string ing_text = "Choose the fruit that has its real color like the one on top";
+        private string ita_text = "Scegli la frutta il cui colore reale è uguale al colore in alto";
 
         public TextMeshProUGUI textObject;
         // Start is called before the first frame update
@@ -24,7 +26,8 @@ namespace Assets.Scripts_FruitGame
         // Update is called once per frame
         void Update()
         {
-            textObject.text = "Choose the fruit that has its real color like the one on top";
+            if (GameManager.instance.Language == "ENG") textObject.text = ing_text;
+            else textObject.text = ita_text;
             if(PlayerMovement.PortalCounter == NumSpawn)
             {
                 StartCoroutine(waiter());
