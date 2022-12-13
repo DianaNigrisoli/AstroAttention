@@ -11,6 +11,10 @@ using Assets.ScriptsDirectionGame;
         [SerializeField] GameObject introCanvas;
         [SerializeField] GameObject wfnCanvas;
 		[SerializeField] TextMeshProUGUI textObject;
+		[SerializeField] GameObject spaceship;
+        [SerializeField] GameObject hLasers;
+        [SerializeField] GameObject vLasers;
+        [SerializeField] GameObject cockpit;
         private MiniGameState lastPlayedPhase;
 
         void Awake()
@@ -33,6 +37,10 @@ using Assets.ScriptsDirectionGame;
     	        wfnCanvas.SetActive(false);
 				string score = string.Format("{0:N2}", CannonBehavior.kidScoreDirectionG);
 				textObject.text = score;
+				Destroy(spaceship);
+				Destroy(cockpit);
+				Destroy(hLasers);
+				Destroy(vLasers);
             }
             else
             {
