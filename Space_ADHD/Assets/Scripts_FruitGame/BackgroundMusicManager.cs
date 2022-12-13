@@ -26,7 +26,7 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameStateFruit state)
     {
-        if (state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions || state == MiniGameStateFruit.WaitForNext)
+        if (state == MiniGameStateFruit.Intro || state == MiniGameStateFruit.Instructions || state == MiniGameStateFruit.WaitForNext || state == MiniGameStateFruit.End)
             sound.Stop();
         else
         {

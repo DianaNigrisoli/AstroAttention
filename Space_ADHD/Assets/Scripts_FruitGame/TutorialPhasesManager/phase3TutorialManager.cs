@@ -9,6 +9,10 @@ public class phase3TutorialManager : MonoBehaviour
 {
     private int NumScore = 3;
     public TextMeshProUGUI textObject;
+    
+    private string ing_text = "Choose the fruit that has its real color like the one on top";
+    private string ita_text = "Scegli la frutta il cui colore reale è uguale al colore in alto";
+
   
     void Start()
     {
@@ -17,7 +21,8 @@ public class phase3TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textObject.text = "Depending on the visible colour, select the right fruit";
+        if (GameManager.instance.Language == "ENG") textObject.text = ing_text;
+        else textObject.text = ita_text;
         if(PlayerMovement.score == NumScore)
         { 
             StartCoroutine(waiter());

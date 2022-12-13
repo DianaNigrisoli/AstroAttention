@@ -248,6 +248,8 @@ namespace Assets.Scripts_FruitGame
             }
             else
             {
+                tutorialRobot.transform.position = Vector3.MoveTowards(tutorialRobot.transform.position, new Vector3(4f, -0.68f, 2.7f),
+                 Time.deltaTime * 1.5f); 
                 WaitForInputOrTimer(nextPhase: IntroPhase.Five);
             }
         }
@@ -470,7 +472,7 @@ namespace Assets.Scripts_FruitGame
             tutorialRobotVoices[rInt].Play();
             
             // tutorialRobot.transform.position = Vector3.MoveTowards(tutorialRobot.transform.position, new Vector3(4f, -0.68f, 2.7f),
-            //                 Time.deltaTime * 0.5f); //non capisco perchè non funzia 
+            //                 Time.deltaTime * 0.5f); 
             
             portals = Instantiate(PortalsIntro, GameObject.Find("All").transform);
             GameObject  portal1 = portals.transform.Find("Portal1").gameObject;

@@ -15,6 +15,9 @@ public class phase0TutorialManager : MonoBehaviour
     private int NumScore = 3;
     public TextMeshProUGUI textObject;
     
+    private string ing_text = "Select the real colour of the fruit"; 
+    private string ita_text = "Seleziona il colore reale della frutta"; 
+    
     void Start()
     {
         textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
@@ -22,7 +25,8 @@ public class phase0TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textObject.text = "Select the real colour of the fruit";
+        if (GameManager.instance.Language == "ENG") textObject.text = ing_text;
+        else textObject.text = ita_text;
         if(PlayerMovement.score == NumScore)
         { 
             StartCoroutine(waiter());
