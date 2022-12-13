@@ -44,7 +44,7 @@ public class MenuSuggestionController : MonoBehaviour
         gameState = state;
         if (state == GameState.Map)
         {
-            suggestionDelay = 6.5f;
+            suggestionDelay = 0.7f;
         }
     }
     
