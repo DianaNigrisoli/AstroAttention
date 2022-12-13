@@ -21,6 +21,8 @@ public class ReturnMenuButton : MonoBehaviour
 {
     public static Boolean ReturnMenu = false;
     private GameObject[] allObject;
+    [SerializeField] private GameObject loadingScreen;
+    
     void Awake()
     {
         MiniGameManagerFruit.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
@@ -45,6 +47,8 @@ public class ReturnMenuButton : MonoBehaviour
 
     private void TaskOnClick()
     {
+        GameObject temp = Instantiate(loadingScreen);
+        loadingScreen.gameObject.SetActive(true);
         // instructionsManager.showingTutorial = false;
         // IntroManager.showingTutorial = false;
         SkipTutorialButton.TutorialSkipped = false;

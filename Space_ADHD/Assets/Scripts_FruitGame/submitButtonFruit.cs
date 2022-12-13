@@ -22,6 +22,8 @@ public class submitButtonFruit : MonoBehaviour
     private int result;
     public static int susValue = -1;
     public static int evalValue = -1;
+    [SerializeField] private GameObject loadingScreen;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,9 @@ public class submitButtonFruit : MonoBehaviour
                 csv.AppendLine(newLine);
                 File.AppendAllText(csvPath, csv.ToString());
     		}
+            GameObject temp = Instantiate(loadingScreen);
+            loadingScreen.gameObject.SetActive(true);
+            
             GameManager.instance.UpdateGameState(GameState.Map);
             SceneManager.LoadScene("Menu");
     	}

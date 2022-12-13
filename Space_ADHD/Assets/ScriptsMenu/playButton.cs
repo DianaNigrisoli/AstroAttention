@@ -115,9 +115,11 @@ public class playButton : MonoBehaviour
 			switch (selectedPlanet)
         	{
 	            case "planet1Button":
+		            GameManager.instance.UpdateGameState(GameState.FruitGame);
 		            SceneManager.LoadScene("FruitGame");
                 	break;
             	case "planet2Button":
+	                GameManager.instance.UpdateGameState(GameState.DirectionGame);
 	                SceneManager.LoadScene("DirectionGame");
                 	break;
             	default:

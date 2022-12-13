@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     private GameState state;
     private string currentUserId;
     private string language;
-
+    [SerializeField] private GameObject loadingScreen;
+    
     public static event Action<GameState> OnGameStateChanged;
     public void UpdateGameState(GameState newState)
     {
@@ -27,8 +28,12 @@ public class GameManager : MonoBehaviour
             case GameState.Settings:
                 break;
             case GameState.FruitGame:
+                GameObject temp1 = Instantiate(loadingScreen);
+                loadingScreen.gameObject.SetActive(true);
                 break;
             case GameState.DirectionGame:
+                GameObject temp2 = Instantiate(loadingScreen);
+                loadingScreen.gameObject.SetActive(true);
                 break;
             case GameState.DoctorInterface:
                 break;
