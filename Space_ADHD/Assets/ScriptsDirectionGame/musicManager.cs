@@ -5,7 +5,7 @@ using Assets.Scripts_A_General;
 using UnityEngine;
 using Assets.ScriptsDirectionGame;
 
-public class musciManager : MonoBehaviour
+public class musicManager : MonoBehaviour
 {
     static public AudioSource sound; 
     
@@ -13,6 +13,7 @@ public class musciManager : MonoBehaviour
     void Awake()
     {
         MiniGameManager.OnMiniGameStateChanged += MiniGameManagerOnOnMiniGameStateChanged;
+        sound = GetComponent<AudioSource>();
     }
 
     void OnDestroy()
@@ -22,16 +23,14 @@ public class musciManager : MonoBehaviour
 
     private void Start()
     {
-        sound = GetComponent<AudioSource>();
+
     }
 
     private void MiniGameManagerOnOnMiniGameStateChanged(MiniGameState state)
     {
         if (state == MiniGameState.Zero || state == MiniGameState.One || state == MiniGameState.Two || state==MiniGameState.Three)
-            sound.Play();
+            {sound.Play();}
         else
-        {
-            sound.Stop();
-        }
+        {sound.Stop();}
     }
 }

@@ -46,7 +46,7 @@ namespace Assets.ScriptsDirectionGame
         // Update is called once per frame
         void Update()
         {
-            musciManager.sound.Stop();
+            //musicManager.sound.Stop();
         }
     }
 }
