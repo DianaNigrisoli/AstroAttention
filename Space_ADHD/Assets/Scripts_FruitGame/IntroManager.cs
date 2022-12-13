@@ -23,7 +23,8 @@ namespace Assets.Scripts_FruitGame
         [SerializeField] private Image fruitImage;
         [SerializeField] private Sprite banana;
         [SerializeField] private Image fruitTable;
-        [SerializeField] private Sprite table;
+        [SerializeField] private Sprite table_ita;
+        [SerializeField] private Sprite table_ing;
         [SerializeField] private GameObject tutorialRobotPrefab;
         [SerializeField] private GameObject playerSpaceship;
         [SerializeField] private GameObject tutorialRing;
@@ -217,7 +218,9 @@ namespace Assets.Scripts_FruitGame
             }
             else if (showImg)
             {
-                ShowTableImage(tableCanvas, fruitTable, table);
+                if (GameManager.instance.Language == "ENG") ShowTableImage(tableCanvas, fruitTable, table_ing);
+                else ShowTableImage(tableCanvas, fruitTable, table_ita);
+                ;
                 waitTimer2 = 20.0f;
             }
             else
