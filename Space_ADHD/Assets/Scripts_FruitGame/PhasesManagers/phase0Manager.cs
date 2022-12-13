@@ -20,6 +20,8 @@ namespace Assets.Scripts_FruitGame
         
         public TextMeshProUGUI textObject;
 
+        private string ing_text = "Select the real colour of the fruit"; 
+        private string ita_text = "Seleziona il colore reale della frutta"; 
         //[SerializeField] private GameObject portals;
         //Cosa fa questo script: 
         //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)
@@ -34,8 +36,9 @@ namespace Assets.Scripts_FruitGame
         // Update is called once per frame
         void Update()
         {
-            
-            textObject.text = "Select the real colour of the fruit";
+            if (GameManager.instance.Language == "ENG") textObject.text = ing_text;
+            else textObject.text = ita_text;
+            //GameManager.instance.Language == "ENG" ? textObject.text = ing_text : textObject.text=ita_text;
             if(PlayerMovement.PortalCounter == NumSpawn)
             {
                 StartCoroutine(waiter());

@@ -24,6 +24,12 @@ namespace Assets.Scripts_FruitGame
         private List<MiniGameStateFruit> stateOrder_skip = new List<MiniGameStateFruit>();
         private int stateIndex = 0;
         
+        private string ing_text_real = "Select the real colour of the fruit"; 
+        private string ita_text_real = "Seleziona il colore reale della frutta";
+        private string ing_text_visib = "Select the visible colour of the fruit";
+        private string ita_text_visib = "Seleziona il colore visibile della frutta";
+        private string ing_text_fruit = "Choose the fruit that has its real color like the one on top";
+        private string ita_text_fruit= "Scegli la frutta il cui colore reale è uguale al colore in alto";
 
         void Awake()
         {
@@ -135,26 +141,34 @@ namespace Assets.Scripts_FruitGame
             if (SkipTutorialButton.TutorialSkipped)
             {
                 if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.ZeroScene )
-                    textInstructions.text = "Select the real colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_real;
+                    else textInstructions.text = ita_text_real;
                 if ( stateOrder_skip[stateIndex] == MiniGameStateFruit.OneScene )
-                    textInstructions.text = "Select the visible colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_visib;
+                    else textInstructions.text = ita_text_visib;
                 if (stateOrder_skip[stateIndex] == MiniGameStateFruit.TwoScene)
-                    textInstructions.text = "Select the real colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_real;
+                    else textInstructions.text = ita_text_real;
                 if (stateOrder_skip[stateIndex] == MiniGameStateFruit.ThreeScene)
-                    textInstructions.text = "Choose the fruit that has its real color like the one on top";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_fruit;
+                    else textInstructions.text = ita_text_fruit;
             }
             else
             {
                 if ( stateOrder[stateIndex] == MiniGameStateFruit.Instructions )
                     canvasInstructions.SetActive(false);
                 if ( stateOrder[stateIndex] == MiniGameStateFruit.ZeroScene )
-                    textInstructions.text = "Select the real colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_real;
+                    else textInstructions.text = ita_text_real;
                 if ( stateOrder[stateIndex] == MiniGameStateFruit.OneScene )
-                    textInstructions.text = "Select the visible colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_visib;
+                    else textInstructions.text = ita_text_visib;
                 if (stateOrder[stateIndex] == MiniGameStateFruit.TwoScene)
-                    textInstructions.text = "Select the real colour of the fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_real;
+                    else textInstructions.text = ita_text_real;
                 if (stateOrder[stateIndex] == MiniGameStateFruit.ThreeScene)
-                    textInstructions.text = "Depending on the visible colour, select the right fruit";
+                    if (GameManager.instance.Language == "ENG") textInstructions.text = ing_text_fruit;
+                    else textInstructions.text = ita_text_fruit;
             }
            
         }

@@ -47,6 +47,7 @@ public class ReturnMenuButton : MonoBehaviour
     {
         // instructionsManager.showingTutorial = false;
         // IntroManager.showingTutorial = false;
+        SkipTutorialButton.TutorialSkipped = false;
         
         ReturnMenu = true;
         GameManager.instance.UpdateGameState(GameState.Map);
