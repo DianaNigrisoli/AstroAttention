@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class shootingStarEffect : MonoBehaviour
 {
-    public GameObject shootingStar;
+    public GameObject bkgShootingStar;
     public Vector3 targetPosition = new Vector3(-10000, -10000, -10000);   
     // Start is called before the first frame update
     private float speed = 0.02f;
     void Start()
     {
-        shootingStar = GameObject.Find("shootingStar");
+        bkgShootingStar = GameObject.Find("shootingStar");
         targetPosition = new Vector3(-10000, -10000, -10000);
     }
     // Update is called once per frame
@@ -30,10 +30,10 @@ public class shootingStarEffect : MonoBehaviour
             float targetZ = Random.Range(-30.0f, -3.0f);
             Vector3 spawnPosition = new Vector3(spawnX, spawnY, spawnZ);
             targetPosition = new Vector3(targetX, targetY, targetZ);
-            shootingStar.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            shootingStar.transform.position = spawnPosition;
+            bkgShootingStar.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            bkgShootingStar.transform.position = spawnPosition;
         }
-        shootingStar.transform.position = Vector3.MoveTowards(shootingStar.transform.position, targetPosition, step);
+        bkgShootingStar.transform.position = Vector3.MoveTowards(bkgShootingStar.transform.position, targetPosition, step);
         //shootingStar.transform.position = targetPosition;
     }
 }
