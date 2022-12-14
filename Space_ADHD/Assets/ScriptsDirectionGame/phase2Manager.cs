@@ -27,7 +27,7 @@ public class phase2Manager : MonoBehaviour
     {
         shootingStar = GameObject.Find("smallShootingStar");
         canvas = GameObject.Find("CanvasIntro");
-        textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        textObject = canvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         hlines = GameObject.Find("HorizontalLines");
         vlines = GameObject.Find("VerticalLines");
         hlines.transform.position =
