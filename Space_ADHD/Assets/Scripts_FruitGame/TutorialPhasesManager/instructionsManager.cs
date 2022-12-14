@@ -25,12 +25,12 @@ public class instructionsManager : MonoBehaviour
     //private String displayedIntroText;
     private Boolean showTargetingObjects;
     
-    List<int> IDs = new List<int>();
+    private List<int> IDs = new List<int>();
     //List<string> tutorialScreenTexts = new List<string>();
-    List<float> waitSeconds = new List<float>();
-    List<string> tutorialTargetingObject = new List<string>();
-    List<MyVector3> targetingObjectPositions = new List<MyVector3>();
-    List<MyVector3> targetingObjectRotations = new List<MyVector3>();
+    private List<float> waitSeconds = new List<float>();
+    private List<string> tutorialTargetingObject = new List<string>();
+    private List<MyVector3> targetingObjectPositions = new List<MyVector3>();
+    private List<MyVector3> targetingObjectRotations = new List<MyVector3>();
     
     public static event Action<TutorialPreGamePhase> OnTutorialPreGamePhaseChanged;
     
@@ -70,6 +70,7 @@ public class instructionsManager : MonoBehaviour
         else if (state == MiniGameStateFruit.Intro)
         {
             tutorialPhase = TutorialPreGamePhase.Zero;
+            showingTutorial = false;
         }
         else previousGameState = state;
     }
@@ -227,8 +228,7 @@ public class instructionsManager : MonoBehaviour
     {
         Debug.Log("Starting tutorial phase " + tutorialPhase);
         int index = IDs.FindIndex(a => a.Equals((int)tutorialPhase));
-        Debug.Log("index tutorial: "+ index);
-        
+
         currentPhaseTutorialText = istructionsList[index];
         waitTimer = waitSeconds[index];
 

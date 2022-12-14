@@ -37,17 +37,17 @@ namespace Assets.Scripts_FruitGame
         List<Boolean> waitForUserInput = new List<bool>();
         private Boolean phaseStarted;
         
-        public static bool showingTutorial;
+        public static bool showingIntro;
         private IntroPhase introPhase;
 
         /*Variables to manage tutorial phases*/
-        List<int> IDs = new List<int>();
-        List<string> tutorialRobotTexts = new List<string>();
+        private List<int> IDs = new List<int>();
+        private List<string> tutorialRobotTexts = new List<string>();
         //List<string> tutorialScreenTexts = new List<string>();
-        List<float> waitSeconds = new List<float>();
+        private List<float> waitSeconds = new List<float>();
         
         //***NON serve! Cancellare 
-        List<string> tutorialTargetingObject = new List<string>();
+        private List<string> tutorialTargetingObject = new List<string>();
         // List<MyVector3> targetingObjectPositions = new List<MyVector3>();
         // List<MyVector3> targetingObjectRotations = new List<MyVector3>();
         private Boolean showTargetingObjects;
@@ -89,7 +89,7 @@ namespace Assets.Scripts_FruitGame
                 Debug.Log("Starting Tutorial");
                 PrepareTutorialData();
                 introPhase = IntroPhase.Zero;
-                showingTutorial = true;
+                showingIntro = true;
                 playerSpaceship.SetActive(false);
                 tableCanvas.SetActive(false);
                 fruitCanvas.SetActive(false);
@@ -101,7 +101,7 @@ namespace Assets.Scripts_FruitGame
        
         void Update()
         {
-            if (showingTutorial)
+            if (showingIntro)
             {
                 switch (introPhase)
                 {
@@ -133,13 +133,14 @@ namespace Assets.Scripts_FruitGame
                 
             }
             
-            else if (SkipTutorialButton.TutorialSkipped && !showingTutorial)
+            else if (SkipTutorialButton.TutorialSkipped && !showingIntro)
             {
                 txtBox.enabled = false;
                 introText.SetText("");
                 Destroy(tutorialRobot);
                 Destroy(portals); 
                 //fruitCanvas.SetActive(false);
+                tableCanvas.SetActive(false);
                 playerSpaceship.SetActive(true);
             }
             
@@ -292,7 +293,7 @@ namespace Assets.Scripts_FruitGame
                 txtBox.enabled = false;
                 introText.SetText("");
                 txtBox.enabled = false;
-                showingTutorial = false;
+                showingIntro = false;
                 playerSpaceship.SetActive(true);
                 tableCanvas.SetActive(false);
                 MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);

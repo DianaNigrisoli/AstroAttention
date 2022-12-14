@@ -34,7 +34,7 @@ namespace Assets.Scripts_FruitGame
         private void TaskOnClick()
         {
             instructionsManager.showingTutorial = false;
-            IntroManager.showingTutorial = false;
+            IntroManager.showingIntro = false;
             TutorialSkipped = true;
             // GameObject[] IntroFruitObj;
             // IntroFruitObj = GameObject.FindGameObjectsWithTag("IntroFruit");
