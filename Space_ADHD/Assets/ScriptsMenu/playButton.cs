@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 using TMPro;
 using System.Collections.Generic;
 using Assets.Scripts_A_General;
@@ -85,25 +84,26 @@ public class playButton : MonoBehaviour
 	{
 		List<string> listA = new List<string>();
         List<string> listB = new List<string>();
-        // var path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "dialogs.csv" : "dialogs_ita.csv");
+
         var path = GameManager.instance.Language == "ENG" ? "dialogs" : "dialogs_ita";
-        var dialogs = Resources.Load<TextAsset>(path);
+        TextAsset dialogs_csv = (TextAsset) Resources.Load(path);
+        string dialogs = dialogs_csv.text;
         Debug.Log(dialogs);
-        // using (var reader = new StreamReader(path))
-        // {
-        //     while (!reader.EndOfStream)
-        //     {
-        //         var line = reader.ReadLine();
-        //         var values = line.Split(';');
-        //         //Debug.Log(line);
-        //         listA.Add(values[0]);
-        //         listB.Add(values[1]);
-        //         //Debug.Log(values[0]);
-        //         //Debug.Log(values[1]);
-        //     }
-        // }
-        // int index = listA.FindIndex(a => a.Contains(keyword));
-        // dialog.SetText(listB[index]);
+        var lines = dialogs.Split('\n');
+
+        foreach (string line in lines)
+        {
+	        if (!String.IsNullOrEmpty(line))
+	        {
+		        Debug.Log(line);
+		        var values = line.Split(';');
+		        listA.Add(values[0]);
+		        listB.Add(values[1]);
+	        }
+        }
+        
+        int index = listA.FindIndex(a => a.Contains(keyword));
+        dialog.SetText(listB[index]);
 		txtBox.enabled = true;
 	}
 
