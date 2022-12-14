@@ -20,6 +20,8 @@ public class phase0Manager : MonoBehaviour
     private NebulaBehaviour nebulaBehaviour;
     [SerializeField] private GameObject shootingStarExplosionPrefab;
     private GameObject explosion;
+    private GameObject hlines;
+    private GameObject vlines;
 
     void Start()
     {
@@ -27,6 +29,12 @@ public class phase0Manager : MonoBehaviour
         canvas = GameObject.Find("CanvasIntro");
 		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();
+        hlines = GameObject.Find("HorizontalLines");
+        vlines = GameObject.Find("VerticalLines");
+        hlines.transform.position =
+            new Vector3(hlines.transform.position.x, hlines.transform.position.y, 0.0f);
+        vlines.transform.position =
+            new Vector3(vlines.transform.position.x, vlines.transform.position.y, 0.0f);
     }
 
     // Update is called once per frame
