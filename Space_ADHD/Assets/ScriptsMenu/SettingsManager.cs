@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Button flag;
     [SerializeField] private Texture textureItalian;
     [SerializeField] private Texture textureEnglish;
+    [SerializeField] private Button logoutButton;
 
     void Awake()
     {
@@ -31,12 +32,14 @@ public class SettingsManager : MonoBehaviour
     {
         settingsPanel.SetActive(GameManager.instance.State == GameState.Settings || GameManager.instance.State == GameState.UserSelection);
         flag.gameObject.SetActive(GameManager.instance.State == GameState.Settings);
+        logoutButton.gameObject.SetActive(GameManager.instance.State == GameState.Settings);
     }
 
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
         settingsPanel.SetActive(state is GameState.Settings or GameState.UserSelection or GameState.DoctorInterface);
         flag.gameObject.SetActive(state is GameState.Settings);
+        logoutButton.gameObject.SetActive(state is GameState.Settings);
         if (state == GameState.Settings)
         {
             FlagButtonOnOnLanguageChanged();
