@@ -1,6 +1,5 @@
-using System.IO;
 using MimeKit;
-using Application = UnityEngine.Application;
+using UnityEngine;
 
 namespace Assets.Scripts_A_General
 {
@@ -27,14 +26,11 @@ namespace Assets.Scripts_A_General
                     Text = body
                 };
                 multipartBody.Add(textPart);
-                
-                string attachmentPath = Application.dataPath + "/Resources/stats.csv";
-                var attachmentPart = new MimePart( "file/csv" )
+
+                string attachmentPath = PlayerPrefs.GetString("csvPrefs");
+                var attachmentPart = new TextPart( "mixed" )
                 {
-                    Content = new MimeContent( File.OpenRead( attachmentPath ), ContentEncoding.Default ),
-                    ContentDisposition = new ContentDisposition( ContentDisposition.Attachment ),
-                    ContentTransferEncoding = ContentEncoding.Base64,
-                    FileName = Path.GetFileName( attachmentPath )
+                    Text = attachmentPath
                 };
                 multipartBody.Add( attachmentPart );
             }
