@@ -23,13 +23,15 @@ public class MenuSuggestionController : MonoBehaviour
     void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
-        flagButton.OnLanguageChanged += FlagButtonOnOnLanguageChanged;
+        flagButton.OnLanguageChanged += OnSettingEvent;
+        LogoutButton.OnLogout += OnSettingEvent;
     }
 
-    private void FlagButtonOnOnLanguageChanged()
+    private void OnSettingEvent()
     {
         suggestion.SetText("");
         displayedSuggestionText = "";
+        writerTimer = 0.0f;
         suggestionText = GameManager.instance.Language == "ITA"
             ? "Oh no! La navicella è rotta. Visitiamo questi pianeti per chiedere aiuto"
             : "Oh no! My spaceship is broken! Let's stop by these planets and ask for help";
@@ -38,7 +40,8 @@ public class MenuSuggestionController : MonoBehaviour
     void OnDestroy()
     {
         GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
-        flagButton.OnLanguageChanged -= FlagButtonOnOnLanguageChanged;
+        flagButton.OnLanguageChanged -= OnSettingEvent;
+        LogoutButton.OnLogout -= OnSettingEvent;
     }
 
     private void GameManagerOnOnGameStateChanged(GameState state)
