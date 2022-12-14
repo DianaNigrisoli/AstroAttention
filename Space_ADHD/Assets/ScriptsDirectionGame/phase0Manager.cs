@@ -28,7 +28,7 @@ public class phase0Manager : MonoBehaviour
         shootingStar = GameObject.Find("notShootingStar");
         canvas = GameObject.Find("CanvasIntro");
 		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();
+        nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();        
         hlines = GameObject.Find("HorizontalLines");
         vlines = GameObject.Find("VerticalLines");
         hlines.transform.position =
@@ -110,7 +110,7 @@ public class phase0Manager : MonoBehaviour
         {
             if (touch)
             {
-                if (count < 11)
+                if (count < 11 && count>0)
                 {
                     StartCoroutine(HitShootingStar());
                 }

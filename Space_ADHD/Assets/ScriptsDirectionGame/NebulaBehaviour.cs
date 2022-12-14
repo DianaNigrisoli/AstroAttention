@@ -6,6 +6,7 @@ public class NebulaBehaviour : MonoBehaviour
 {
     public IEnumerator Shake(float duration, float magnitude)
     {
+        Debug.Log("nebbeh");
         Vector3 orignalPosition = transform.position;
         float elapsed = 0f;
         
