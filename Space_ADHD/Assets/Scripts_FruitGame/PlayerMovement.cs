@@ -41,11 +41,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip wrong_clip;
     [SerializeField] private AudioClip right_clip;
     
+    //Swipe movement
+    // If the touch is longer than MAX_SWIPE_TIME, we dont consider it a swipe
+    public const float MAX_SWIPE_TIME = 0.5f; 
+	
+    // Factor of the screen width that we consider a swipe
+    // 0.17 works well for portrait mode 16:9 phone
+    public const float MIN_SWIPE_DISTANCE = 0.17f;
 
+    public static bool swipedRight = false;
+    public static bool swipedLeft = false;
+    
+    public bool debugWithArrowKeys = true;
 
-
-
-
+    private float startTime;
+    private Vector2 startFingerPosition;
+    
     void Awake()
     {
         score = 0;
@@ -94,17 +105,52 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        swipedRight = false;
+        swipedLeft = false;
         if (!stop)
         {
+            if (Input.touches.Length > 0)
+            {
+                Touch t = Input.GetTouch(0);
+                if (t.phase == TouchPhase.Began)
+                {
+                    startFingerPosition = new Vector2(t.position.x / (float)Screen.width,
+                        t.position.y / (float)Screen.width);
+                    startTime = Time.time;
+                }
+
+                if(t.phase == TouchPhase.Ended)
+                {
+                    if (Time.time - startTime > MAX_SWIPE_TIME) // press too long
+                        return;
+
+                    Vector2 endFingerPosition = new Vector2(t.position.x/(float)Screen.width, t.position.y/(float)Screen.width);
+
+                    Vector2 swipe = new Vector2(endFingerPosition.x - startFingerPosition.x, endFingerPosition.y - startFingerPosition.y);
+
+                    if (swipe.magnitude < MIN_SWIPE_DISTANCE) // Too short swipe
+                        return;
+
+                    if (Mathf.Abs (swipe.x) > Mathf.Abs (swipe.y)) { // Horizontal swipe
+                        if (swipe.x > 0) {
+                            swipedRight = true;
+                        }
+                        else {
+                            swipedLeft = true;
+                        }
+                    }
+                }
+            }
+            
             controller.velocity = transform.forward * speedForward;
             targetPos.z = controller.position.z;
             var step = speedLateral * Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if ((Input.GetKeyDown(KeyCode.RightArrow)) || (swipedRight))
             {
                 MoveRight();
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if ((Input.GetKeyDown(KeyCode.LeftArrow)) || (swipedLeft))
             {
                 MoveLeft();
             }

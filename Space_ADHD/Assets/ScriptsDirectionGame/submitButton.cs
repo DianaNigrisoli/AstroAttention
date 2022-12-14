@@ -21,17 +21,17 @@ public class submitButton : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
-        csvPath = Application.dataPath + "/Resources/stats.csv";
-		int csvLen = File.ReadAllLines(csvPath).Length;
-		if ((csvLen % 4) == 1)
+	    csvPath = PlayerPrefs.GetString("csvPrefs");
+		int csvLen = csvPath.Split("\n").Length;
+		if ((csvLen % 4) == 2)
 		{
-			currentID = (csvLen-1)/4;
+			currentID = (csvLen-2)/4;
 		}
 		else
 		{
 			currentID = -1;
 		}
-		Debug.Log(currentID);
+		Debug.Log("Game ID: " + currentID);
         this.GetComponent<Button>().onClick.AddListener(TaskOnClick);
     }
 
@@ -41,8 +41,7 @@ public class submitButton : MonoBehaviour
 		{
 		    DateTime submitDate = DateTime.Now;
 			for (int i = 0; i < 4; i++)
-			{ 
-	            var csv = new StringBuilder();
+			{
 				var IDgame = currentID;
 	            var gameType = "Direction";
 	            var gamePhase = i;
@@ -58,9 +57,8 @@ public class submitButton : MonoBehaviour
 	            var date = submitDate;
 	            var sus = susValue;
 	            var kidAutoevaluation = evalValue;
-	            var newLine = $"{IDgame},{gameType},{gamePhase},{player},{reactionTimeMean},{reactionTimeStd},{errorsNumber},{kidScore},{date},{sus},{kidAutoevaluation}";
-	            csv.AppendLine(newLine);
-	            File.AppendAllText(csvPath, csv.ToString());
+	            var newLine = $"{IDgame},{gameType},{gamePhase},{player},{reactionTimeMean},{reactionTimeStd},{errorsNumber},{kidScore},{date},{sus},{kidAutoevaluation}\n";
+	            PlayerPrefs.SetString("csvPrefs", PlayerPrefs.GetString("csvPrefs") + newLine);
 			}
 			GameObject temp = Instantiate(loadingScreen);
 			loadingScreen.gameObject.SetActive(true);

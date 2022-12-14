@@ -1,9 +1,10 @@
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
+
 using System.Text;
 using MailKit.Net.Smtp;
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts_A_General
         {
             GetComponent<Button>().onClick.AddListener(TaskOnClick);
             validUserIds = new Regex(@"^[a-zA-Z0-9_]+$");
-            csvPath = Application.dataPath;
+            csvPath = Application.persistentDataPath;
             csvPath = csvPath + "/Resources/stats.csv";
             placeholderText.text = GameManager.instance.Language == "ENG"? "Enter user ID..." : "Inserisci nome utente...";
         }
@@ -50,8 +51,9 @@ namespace Assets.Scripts_A_General
 
         private void BuildCsv()
         {
-            if (!File.Exists(csvPath)){
-                var csv = new StringBuilder();
+            var csvPrefs = PlayerPrefs.GetString("csvPrefs");
+            if (String.IsNullOrEmpty(csvPrefs))
+            {
                 var first = "ID Game";
                 var second = "Game Type";
                 var third = "Game Phase";
@@ -63,10 +65,12 @@ namespace Assets.Scripts_A_General
                 var ninth = "Date";
                 var tenth = "SUS";
                 var eleventh = "Kid Autoevaluation";
-                var newLine = $"{first},{second},{third},{fourth},{fifth},{sixth},{seventh},{eighth},{ninth},{tenth},{eleventh}";
-                csv.AppendLine(newLine);
-                File.WriteAllText(csvPath, csv.ToString());
+                var newLine = $"{first},{second},{third},{fourth},{fifth},{sixth},{seventh},{eighth},{ninth},{tenth},{eleventh}\n";
+                
+                PlayerPrefs.SetString("csvPrefs", newLine);
             }
+            
+                
         }
     }
 }
