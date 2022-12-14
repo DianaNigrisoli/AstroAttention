@@ -67,8 +67,9 @@ namespace Assets.Scripts_FruitGame
             {
                 if (startTime == 0)
                 {
-                    canvasWaitForNext.SetActive(false);
                     canvasInstructions.SetActive(false);
+                    canvasWaitForNext.SetActive(false);
+                    
                     currentTime = startTime;
                     updateTime = true;
                 }

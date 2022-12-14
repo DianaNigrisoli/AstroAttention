@@ -344,10 +344,26 @@ namespace Assets.Scripts_FruitGame
         //******************************************************************************************
         private void PrepareRobotAndTextAndVariables()
         {
-            Debug.Log("Starting tutorial phase " + introPhase);
+            Debug.Log("Starting intro phase " + introPhase);
             int index = IDs.FindIndex(a => a.Equals((int)introPhase));
 
-            currentPhaseIntroRobotText = tutorialRobotTexts[index];
+            if (introPhase == IntroPhase.Five && !Application.isMobilePlatform ) //OR DA PC
+            {
+                currentPhaseIntroRobotText = tutorialRobotTexts[index];
+            }
+            else if (introPhase == IntroPhase.Five && Application.isMobilePlatform)//else if phase 5 e da mobile
+            {
+                currentPhaseIntroRobotText = GameManager.instance.Language == "ENG"
+                    ? "You can move left or right by swiping your finger on the screen"
+                    : "Puoi muoverti a destra o a sinistra facendo swipe con il dito";
+
+            }
+            else
+            {
+                currentPhaseIntroRobotText = tutorialRobotTexts[index];
+            }
+            
+
             waitTimer = waitSeconds[index];
 
             introText.SetText("");
@@ -378,20 +394,43 @@ namespace Assets.Scripts_FruitGame
         //********************************************************************************************
         private void ShowTutorialRobotAndScreenText()
         {
-            writerTimer += Time.deltaTime;
-            if (writerTimer > 0.02 * displayedIntroRobotText.Length)
+            if (introPhase != IntroPhase.Five)
             {
-                if (displayedIntroRobotText.Length < currentPhaseIntroRobotText.Length){
-                    displayedIntroRobotText += currentPhaseIntroRobotText[displayedIntroRobotText.Length];
-                }
-                
-                else
+                writerTimer += Time.deltaTime;
+                if (writerTimer > 0.02 * displayedIntroRobotText.Length)
                 {
-                    writing = false;
+                    if (displayedIntroRobotText.Length < currentPhaseIntroRobotText.Length)
+                    {
+                        displayedIntroRobotText += currentPhaseIntroRobotText[displayedIntroRobotText.Length];
+                    }
+
+                    else
+                    {
+                        writing = false;
+                    }
+                    introText.SetText(displayedIntroRobotText);
+
                 }
+            
+            }
+            else
+            {
                 
-                introText.SetText(displayedIntroRobotText);
-                //screenText.SetText(displayedScreenText);
+                writerTimer += Time.deltaTime;
+                if (writerTimer > 0.02 * displayedIntroRobotText.Length)
+                {
+                    if (displayedIntroRobotText.Length < currentPhaseIntroRobotText.Length)
+                    {
+                        displayedIntroRobotText += currentPhaseIntroRobotText[displayedIntroRobotText.Length];
+                    }
+
+                    else
+                    {
+                        writing = false;
+                    }
+                    introText.SetText(displayedIntroRobotText);
+
+                }
             }
         }
         

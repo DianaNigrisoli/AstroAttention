@@ -67,6 +67,10 @@ public class instructionsManager : MonoBehaviour
             showingTutorial = true;
             playerSpaceship.SetActive(true);
         }
+        else if (state == MiniGameStateFruit.Intro)
+        {
+            tutorialPhase = TutorialPreGamePhase.Zero;
+        }
         else previousGameState = state;
     }
 
@@ -223,7 +227,8 @@ public class instructionsManager : MonoBehaviour
     {
         Debug.Log("Starting tutorial phase " + tutorialPhase);
         int index = IDs.FindIndex(a => a.Equals((int)tutorialPhase));
-
+        Debug.Log("index tutorial: "+ index);
+        
         currentPhaseTutorialText = istructionsList[index];
         waitTimer = waitSeconds[index];
 
