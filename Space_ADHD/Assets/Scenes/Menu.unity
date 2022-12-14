@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0337f69f80179a18943070520dbb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingStar: {fileID: 1317101498}
+  bkgShootingStar: {fileID: 0}
   targetPosition: {x: -10000, y: -10000, z: -10000}
 --- !u!1 &719079823
 GameObject:
@@ -2982,7 +2982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1032}
+  m_AnchoredPosition: {x: 0, y: -570}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182047193

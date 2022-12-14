@@ -50,6 +50,11 @@ public class MenuSuggestionController : MonoBehaviour
         if (state == GameState.Map)
         {
             suggestionDelay = 0.7f;
+        }else if (state == GameState.Settings)
+        {
+            suggestion.SetText("");
+            displayedSuggestionText = "";
+            writerTimer = 0.0f;
         }
     }
     
