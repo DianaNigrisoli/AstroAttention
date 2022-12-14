@@ -592,34 +592,26 @@ namespace Assets.ScriptsDirectionGame
         {
             var header = true;
             
-            var path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "directionGameTutorialData.csv" : "directionGameTutorialData_ita.csv");
+            var path = GameManager.instance.Language == "ENG" ? "directionGameTutorialData" : "directionGameTutorialData_ita";
+            
+            TextAsset tutorialTextCsv = (TextAsset) Resources.Load(path);
+            string tutorialLines = tutorialTextCsv.text;
+            var lines = tutorialLines.Split('\n');
 
-            using var reader = new StreamReader(path);
-            while (!reader.EndOfStream)
+            foreach (string line in lines)
             {
-                var line = reader.ReadLine();
-                if (line != null)
+                if (!header)
                 {
-                    var values = line.Split(';');
-                    //Debug.Log(line);
-                    if (!header)
+                    if (!String.IsNullOrEmpty(line))
                     {
+                        var values = line.Split(';');
                         IDs.Add(int.Parse(values[0]));
-                        //Debug.Log(IDs[IDs.Count - 1]);
+                    
                         tutorialRobotTexts.Add(values[1]);
-                        //Debug.Log(tutorialRobotTexts[tutorialRobotTexts.Count - 1]);
                         tutorialScreenTexts.Add(values[2]);
-                        //Debug.Log(tutorialScreenTexts[tutorialScreenTexts.Count - 1]);
-
                         waitForUserInput.Add(values[3] == "TRUE");
-                        //Debug.Log(waitForUserInput[tutorialScreenTexts.Count - 1]);
-                    
                         waitSeconds.Add(float.Parse(values[4]));
-                        //Debug.Log(waitSeconds[waitSeconds.Count - 1]);
-                    
                         tutorialTargetingObject.Add(values[5]);
-                        //Debug.Log(tutorialTargetingObject[tutorialTargetingObject.Count - 1]);
-
                         try
                         {
                             targetingObjectPositions.Add(new MyVector3(float.Parse(values[6]), float.Parse(values[7]), float.Parse(values[8])));
@@ -637,10 +629,10 @@ namespace Assets.ScriptsDirectionGame
                             targetingObjectRotations.Add(new MyVector3(0f, 0f, 0f));
                         }
                     }
-                    else
-                    {
-                        header = false;
-                    }
+                }
+                else
+                {
+                    header = false;
                 }
             }
         }

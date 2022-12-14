@@ -88,14 +88,12 @@ public class playButton : MonoBehaviour
         var path = GameManager.instance.Language == "ENG" ? "dialogs" : "dialogs_ita";
         TextAsset dialogs_csv = (TextAsset) Resources.Load(path);
         string dialogs = dialogs_csv.text;
-        Debug.Log(dialogs);
         var lines = dialogs.Split('\n');
 
         foreach (string line in lines)
         {
 	        if (!String.IsNullOrEmpty(line))
 	        {
-		        Debug.Log(line);
 		        var values = line.Split(';');
 		        listA.Add(values[0]);
 		        listB.Add(values[1]);

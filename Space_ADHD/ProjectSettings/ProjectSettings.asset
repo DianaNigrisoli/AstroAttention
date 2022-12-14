@@ -155,6 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany.Space_ADHD
     Standalone: com.DefaultCompany.Space-ADHD
   buildNumber:
     Standalone: 0
