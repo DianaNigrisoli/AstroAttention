@@ -137,6 +137,7 @@ public class playButton : MonoBehaviour
             	case "planet2Button":
 	                GameManager.instance.UpdateGameState(GameState.DirectionGame);
 	                SceneManager.LoadScene("DirectionGame");
+	                phase0Manager.touch = true;
                 	break;
             	default:
                 	Debug.Log("GG");

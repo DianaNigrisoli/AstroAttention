@@ -22,12 +22,13 @@ public class phase0Manager : MonoBehaviour
     private GameObject explosion;
     private GameObject hlines;
     private GameObject vlines;
+    [SerializeField] public GameObject notShootingStar;
 
     void Start()
     {
-        shootingStar = GameObject.Find("notShootingStar");
+        shootingStar = Instantiate(notShootingStar);
         canvas = GameObject.Find("CanvasIntro");
-		textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+		textObject = canvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         nebulaBehaviour = GameObject.Find("Nebula Aqua-Pink").GetComponent<NebulaBehaviour>();        
         hlines = GameObject.Find("HorizontalLines");
         vlines = GameObject.Find("VerticalLines");
@@ -41,6 +42,7 @@ public class phase0Manager : MonoBehaviour
     void shootingStarSpawn()
     {
         cases  = Random.Range(0, 4);
+        Debug.Log(cases);
         Vector3 spawnPosition = new Vector3(0.0f, 0.0f, 0.0f);
         switch (cases)
         {
@@ -86,6 +88,7 @@ public class phase0Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.23f);
         gameInstance();
+        
     }
 
     IEnumerator HitShootingStar()
@@ -107,14 +110,14 @@ public class phase0Manager : MonoBehaviour
     {
 		laserButtons.timeDG += Time.deltaTime;
         if (!endgame)
-        {
+        {               
             if (touch)
             {
                 if (count < 11 && count>0)
                 {
                     StartCoroutine(HitShootingStar());
                 }
-                
+                Debug.Log("Touch");
                 StartCoroutine(Delay());
                 touch = false;
                 count += 1;
