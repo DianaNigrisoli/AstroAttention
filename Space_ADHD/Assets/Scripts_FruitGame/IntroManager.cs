@@ -303,59 +303,40 @@ namespace Assets.Scripts_FruitGame
         //****************************************************************************************
         private void PrepareTutorialData()
         {
-            string headerNames;
-            Boolean header = true;
-
-            // string path = Application.dataPath + "/Resources/fruitMinigameIntro.csv";
-            string path = Application.dataPath + "/Resources/" + (GameManager.instance.Language == "ENG" ? "fruitMinigameIntro.csv" : "fruitMinigameIntro_ita.csv");
-            
-            using (var reader = new StreamReader(path))
+           var header = true;
+           
+           var path = GameManager.instance.Language == "ENG" ? "fruitMinigameIntro" : "fruitMinigameIntro_ita";
+           
+           TextAsset tutorialTextCsv = (TextAsset) Resources.Load(path);
+           string tutorialLines = tutorialTextCsv.text;
+           var lines = tutorialLines.Split('\n');
+           Debug.Log(tutorialLines);
+           
+           foreach (string line in lines)
             {
-                while (!reader.EndOfStream)
+                Debug.Log(lines);
+                if (!header)
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(';');
-                    //Debug.Log(line);
-                    if (!header)
+                    if (!String.IsNullOrEmpty(line))
                     {
+                        var values = line.Split(';');
                         IDs.Add(int.Parse(values[0]));
-                        //Debug.Log(IDs[IDs.Count - 1]);
                         tutorialRobotTexts.Add(values[1]);
-                        //Debug.Log(tutorialRobotTexts[tutorialRobotTexts.Count - 1]);
-                        
                         if (values[3] == "TRUE") waitForUserInput.Add(true);
                         else waitForUserInput.Add(false);
-                        //Debug.Log(waitForUserInput[tutorialScreenTexts.Count - 1]);
-                        
-                        waitSeconds.Add(float.Parse(values[4]));
-                        //Debug.Log(waitSeconds[waitSeconds.Count - 1]);
-                        
-                        tutorialTargetingObject.Add(values[5]);
-                        //Debug.Log(tutorialTargetingObject[tutorialTargetingObject.Count - 1]);
 
-                        // try
-                        // {
-                        //     targetingObjectPositions.Add(new MyVector3(float.Parse(values[6]), float.Parse(values[7]), float.Parse(values[8])));
-                        // }
-                        // catch (FormatException)
-                        // {
-                        //     targetingObjectPositions.Add(new MyVector3(-1f, -1f, -1f));
-                        // }
-                        // try
-                        // {
-                        //     targetingObjectRotations.Add(new MyVector3(float.Parse(values[9]), float.Parse(values[10]), float.Parse(values[11])));
-                        // }
-                        // catch (FormatException)
-                        // {
-                        //     targetingObjectRotations.Add(new MyVector3(0f, 0f, 0f));
-                        // }
+                        waitSeconds.Add(float.Parse(values[4]));
+
+                        tutorialTargetingObject.Add(values[5]);
                     }
-                    else
-                    {
-                        headerNames = line;
-                        header = false;
-                    }
+                  
                 }
+                else
+                {
+                    //headerNames = line;
+                    header = false;
+                }
+                
             }
         }
         
