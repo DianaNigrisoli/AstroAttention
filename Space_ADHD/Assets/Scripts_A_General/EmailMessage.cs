@@ -28,7 +28,7 @@ namespace Assets.Scripts_A_General
                 multipartBody.Add(textPart);
 
                 string attachmentPath = PlayerPrefs.GetString("csvPrefs");
-                var attachmentPart = new TextPart( "mixed" )
+                var attachmentPart = new TextPart( "file/csv" )
                 {
                     Text = attachmentPath
                 };
