@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Assets.Scripts_A_General;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,8 @@ namespace Assets.ScriptsMenu
     {
     
         public static event Action OnLogout;
-    
+        [SerializeField] private GameObject loadingScreen;
+        
         void Awake()
         {
             GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
@@ -28,15 +30,24 @@ namespace Assets.ScriptsMenu
     
         private void TaskOnClick()
         {
-            OnLogout?.Invoke();
-            GameManager.instance.UpdateGameState(GameState.UserSelection);
-            Destroy(GameObject.Find("GameManager"));
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameObject temp = Instantiate(loadingScreen);
+            loadingScreen.gameObject.SetActive(true);
+            StartCoroutine(waiter());
+
         }
 
         private void GameManagerOnOnGameStateChanged(GameState state)
         {
             gameObject.GetComponent<Button>().interactable = state == GameState.Settings;
+        }
+        
+        IEnumerator waiter()
+        {
+            yield return new WaitForSeconds(2f);
+            OnLogout?.Invoke();
+            GameManager.instance.UpdateGameState(GameState.UserSelection);
+            Destroy(GameObject.Find("GameManager"));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     
     }
