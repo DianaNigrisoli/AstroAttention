@@ -113,6 +113,12 @@ public class phase3Manager : MonoBehaviour
         shootingStar.transform.position += Vector3.right * 20.0f;
     }
 
+    IEnumerator seconds()
+    {
+        yield return new WaitForSeconds(1.22f);
+		endgame = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -131,7 +137,7 @@ public class phase3Manager : MonoBehaviour
                 count = count + 1;
                 if (count == 11)
                 {
-                    endgame = true;
+			        StartCoroutine(seconds());
                 }
             }
         }
