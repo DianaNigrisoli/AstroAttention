@@ -44,7 +44,10 @@ public class submitButtonFruit : MonoBehaviour
     private void TaskOnClick2()
     {
 	    if (susValue != -1 && evalValue != -1)
-	    {
+	    {	
+		    GameObject temp = Instantiate(loadingScreen);
+		    loadingScreen.gameObject.SetActive(true);
+		    
 		    DateTime submitDate = DateTime.Now;
 		    for (int i = 0; i < 4; i++)
 		    {
@@ -66,11 +69,16 @@ public class submitButtonFruit : MonoBehaviour
 			    var newLine = $"{IDgame},{gameType},{gamePhase},{player},{reactionTimeMean},{reactionTimeStd},{errorsNumber},{kidScore},{date},{sus},{kidAutoevaluation}\n";
 			    PlayerPrefs.SetString("csvPrefs", PlayerPrefs.GetString("csvPrefs") + newLine);
 		    }
-		    GameObject temp = Instantiate(loadingScreen);
-		    loadingScreen.gameObject.SetActive(true);
-		    GameManager.instance.UpdateGameState(GameState.Map);
-		    SceneManager.LoadScene("Menu");
+
+		    StartCoroutine(waiter());
 	    }
+    }
+
+    IEnumerator waiter()
+    {
+	    yield return new WaitForSeconds(2f);
+	    GameManager.instance.UpdateGameState(GameState.Map);
+	    SceneManager.LoadScene("Menu");
     }
 
     // Update is called once per frame
