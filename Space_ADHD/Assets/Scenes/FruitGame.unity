@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2474,7 +2474,7 @@ RectTransform:
   m_GameObject: {fileID: 953623653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5909697, y: 1.5909697, z: 1.5909697}
+  m_LocalScale: {x: 3.3343937, y: 3.3343937, z: 3.3343937}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2063632985}
@@ -2483,7 +2483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 597, y: 1268}
+  m_AnchoredPosition: {x: 560, y: 1274}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953623655
@@ -3598,6 +3598,7 @@ MonoBehaviour:
   phase1Manager: {fileID: 4747959850155140779, guid: a258893349b5f224982b4be054e1ff53, type: 3}
   phase2Manager: {fileID: 7832486838415021705, guid: 6832f57e70e0e3943a6a6f7edf8a3c16, type: 3}
   phase3Manager: {fileID: 9046228242512948052, guid: 643ae3018f75a7848a92f332ea47b619, type: 3}
+  musicManager: {fileID: 0}
 --- !u!4 &1432634480
 Transform:
   m_ObjectHideFlags: 0
@@ -4910,6 +4911,7 @@ MonoBehaviour:
   rightSound: {fileID: 0}
   wrong_clip: {fileID: 8300000, guid: 04357374a6aa5599785dfc4cd5fbe711, type: 3}
   right_clip: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  debugWithArrowKeys: 1
 --- !u!54 &1962802217
 Rigidbody:
   m_ObjectHideFlags: 0
