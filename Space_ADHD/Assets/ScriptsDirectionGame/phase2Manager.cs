@@ -140,7 +140,7 @@ public class phase2Manager : MonoBehaviour
         {
             if (touch)
             {
-                if (count > 0)
+                if (count<11 && count>0)
                 {
                     StartCoroutine(HitShootingStar());
                 }
