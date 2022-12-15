@@ -155,7 +155,7 @@ namespace Assets.ScriptsDirectionGame
                     case TutorialPhase.Nine:
                         MiniGameManager.instance.UpdateMiniGameState(MiniGameState.WaitForNext);
                         canvas = GameObject.Find("CanvasIntro");
-                        textObject = canvas.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+                        textObject = canvas.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
                         textObject.text = GameManager.instance.Language == "ITA"? "Seleziona il settore con la cometa" : "Select the sector with the comet";
                         Destroy(GameObject.Find("SkipTutorial"));
                         Destroy(this);

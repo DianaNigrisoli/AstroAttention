@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         
         wrongSound = gameObject.AddComponent<AudioSource>();
         wrongSound.clip = wrong_clip;
-        wrongSound.volume = 0.1f;
+        wrongSound.volume = 0.05f;
         wrongSound.playOnAwake = false;
         
         rightSound = gameObject.AddComponent<AudioSource>();

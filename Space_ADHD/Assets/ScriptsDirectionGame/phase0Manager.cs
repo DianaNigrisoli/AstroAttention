@@ -117,7 +117,6 @@ public class phase0Manager : MonoBehaviour
                 {
                     StartCoroutine(HitShootingStar());
                 }
-                Debug.Log("Touch");
                 StartCoroutine(Delay());
                 touch = false;
                 count += 1;
