@@ -39,6 +39,9 @@ namespace Assets.Scripts_A_General
                 GameManager.instance.UpdateGameState(GameManager.instance.CurrentUserId == "Doctor"
                     ? GameState.DoctorInterface
                     : GameState.Map);
+                placeholderText.text = GameManager.instance.Language == "ENG"? "Enter user ID..." : "Inserisci nome utente...";
+                placeholderText.color = new Color(0.1960784f, 0.1960784f, 0.1960784f, 0.5019608f);
+                placeholderText.fontSize = 14f;
             }
             else
             {

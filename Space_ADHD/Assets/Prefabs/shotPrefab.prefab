@@ -58,10 +58,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_templateMaterial: {fileID: 2100000, guid: 974b33ccbd786464a825203eb88b8dab, type: 2}
   m_doNotOverwriteTemplateMaterialProperties: 0
-  m_startPos: {x: 0.01, y: 0.01, z: 0.01}
+  m_startPos: {x: 0, y: 0, z: 0.15}
   m_endPos: {x: 0, y: 0, z: 0}
-  m_lineColor: {r: 0.6329314, g: 0.8490566, b: 0.052064814, a: 1}
-  m_lineWidth: 0.3
+  m_lineColor: {r: 0.09438412, g: 0.3244607, b: 0.9528302, a: 1}
+  m_lineWidth: 0.2
   m_lightSaberFactor: 1
 --- !u!23 &8263162929262992532
 MeshRenderer:
