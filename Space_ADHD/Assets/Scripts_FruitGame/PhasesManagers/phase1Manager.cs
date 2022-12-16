@@ -33,6 +33,7 @@ namespace Assets.Scripts_FruitGame
             else textObject.text = ita_text;
             if(PlayerMovement.PortalCounter == NumSpawn)
             {
+                PlayerMovement.PortalCounter = 0;
                 StartCoroutine(waiter());
             }
         }
@@ -65,12 +66,13 @@ namespace Assets.Scripts_FruitGame
             PlayerMovement.errorsFruitsG[currentPhase] = NumSpawn - PlayerMovement.score;
             PlayerMovement.kidScoreFruitG += CalculateFinalScore(PlayerMovement.ListReactionTime,
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
-            
+            Debug.Log("current phase: " + currentPhase);
+            Debug.Log(PlayerMovement.reactionTimeMean[currentPhase]);
+            Debug.Log(PlayerMovement.reactionTimeStd[currentPhase]);
                 
             print("Final Score: "+ FinalScore);
                 
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
-            PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
             PlayerMovement.ListReactionTime.Clear();
             textObject.text = "";

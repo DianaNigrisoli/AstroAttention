@@ -75,7 +75,10 @@ namespace Assets.Scripts_FruitGame
             PlayerMovement.errorsFruitsG[currentPhase] = NumSpawn - PlayerMovement.score;
             PlayerMovement.kidScoreFruitG = CalculateFinalScore(PlayerMovement.ListReactionTime,
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
-            
+            Debug.Log("current phase: " + currentPhase);
+            Debug.Log(PlayerMovement.reactionTimeMean[currentPhase]);
+            Debug.Log(PlayerMovement.reactionTimeStd[currentPhase]);
+
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
             PlayerMovement.score = 0;
             PlayerMovement.ListReactionTime.Clear();
