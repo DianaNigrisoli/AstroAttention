@@ -21,14 +21,14 @@ public class FunctionTimer : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        if ((Input.GetKeyDown(KeyCode.RightArrow)) || (Input.GetKeyDown(KeyCode.LeftArrow)))
+        if ((Input.GetKeyDown(KeyCode.RightArrow)) || (Input.GetKeyDown(KeyCode.LeftArrow))||(PlayerMovement.swipedLeft)||(PlayerMovement.swipedRight))
         {
-            if ((Input.GetKeyDown(KeyCode.LeftArrow)) &&  (leftLine == false))
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || (PlayerMovement.swipedLeft)) &&  (leftLine == false))
             {
                 counter += 1;
                 reactionTime = time;
             }
-            if ((Input.GetKeyDown(KeyCode.RightArrow)) &&  (rightLine == false))
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || (PlayerMovement.swipedRight)) &&  (rightLine == false))
             {
                 counter += 1;
                 reactionTime = time;
