@@ -42,6 +42,7 @@ namespace Assets.Scripts_FruitGame
             //GameManager.instance.Language == "ENG" ? textObject.text = ing_text : textObject.text=ita_text;
             if(PlayerMovement.PortalCounter == NumSpawn)
             {
+                PlayerMovement.PortalCounter = 0;
                 StartCoroutine(waiter());
             }
             
@@ -66,6 +67,7 @@ namespace Assets.Scripts_FruitGame
         }
         IEnumerator waiter()
         {
+ 
             yield return new WaitForSecondsRealtime(0.8f);
 
             PlayerMovement.reactionTimeMean[currentPhase] = PlayerMovement.ListReactionTime.Sum() / PlayerMovement.ListReactionTime.Count;
@@ -75,7 +77,6 @@ namespace Assets.Scripts_FruitGame
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
             
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
-            PlayerMovement.PortalCounter = 0;
             PlayerMovement.score = 0;
             PlayerMovement.ListReactionTime.Clear();
             textObject.text = "";
