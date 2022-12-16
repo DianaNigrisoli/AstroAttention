@@ -12,7 +12,7 @@ namespace Assets.Scripts_FruitGame
     public class phase1Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 10;
+        private int NumSpawn = 3;
         private int currentPhase = 1;
         
         public TextMeshProUGUI textObject;
@@ -62,13 +62,10 @@ namespace Assets.Scripts_FruitGame
             yield return new WaitForSecondsRealtime(0.8f);
             PlayerMovement.reactionTimeMean[currentPhase] = PlayerMovement.ListReactionTime.Sum() / PlayerMovement.ListReactionTime.Count;
             PlayerMovement.reactionTimeStd[currentPhase] = CalculateStdDev(PlayerMovement.ListReactionTime);
-            PlayerMovement.errorsFruitsG[currentPhase] = 10 - PlayerMovement.score;
-            PlayerMovement.kidScoreFruitG += (int)CalculateFinalScore(PlayerMovement.ListReactionTime,
+            PlayerMovement.errorsFruitsG[currentPhase] = NumSpawn - PlayerMovement.score;
+            PlayerMovement.kidScoreFruitG += CalculateFinalScore(PlayerMovement.ListReactionTime,
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
             
-            
-                
-            //TODO: FINAL SCORE DA CAMBIARE!!!   
                 
             print("Final Score: "+ FinalScore);
                 

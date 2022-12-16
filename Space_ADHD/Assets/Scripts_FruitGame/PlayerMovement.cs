@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
     public static double[] reactionTimeMean = new double[4];
     public static double[] reactionTimeStd = new double[4];
     public static int[] errorsFruitsG = new int[4];
-    public static int kidScoreFruitG = 0; 
+    public static double kidScoreFruitG = 0.0f; 
     
     // For the single phase
     public static int PortalCounter=0;
-    public static List<float> ListReactionTime = new List<float>(10);
-    public static List<int> ListScore = new List<int>(10);
+    public static List<float> ListReactionTime = new List<float>(Assets.Scripts_FruitGame.phase0Manager.NumSpawn);
+    public static List<int> ListScore = new List<int>(Assets.Scripts_FruitGame.phase0Manager.NumSpawn);
     private static bool stop = false; 
     
     [SerializeField] Sprite[] indicators;

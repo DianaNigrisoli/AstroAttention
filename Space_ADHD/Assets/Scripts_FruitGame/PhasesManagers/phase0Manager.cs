@@ -15,7 +15,7 @@ namespace Assets.Scripts_FruitGame
     public class phase0Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 10;
+        public static int NumSpawn = 3;
         private int currentPhase = 0;
         
         public TextMeshProUGUI textObject;
@@ -33,6 +33,7 @@ namespace Assets.Scripts_FruitGame
             textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
         }
 
+        
         // Update is called once per frame
         void Update()
         {
@@ -66,12 +67,11 @@ namespace Assets.Scripts_FruitGame
         IEnumerator waiter()
         {
             yield return new WaitForSecondsRealtime(0.8f);
-                //TODO: FINAL SCORE DA CAMBIARE!!!   
-                
+
             PlayerMovement.reactionTimeMean[currentPhase] = PlayerMovement.ListReactionTime.Sum() / PlayerMovement.ListReactionTime.Count;
             PlayerMovement.reactionTimeStd[currentPhase] = CalculateStdDev(PlayerMovement.ListReactionTime);
-            PlayerMovement.errorsFruitsG[currentPhase] = 10 - PlayerMovement.score;
-            PlayerMovement.kidScoreFruitG = (int)CalculateFinalScore(PlayerMovement.ListReactionTime,
+            PlayerMovement.errorsFruitsG[currentPhase] = NumSpawn - PlayerMovement.score;
+            PlayerMovement.kidScoreFruitG = CalculateFinalScore(PlayerMovement.ListReactionTime,
                 PlayerMovement.ListScore, PlayerMovement.time1portal);
             
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);

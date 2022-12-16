@@ -57,7 +57,7 @@ public class submitButton : MonoBehaviour
 	            var date = submitDate;
 	            var sus = susValue;
 	            var kidAutoevaluation = evalValue;
-	            var newLine = $"{IDgame},{gameType},{gamePhase},{player},{reactionTimeMean},{reactionTimeStd},{errorsNumber},{kidScore},{date},{sus},{kidAutoevaluation}\n";
+	            var newLine = $"{IDgame};{gameType};{gamePhase};{player};{reactionTimeMean};{reactionTimeStd};{errorsNumber};{kidScore};{date};{sus};{kidAutoevaluation}\n";
 	            PlayerPrefs.SetString("csvPrefs", PlayerPrefs.GetString("csvPrefs") + newLine);
 			}
 			GameObject temp = Instantiate(loadingScreen);
