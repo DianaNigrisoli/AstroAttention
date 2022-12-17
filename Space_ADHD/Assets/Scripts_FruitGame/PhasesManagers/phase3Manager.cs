@@ -11,7 +11,7 @@ namespace Assets.Scripts_FruitGame
     public class phase3Manager : MonoBehaviour
     {
         public static int FinalScore;
-        private int NumSpawn = 3;
+        private int NumSpawn = 5;
         private int currentPhase = 3;
         private string ing_text = "Choose the fruit that has its real color like the one on top";
         private string ita_text = "Scegli la frutta il cui colore reale è uguale al colore in alto";
