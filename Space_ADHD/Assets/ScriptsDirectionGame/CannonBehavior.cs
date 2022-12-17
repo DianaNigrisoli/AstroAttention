@@ -24,6 +24,7 @@ namespace Assets.ScriptsDirectionGame
     
     	void Start()
     	{
+	        kidScoreDirectionG = 0.0d;
     		upRightShot = false;
     		upLeftShot = false;
     		downLeftShot = false;
