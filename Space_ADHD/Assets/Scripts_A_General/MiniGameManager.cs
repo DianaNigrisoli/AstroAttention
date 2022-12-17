@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Assets.Scripts_A_General;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,7 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] GameObject phase2Manager;
     [SerializeField] GameObject phase3Manager;
     [SerializeField] GameObject musicManager;
+    private GameObject currentPhaseManager;
     public static event Action<MiniGameState> OnMiniGameStateChanged;
 
     void Awake()
@@ -23,6 +25,7 @@ public class MiniGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(currentPhaseManager);
         UpdateMiniGameState(MiniGameState.Intro);
     }
 
@@ -31,6 +34,12 @@ public class MiniGameManager : MonoBehaviour
         this.state = newState;
         
         Debug.Log("Mini game state updated to: " + state.ToString("G"));
+        Assets.ScriptsDirectionGame.phase0Manager.cases = 1000;
+        Assets.ScriptsDirectionGame.phase1Manager.cases = 1000;
+        Assets.ScriptsDirectionGame.phase2Manager.ROTcases = 1000;
+        Assets.ScriptsDirectionGame.phase2Manager.SPTcases = 1000;
+        Assets.ScriptsDirectionGame.phase3Manager.ROTcases = 1000;
+        Assets.ScriptsDirectionGame.phase3Manager.SPTcases = 1000;
         
         switch (newState)
         {
@@ -41,17 +50,20 @@ public class MiniGameManager : MonoBehaviour
             case MiniGameState.End:
                 break;
             case MiniGameState.Zero:
-                Instantiate(phase0Manager);
+                currentPhaseManager = Instantiate(phase0Manager);
                 musicManager.SetActive(true);
                 break;
             case MiniGameState.One:
-                Instantiate(phase1Manager);
+                Destroy(currentPhaseManager);
+                currentPhaseManager = Instantiate(phase1Manager);
                 break;
             case MiniGameState.Two:
-                Instantiate(phase2Manager);
+                Destroy(currentPhaseManager);
+                currentPhaseManager = Instantiate(phase2Manager);
                 break;
             case MiniGameState.Three:
-                Instantiate(phase3Manager);
+                Destroy(currentPhaseManager);
+                currentPhaseManager = Instantiate(phase3Manager);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
