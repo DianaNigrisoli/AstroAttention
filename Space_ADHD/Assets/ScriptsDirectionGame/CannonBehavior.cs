@@ -24,6 +24,9 @@ namespace Assets.ScriptsDirectionGame
     
     	void Start()
     	{
+	        reactionTimeMean = new double[4] {0.0d, 0.0d, 0.0d, 0.0d};
+		    reactionTimeStd = new double[4] {0.0d, 0.0d, 0.0d, 0.0d};
+			errorsDirectionG = new int[4] {0, 0, 0, 0};
 	        kidScoreDirectionG = 0.0d;
     		upRightShot = false;
     		upLeftShot = false;
