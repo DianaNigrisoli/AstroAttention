@@ -51,7 +51,7 @@ namespace Assets.Scripts_FruitGame
         {
             double finalScore = 0;
             for (int i = 0; i < timers.Count; i++)
-                finalScore = finalScore+ scores[i] * (maxTimer - timers[i]);
+                finalScore = finalScore+ 2*scores[i] * (maxTimer - timers[i]);
             return finalScore;
         }
         IEnumerator waiter()
