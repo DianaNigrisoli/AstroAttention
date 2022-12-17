@@ -17,6 +17,7 @@ public class endPhaseManagerFruit : MonoBehaviour
     [SerializeField] GameObject textCanvas;
     [SerializeField] GameObject correctAnsCanvas;
     [SerializeField] GameObject player;
+    //[SerializeField] private Button returnMenuBut;
 
     
     
@@ -61,6 +62,7 @@ public class endPhaseManagerFruit : MonoBehaviour
                 question1.text = ita_text_q1;
                 question2.text = ita_text_q2;
             }
+            //returnMenuBut.interactable = false;
             introCanvas.SetActive(false);
             wfnCanvas.SetActive(false);
             fruitCanvas.SetActive(false);
