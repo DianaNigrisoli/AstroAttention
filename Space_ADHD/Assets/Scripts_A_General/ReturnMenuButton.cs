@@ -16,6 +16,7 @@ using Assets.Scripts_A_General;
 using Assets.Scripts_FruitGame;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using SkipTutorialButton = Assets.Scripts_FruitGame.SkipTutorialButton;
 
 public class ReturnMenuButton : MonoBehaviour
 {
@@ -49,9 +50,13 @@ public class ReturnMenuButton : MonoBehaviour
     {
         GameObject temp = Instantiate(loadingScreen);
         loadingScreen.gameObject.SetActive(true);
-        // instructionsManager.showingTutorial = false;
-        // IntroManager.showingTutorial = false;
+        
+        //Fruit Game restoring variables
         SkipTutorialButton.TutorialSkipped = false;
+        PlayerMovement.score = 0;
+        PlayerMovement.ListScore.Clear();
+        PlayerMovement.ListReactionTime.Clear();
+        //********
         
         ReturnMenu = true;
         GameManager.instance.UpdateGameState(GameState.Map);
