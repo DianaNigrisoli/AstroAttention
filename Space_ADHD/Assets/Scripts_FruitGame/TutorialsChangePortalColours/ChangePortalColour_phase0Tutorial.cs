@@ -82,6 +82,7 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
     {
         if (state == MiniGameStateFruit.ZeroTutorial)
         {
+            //PlayerMovement.tut = true;
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
@@ -93,6 +94,7 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
        
         else
         {
+            //PlayerMovement.tut = false;
             triangle1.enabled = false;
             triangle2.enabled = false;
             triangle3.enabled = false;

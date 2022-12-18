@@ -21,6 +21,7 @@ namespace Assets.Scripts_FruitGame
         void Start()
         {
             textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
+            PlayerMovement.isTut = false;
         }
 
         // Update is called once per frame
@@ -68,6 +69,8 @@ namespace Assets.Scripts_FruitGame
 
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.End);
             PlayerMovement.score = 0;
+            PlayerMovement.ListScore.Clear();
+            PlayerMovement.ListReactionTime.Clear();
             textObject.text = "";
 //            PlayerMovement.ListReactionTime = new List<float>(PlayerMovement.ListReactionTime.Count);
             Destroy(this);

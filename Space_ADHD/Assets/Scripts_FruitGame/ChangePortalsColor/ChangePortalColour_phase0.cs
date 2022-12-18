@@ -76,6 +76,7 @@ public class ChangePortalColour_phase0 : MonoBehaviour
         
        if (state == MiniGameStateFruit.ZeroScene)
        {
+           
            fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();

@@ -18,12 +18,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 targetPos;
     public static int score;
     public static float time1portal;
-    
+
     // For the entire game
     public static double[] reactionTimeMean = new double[4];
     public static double[] reactionTimeStd = new double[4];
     public static int[] errorsFruitsG = new int[4];
     public static double kidScoreFruitG = 0.0f; 
+    public static bool isTut = false;
     
     // For the single phase
     public static int PortalCounter=0;
@@ -180,16 +181,24 @@ public class PlayerMovement : MonoBehaviour
 
             {
                 score += 1;
-                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
                 rightSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(1);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
 
             }
             else
             {
-                ListScore.Add(0);
                 answerIndicator.sprite = indicators[1];
                 wrongSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(0);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
             }
         }
     
@@ -203,15 +212,23 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2Tutorial.rightPortal3 == 1 || ChangePortalColour_phase3Tutorial.rightPortal3 == 1)
             {
                 score += 1;
-                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
                 rightSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(1);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
             }
             else
             {
-                ListScore.Add(0);
                 answerIndicator.sprite = indicators[1];
                 wrongSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(0);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
             }
                 
         }
@@ -224,26 +241,42 @@ public class PlayerMovement : MonoBehaviour
                 ChangePortalColour_phase2Tutorial.rightPortal1 == 1 ||ChangePortalColour_phase3Tutorial.rightPortal1 == 1)
             {
                 score += 1;
-                ListScore.Add(1);
                 answerIndicator.sprite = indicators[0];
                 rightSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(1);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
+                
             }
             else 
             {
-                ListScore.Add(0);
+                
                 answerIndicator.sprite = indicators[1];
                 wrongSound.Play();
+                if (!isTut)
+                {
+                    ListScore.Add(0);
+                    ListReactionTime.Add(FunctionTimer.reactionTime);
+                }
             }
         }
 
-        ListReactionTime.Add(FunctionTimer.reactionTime);
+        
         PortalCounter += 1;
+        string t = "";
         string s = "";
-        foreach (var a in ListReactionTime)
+        foreach (var t1 in ListReactionTime)
         {
-            s += a.ToString() + ", ";
+            t += t1.ToString() + ", ";
         }
-        print("reaction times: " + s);
+        foreach (var s1 in ListScore)
+        {
+            s += s1.ToString() + ", ";
+        }
+        print("list reaction times: " + t);
+        print("list scores: " + s);
         print("Portal-spawn number: " + PortalCounter);
         print("score: " + score);
         return;

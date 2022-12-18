@@ -38,6 +38,7 @@ public class ChangePortalColour_phase1Tutorial : MonoBehaviour
     public static bool phase1Tut = false;
     
     
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -71,6 +72,7 @@ public class ChangePortalColour_phase1Tutorial : MonoBehaviour
     {
         if (state == MiniGameStateFruit.OneTutorial)
         {
+            //PlayerMovement.tut = true;
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
@@ -82,6 +84,7 @@ public class ChangePortalColour_phase1Tutorial : MonoBehaviour
         
         else
         {
+            //PlayerMovement.tut = false;
             triangle1.enabled = false;
             triangle2.enabled = false;
             triangle3.enabled = false;

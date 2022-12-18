@@ -16,6 +16,7 @@ public class phase2TutorialManager : MonoBehaviour
     void Start()
     {
         textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
+        PlayerMovement.isTut = true;
     }
   
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class phase2TutorialManager : MonoBehaviour
         MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
         PlayerMovement.PortalCounter = 0;
         PlayerMovement.score = 0;
+        PlayerMovement.isTut = false;
         Destroy(this);
     }
 }

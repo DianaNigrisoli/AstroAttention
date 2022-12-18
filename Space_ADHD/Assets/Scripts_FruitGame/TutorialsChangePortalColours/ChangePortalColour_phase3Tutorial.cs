@@ -70,6 +70,7 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
     {
         if (state == MiniGameStateFruit.ThreeTutorial)
         {
+            //PlayerMovement.tut = true;
             fruitImage = GameObject.Find("FruitImage").GetComponent<Image>();
             selectRandomImage();
             CustomPalette();
@@ -81,6 +82,7 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
         }
         else
         {
+            //PlayerMovement.tut = false;
             rightPortal1 = 0;
             rightPortal2 = 0;
             rightPortal3 = 0;

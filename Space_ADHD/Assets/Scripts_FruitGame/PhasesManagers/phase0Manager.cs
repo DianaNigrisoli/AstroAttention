@@ -31,6 +31,7 @@ namespace Assets.Scripts_FruitGame
         void Start()
         {
             textObject = GameObject.Find("TextIndication").GetComponent<TextMeshProUGUI>();
+            PlayerMovement.isTut = false;
         }
 
         
@@ -81,6 +82,7 @@ namespace Assets.Scripts_FruitGame
 
             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
             PlayerMovement.score = 0;
+            PlayerMovement.ListScore.Clear();
             PlayerMovement.ListReactionTime.Clear();
             textObject.text = "";
             
