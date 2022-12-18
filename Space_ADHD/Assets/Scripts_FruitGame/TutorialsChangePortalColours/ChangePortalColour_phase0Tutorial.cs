@@ -73,7 +73,7 @@ public class ChangePortalColour_phase0Tutorial : MonoBehaviour
             selectRandomColour();
             selectTriangle();
         }
-        //bisogna fare else destroy??
+        
     }
 
     

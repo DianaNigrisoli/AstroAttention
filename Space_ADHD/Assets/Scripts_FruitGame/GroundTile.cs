@@ -9,8 +9,7 @@ public class GroundTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        groundSpawner = GameObject.FindObjectOfType<GroundSpawner>(); 
-        //la funzione trova tutti gli oggetti di tipo groundspawner, quindi se ne abbiamo più di uno, non va bene
+        groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
     }
 
     private void OnTriggerExit(Collider other)

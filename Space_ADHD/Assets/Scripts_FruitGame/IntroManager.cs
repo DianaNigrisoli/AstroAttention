@@ -492,10 +492,7 @@ namespace Assets.Scripts_FruitGame
             Random r = new Random();
             int rInt = r.Next(0, tutorialRobotVoices.Length);
             tutorialRobotVoices[rInt].Play();
-            
-            // tutorialRobot.transform.position = Vector3.MoveTowards(tutorialRobot.transform.position, new Vector3(4f, -0.68f, 2.7f),
-            //                 Time.deltaTime * 0.5f); 
-            
+
             portals = Instantiate(PortalsIntro, GameObject.Find("All").transform);
             GameObject  portal1 = portals.transform.Find("Portal1").gameObject;
             GameObject  portal2 = portals.transform.Find("Portal2").gameObject;

@@ -100,17 +100,7 @@ public class instructionsManager : MonoBehaviour
             
         }
         
-        // else if (SkipTutorialButton.TutorialSkipped && !showingTutorial)
-        // {
-        //     switch (tutorialPhase)
-        //     {
-        //         case TutorialPreGamePhase.Zero:
-        //             HandlePhaseZero_short();
-        //             break; 
-        //         
-        //     }
-        //     
-        // }
+        
     }
     
     void HandlePhaseZero ()
@@ -129,23 +119,7 @@ public class instructionsManager : MonoBehaviour
         }
             
     }
-
-    void HandlePhaseZero_short()
-    {
-        if (!phaseStarted)
-        {
-            PrepareTextAndVariables();
-        }
-        else if (writing)
-        {
-            ShowTutorialScreenText();
-        }
-        else
-        {
-            GoToWaitForNext();
-        }
-        
-    }
+    
     
     void HandlePhaseOne ()
     {

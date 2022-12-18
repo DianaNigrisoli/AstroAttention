@@ -232,41 +232,5 @@ public class ChangePortalColour_phase2Tutorial : MonoBehaviour
     
     }
     
-    // vecchio codice
-    // Color semanticColor = ListColour_portal[currentFruit.ID]; //semantic color of fruit
-    // semanticColor = ListColour_portal[currentFruit.ID];
-    // Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
-    // List<Color> tempColourList = ListColour_portal;
-
-    // tempColourList.RemoveAll(t => t == semanticColor || t == currentColor);
-        
-    // int tempindex = Random2.Range(0, 2);
-    // tempColourList.RemoveAt(tempindex);
-        
-    // List<Color> PortalColour = tempColourList;
-    // PortalColour.Add(currentColor);
-    // PortalColour.Add(semanticColor);
-        
-    // var rnd = new Random1();
-    // List<Color> ShufflePortalColour = PortalColour.OrderBy(item => rnd.Next()).ToList();
-
     
-    
-    
-    // first color selected: current color (SEMANTIC COLOR)
-    // Color currentColor = ListColour_portal[currentFruit.ID];
-    // List<Color> tempColourList = ListColour_portal;
-    // tempColourList.RemoveAt(currentFruit.ID); // tempColourList has 4 elements now
-        
-    // // second color removed
-    // int tempindex = Random2.Range(0, 4); 
-    // tempColourList.RemoveAt(tempindex); //tempColourList has 3 elements now
-    //
-    // // third color removed
-    // int tempindex2 = Random2.Range(0, 3); 
-    // tempColourList.RemoveAt(tempindex2); //tempColourList has 2 elements now
-    // // corrent color (SEMANTIC COLOR) added 
-    //    PortalColour.Add(currentColor); 
-    //
-
 }

@@ -64,9 +64,9 @@ public class ChangePortalColour_phase0 : MonoBehaviour
             CustomPalette();
             selectFruitColor();
             selectRandomColour();
-            //print("phase bool: "+ phase0);
+            
         }
-        //bisogna fare else destroy??
+        
     }
 
     

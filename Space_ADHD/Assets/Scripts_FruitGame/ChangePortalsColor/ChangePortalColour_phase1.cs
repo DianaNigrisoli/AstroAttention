@@ -236,19 +236,7 @@ public class ChangePortalColour_phase1 : MonoBehaviour
     
         }
     
-    // codice vecchio 
-    //semanticColor = ListColour_portal[currentFruit.ID];
-    //Color currentColor = new Color(visibleColor.r, visibleColor.g, visibleColor.b, (visibleColor.a - 0.5f)); //visible color on fruit
-    //List<Color> tempColourList = ListColour_portal;
-            
-    // remove current color
-    //tempColourList.RemoveAll(t => t == semanticColor);
-        
-    // remove 4th color: 3 remain
-    //int tempindex = Random2.Range(0, 3);
-    //tempColourList.RemoveAt(tempindex);
-
-    //List<Color> PortalColour = tempColourList;
+   
 
 }
 

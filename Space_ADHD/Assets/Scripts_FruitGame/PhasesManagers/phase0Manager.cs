@@ -22,10 +22,7 @@ namespace Assets.Scripts_FruitGame
 
         private string ing_text = "Select the real colour of the fruit"; 
         private string ita_text = "Seleziona il colore reale della frutta"; 
-        //[SerializeField] private GameObject portals;
-        //Cosa fa questo script: 
-        //Conto del punteggio considerando tempo di reazione (calcolato FunctionTimer.cs) e portali corretti (calcolato in PlayerMovement.cs)
-        //Tiene conto di numero di portali spawnati (contati nel player movement) e triggera l'inizio della fase successiva
+        
         
         // Start is called before the first frame update
         void Start()

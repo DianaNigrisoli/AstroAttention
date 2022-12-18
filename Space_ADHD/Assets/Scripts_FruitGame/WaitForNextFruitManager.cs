@@ -194,52 +194,7 @@ namespace Assets.Scripts_FruitGame
             
     }
         
-        
-        
-        // private void updateMiniGameState()
-        // {
-        //     switch (lastPlayedPhase)
-        //     {
-        //         // case MiniGameStateFruit.Intro:
-        //         //     MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.Instructions);
-        //         //     lastPlayedPhase = MiniGameStateFruit.Instructions;
-        //         //     break;
-        //         case MiniGameStateFruit.Instructions:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ZeroTutorial);
-        //             lastPlayedPhase = MiniGameStateFruit.ZeroTutorial;
-        //             break;
-        //         case MiniGameStateFruit.ZeroTutorial:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ZeroScene);
-        //             lastPlayedPhase = MiniGameStateFruit.ZeroScene;
-        //             break;
-        //         case MiniGameStateFruit.ZeroScene:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.OneTutorial);
-        //             lastPlayedPhase = MiniGameStateFruit.OneTutorial;
-        //             break;
-        //         case MiniGameStateFruit.OneTutorial:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.OneScene);
-        //             lastPlayedPhase = MiniGameStateFruit.OneScene;
-        //             break;
-        //         case MiniGameStateFruit.OneScene:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.TwoTutorial);
-        //             lastPlayedPhase = MiniGameStateFruit.TwoTutorial;
-        //             break;
-        //         case MiniGameStateFruit.TwoTutorial:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.TwoScene);
-        //             lastPlayedPhase = MiniGameStateFruit.TwoScene;
-        //             break;
-        //         case MiniGameStateFruit.TwoScene:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ThreeTutorial);
-        //             lastPlayedPhase = MiniGameStateFruit.ThreeTutorial;
-        //             break;
-        //         case MiniGameStateFruit.ThreeTutorial:
-        //             MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.ThreeScene);
-        //             lastPlayedPhase = MiniGameStateFruit.ThreeScene;
-        //             break;
-        //         default:
-        //             throw new ArgumentOutOfRangeException(nameof(lastPlayedPhase), lastPlayedPhase, null);
-        //     }
-        // }
+    
 }
 
 

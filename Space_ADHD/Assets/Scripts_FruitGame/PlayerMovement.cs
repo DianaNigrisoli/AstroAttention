@@ -282,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
         print("score: " + score);
         return;
     }
-    // Ho dovuto usare la variabile iscolliding perchè se no durava troppo l'evento 
+    
 
     IEnumerator waiter()
     {
@@ -333,23 +333,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.collider.CompareTag("Pumpkin"))
-    //     {
-    //         score++;
-    //         AudioManager.instance.PlayCorrect();
-    //         Destroy(other.gameObject);
-    //     }
-    //     else if (other.collider.CompareTag("FinishLine"))
-    //     {
-    //         Win();
-    //     }
-    // }
-
-    // private void Win()
-    // {
-    //     GameManager.instance.score = this.score;
-    //     SceneManager.LoadScene("FinalScene");
-    // }
+    
 }

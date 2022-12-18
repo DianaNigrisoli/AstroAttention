@@ -147,23 +147,7 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
     }
     void selectFruitColor()
     {
-        //// In this phase the fruit MUST NOT have its semantic colour
-        // -> same for phase 1,2,3
         
-        //List<Color> tempColourList_fruit = ListColour_fruit;
-            
-        // semantic colour removed
-        //tempColourList_fruit.RemoveAt(currentFruit.ID);  // tempColourList has 4 elements now
-        
-        // selection of a random color between those remained
-        //index_visCol = Random2.Range(0, 4);
-        //visibleColor = tempColourList_fruit[index_visCol];
-        //fruitImage.GetComponent<Image>().color = visibleColor;
-        // restore the index of visible color
-        //if (currentFruit.ID < index_visCol)
-        //{
-        //    index_visCol += 1;
-        //}
         
          List<Color> tempColourList_fruit = ListColour_fruit;
          //tempColourList_fruit.RemoveAt(currentFruit.ID);
@@ -178,24 +162,7 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
     }
     void selectMiniImage()
     {
-       /////// CODICE PROVA LAURA ///////
-        // divion of fruit: creation of 2 list of indexis that indicate the fruits
-        // List<int> fruit_visCol;
-        // List<int> fruit_diffCol;
-        
-        // for (int i = 0; i < 9; i++)
-        // {
-        //     if (LoadFruits.myFruitList.fruit[i].ID == index_visCol) // se il colore della frutta è uguale a quello visibile 
-        //     {
-        //         fruit_visCol.Add(i);
-        //     }
-        //     else
-        //     {
-        //         fruit_diffCol.Add((i));
-        //     }
-        
-
-         //// CODICE CHE FUNZIA ///
+       
          //// in this phase the images shown must be:
          //      1. a fruit which semantic color is the visible one without that colour 
          //      2. the fruit visible in the canvas with a DIFFERENT colour of the canvas
@@ -212,12 +179,7 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
              miniFruitCorrectColour = Random2.Range(0, 9); //image that corresponds to the colour of the canvas
          }
         
-         // while ((randomImagePortal2 == randomImagePortal1) || 
-         //        (randomImagePortal2 == randomImageCanvas) || 
-         //        (indexColourCanvas == LoadFruits.myFruitList.fruit[randomImagePortal2].ID ) )
-         // {
-         //     randomImagePortal2 = Random2.Range(0, 9);
-         // }
+        
         
          while ((randomImagePortal3 == miniFruitCorrectColour) || 
                 (randomImagePortal3 == randomImagePortal2) || 
@@ -320,9 +282,6 @@ public class ChangePortalColour_phase3Tutorial : MonoBehaviour
         MiniFruitRender1.color = ListColour_fruit[indexColourMinifruit1];
         MiniFruitRender2.color = ListColour_fruit[indexColourMinifruit2];
         MiniFruitRender3.color = ListColour_fruit[indexColourMinifruit3];
-        // myportal1.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit1];
-        // myportal2.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit2];
-        // myportal3.GetComponent<Renderer>().material.color = ListColour_portal[indexColourMinifruit3];
         myportal1.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
         myportal2.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);
         myportal3.GetComponent<Renderer>().material.color = new Color(205 / 255f, 205 / 255f, 205 / 255f, 0.9f);

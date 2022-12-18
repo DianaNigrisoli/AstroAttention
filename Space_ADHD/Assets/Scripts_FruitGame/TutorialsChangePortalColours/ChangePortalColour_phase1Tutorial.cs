@@ -64,7 +64,6 @@ public class ChangePortalColour_phase1Tutorial : MonoBehaviour
             //print("phase bool: "+ phase0);
         }
         
-        //bisognare fare else -> destroy? 
     }
     
     
