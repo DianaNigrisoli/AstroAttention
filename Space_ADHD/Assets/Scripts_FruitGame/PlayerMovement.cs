@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         score = 0;
+        kidScoreFruitG = 0.0f;
         increment = 3.4f; //prima 3
         speedForward = 20;
         speedLateral = 7; // prima 5
