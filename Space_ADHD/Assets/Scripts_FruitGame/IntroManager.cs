@@ -87,6 +87,7 @@ namespace Assets.Scripts_FruitGame
                 // txtBox.enabled = false;
                 // MiniGameManagerFruit.instance.UpdateMiniGameState(MiniGameStateFruit.WaitForNext);
                 Debug.Log("Starting Tutorial");
+                SkipTutorialButton.TutorialSkipped = false;
                 PrepareTutorialData();
                 introPhase = IntroPhase.Zero;
                 showingIntro = true;
