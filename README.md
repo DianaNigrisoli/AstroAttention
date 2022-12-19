@@ -9,7 +9,7 @@
 - Pozzi Laura ([@LauPozzi](https://github.com/LauPozzi)) <br> laura3.pozzi@mail.polimi.it
 
 ### Setup
-* In the command prompt and execute:
+* In the command prompt execute:
     ```console
     git clone https://github.com/DianaNigrisoli/E-healthUnity.git
     ```
